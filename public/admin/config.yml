@@ -1,0 +1,76 @@
+backend:
+  name: github
+  repo: OWNER/littlegraduates   # ← change after creating the GitHub repo
+  branch: main
+
+media_folder: public/media
+public_folder: /media
+
+collections:
+  - name: blog
+    label: Blog Posts
+    folder: src/content/blog
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Title }
+      - { name: date, label: Date, widget: datetime, format: "YYYY-MM-DD" }
+      - { name: excerpt, label: Excerpt, required: false }
+      - { name: image, label: Featured image, widget: image, required: false }
+      - { name: categories, label: Categories, widget: list, required: false }
+      - { name: tags, label: Tags, widget: list, required: false }
+      - { name: seoDescription, label: SEO description, required: false }
+      - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: body, label: Body, widget: markdown }
+
+  - name: programs
+    label: Programs
+    folder: src/content/programs
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: ages, label: Age range }
+      - { name: order, label: Display order, widget: number }
+      - { name: excerpt, label: Short description, required: false }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: body, label: Details, widget: markdown }
+
+  - name: events
+    label: Events
+    folder: src/content/events
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: start, label: Event date, widget: datetime, format: "YYYY-MM-DD" }
+      - { name: location, label: Location, default: "The Little Graduates, Kaloor, Kochi" }
+      - { name: image, label: Image, widget: image, required: false }
+      - { name: body, label: Details, widget: markdown, required: false }
+
+  - name: data
+    label: Site Settings
+    files:
+      - name: site
+        label: Site info
+        file: src/data/site.json
+        fields:
+          - { name: name, label: School name }
+          - { name: tagline, label: Tagline }
+          - { name: phone, label: Phone (display) }
+          - { name: phoneHref, label: Phone (tel link) }
+          - { name: whatsapp, label: WhatsApp link }
+          - { name: email, label: Email }
+          - { name: address, label: Address lines, widget: list }
+          - { name: logo, label: Logo, widget: image }
+          - { name: logoRemote, label: Legacy logo URL, required: false }
+          - { name: googleReviews, label: Google reviews label }
+          - { name: enrollYear, label: Enrolment year }
+      - name: gallery
+        label: Gallery
+        file: src/data/gallery.json
+        fields:
+          - name: images
+            label: Images
+            widget: list
+            fields:
+              - { name: src, label: Image, widget: image }
+              - { name: alt, label: Description }

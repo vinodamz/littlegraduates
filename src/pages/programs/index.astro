@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const programs = (await getCollection('programs')).sort((a,b) => a.data.order - b.data.order);
+---
+<Base title="Programs - The Little Graduates" description="Playgroup, Nursery, LKG, UKG, daycare and afterschool programs for ages 1.5 to 6 in Kaloor, Kochi.">
+  <section class="section">
+    <div class="container">
+      <div class="center"><p class="kicker">Programs</p><h1>From first steps to first day of school</h1></div>
+      <div class="grid grid-3" style="margin-top:2.5rem;">
+        {programs.map(p => (
+          <a href={`/programs/${p.id}/`} class="card" style="text-decoration:none;">
+            {p.data.image && <img src={p.data.image} alt="" loading="lazy" style="border-radius:12px; aspect-ratio:16/10; object-fit:cover;" />}
+            <p class="ages" style="margin-top:.75rem;">{p.data.ages}</p>
+            <h3>{p.data.title}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

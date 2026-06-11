@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+const events = (await getCollection('events')).sort((a,b) => b.data.start - a.data.start);
+---
+<Base title="Events - The Little Graduates" description="Upcoming events, celebrations, and camps at The Little Graduates, Kaloor, Kochi.">
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="center"><p class="kicker">Events</p><h1>Celebrations &amp; happenings</h1></div>
+      <div style="margin-top:2.5rem;">
+        {events.map(e => (
+          <div class="card" style="margin-bottom:1.25rem;">
+            <p class="ages">{e.data.start.toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}</p>
+            <h3>{e.data.title}</h3>
+            <p class="meta">{e.data.location}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

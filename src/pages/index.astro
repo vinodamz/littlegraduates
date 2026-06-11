@@ -1,0 +1,169 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+import { getCollection } from 'astro:content';
+const programs = (await getCollection('programs')).sort((a,b) => a.data.order - b.data.order).slice(0,4);
+const posts = (await getCollection('blog')).filter(p => !p.data.draft).sort((a,b) => b.data.date - a.data.date).slice(0,3);
+const testimonials = [
+  { quote: "I consider it a huge blessing to have come across Little Graduates Montessori Playschool while searching for a good preschool for my three children. It made me realize how much a school's methodology and approach shape both a child's and a parent's experience of learning.", name: "Reshma Koruth", role: "Parent of 3" },
+  { quote: "The faculty is dedicated and passionate about their work. Teachers are friendly and approachable, making kids feel comfortable.", name: "Adithya Unnikrishnan", role: "Parent" },
+  { quote: "The environment is calm, clean, and thoughtfully designed to encourage independent learning. The teachers are patient and well-trained in Montessori methods.", name: "Navajyothy Praveen", role: "Parent" },
+];
+const why = [
+  ["Montessori-inspired", "Child-led learning, guided by experienced teachers who follow each child's interests."],
+  ["Kreedo curriculum", "Backed by science, trusted by 3,500+ schools — proven, practical, powerful."],
+  ["Caring teachers", "Experienced educators who know each child by name, story, and strength."],
+  ["Safe, hygienic campus", "A bright, secure space in the heart of Kaloor — designed for little explorers."],
+  ["Indoor + outdoor play", "Sky, mud, grass, and room to roam — a rare gem in Kochi."],
+  ["Small class sizes", "1:12 ratio. Every child is seen, heard, and gently guided."],
+];
+const corners = [
+  ["Music space", "Explore rhythm, sound, and movement."],
+  ["Public speaking corner", "Build confidence through storytelling."],
+  ["Art & creativity zone", "Express ideas through colour and craft."],
+  ["Indoor play area", "A safe space for open-ended movement."],
+  ["Sensory & discovery", "Hands-on science, puzzles, and exploration."],
+  ["Outdoor garden", "Sky, mud, grass — a rare bit of nature in the city."],
+];
+const faqs = [
+  ["What ages does Little Graduates accept?", "We welcome children from 1.5 to 6 years across Playgroup, Nursery, LKG and UKG, plus daycare and afterschool options."],
+  ["Where is Little Graduates located?", "Kattayil Road, Near Kaloor, Elamakara, Kochi 682017 — in the heart of the city."],
+  ["What is the student-teacher ratio?", "We maintain a 1:12 ratio so every child is seen, heard, and gently guided."],
+  ["What curriculum do you follow?", "A Montessori-based 6T curriculum built with Kreedo, fully aligned with NEP 2020 and the NCF."],
+  ["Are admissions open for 2026?", "Yes — 2026 admissions are open. Book a free tour or WhatsApp us to begin."],
+  ["Do you have outdoor play areas?", "Yes. Sky, mud, grass and room to roam — a rare gem in Kochi."],
+];
+---
+<Base title="Best Preschool in Kaloor, Kochi - The Little Graduates">
+  <section class="section center">
+    <div class="container" style="max-width:880px;">
+      <p class="kicker">Now enrolling {site.enrollYear}</p>
+      <h1>A joyful Montessori preschool in the heart of Kaloor, Kochi.</h1>
+      <p style="font-size:1.1rem; margin:1.25rem 0 2rem;">Kochi's most-loved early learning centre — where every child feels at home. Montessori-based learning, caring teachers, and a vibrant campus in the heart of Kaloor. Open for ages 1.5 to 6.</p>
+      <a class="btn btn-pink" href={site.whatsapp}>Chat on WhatsApp</a>
+      <a class="btn btn-outline" href={site.phoneHref}>Call {site.phone}</a>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="banner">
+      <div>
+        <p class="kicker">The best way to decide</p>
+        <h2>Come visit. See the school for yourself.</h2>
+        <p>Free 30-minute campus tour. Any day, any time that works for you. No sales pitch — just walk through, meet the teachers, and decide.</p>
+      </div>
+      <a class="btn btn-white" href="/book-a-tour/">Book a free tour →</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center" style="max-width:800px;">
+      <p class="kicker">About us</p>
+      <h2>A warm start. A joyful future.</h2>
+      <p style="margin-top:1rem;">We believe the early years shape everything that comes next. Our 6T Curriculum blends Montessori principles, play-based learning, and hands-on skill building — so every child grows in confidence, curiosity, and kindness.</p>
+      <p>With experienced teachers, modern facilities, and a strong focus on emotional and social development, your child won't just learn here. They'll feel at home.</p>
+      <a class="btn btn-outline" href="/about/">More about us</a>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--paper);">
+    <div class="container">
+      <div class="center"><p class="kicker">Why parents choose us</p><h2>What makes Little Graduates different</h2></div>
+      <div class="grid grid-3" style="margin-top:2rem;">
+        {why.map(([t, d]) => <div class="card"><h3>{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center"><p class="kicker">Programs</p><h2>From first steps to first day of school</h2></div>
+      <div class="grid grid-4" style="margin-top:2rem;">
+        {programs.map(p => (
+          <a href={`/programs/${p.id}/`} class="card" style="text-decoration:none;">
+            <p class="ages">{p.data.ages}</p>
+            <h3>{p.data.title}</h3>
+            <p style="color:var(--text);">{p.data.excerpt?.split('\n')[0]}</p>
+          </a>
+        ))}
+      </div>
+      <p class="center" style="margin-top:2rem;"><a class="btn btn-outline" href="/programs/">All programs</a></p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--paper);">
+    <div class="container">
+      <div class="center"><p class="kicker">Experience corners</p><h2>Spaces designed to delight</h2></div>
+      <div class="grid grid-3" style="margin-top:2rem;">
+        {corners.map(([t, d]) => <div class="card"><h3>{t}</h3><p>{d}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container center" style="max-width:800px;">
+      <p class="kicker">Curriculum &amp; the 6T framework</p>
+      <h2>Aligned with NEP. Built for joy.</h2>
+      <p style="margin-top:1rem;">Our curriculum, built in partnership with Kreedo, is fully aligned with India's New Education Policy (NEP) and the National Curriculum Framework (NCF). The 6T framework: Toys &amp; Games · Theory · Timetable · Training · Technology · Teamwork.</p>
+    </div>
+  </section>
+
+  <section class="section" style="background:var(--paper);">
+    <div class="container">
+      <div class="center"><p class="kicker">Parents say</p><h2>Loved by parents across Kochi</h2></div>
+      <div class="grid grid-3" style="margin-top:2rem;">
+        {testimonials.map(t => (
+          <div class="card">
+            <p style="color:var(--orange);">★ ★ ★ ★ ★</p>
+            <p>"{t.quote}"</p>
+            <p class="meta" style="text-transform:uppercase; letter-spacing:.1em;">{t.name} · {t.role}</p>
+          </div>
+        ))}
+      </div>
+      <p class="center meta" style="margin-top:1.5rem;">★ 5.0 · {site.googleReviews}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container" style="max-width:800px;">
+      <div class="center"><p class="kicker">Parents ask</p><h2>Frequently asked questions</h2></div>
+      <div style="margin-top:2rem;">
+        {faqs.map(([q, a]) => (
+          <details class="card" style="margin-bottom:1rem;">
+            <summary style="font-family:var(--font-head); font-weight:600; color:var(--indigo); cursor:pointer;">{q}</summary>
+            <p style="margin-top:.75rem;">{a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center" style="margin-bottom:2rem;"><p class="kicker">From the blog</p><h2>Latest from Little Graduates</h2></div>
+      <div class="grid grid-3">
+        {posts.map(p => (
+          <a href={`/blog/${p.id}/`} class="card" style="text-decoration:none;">
+            {p.data.image && <img src={p.data.image} alt="" loading="lazy" style="border-radius:12px; aspect-ratio:16/10; object-fit:cover;" />}
+            <h3 style="margin-top:.75rem;">{p.data.title}</h3>
+            <p class="meta">{p.data.date.toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container" style="margin-bottom:2rem;">
+    <div class="banner">
+      <div>
+        <p class="kicker">Visit us</p>
+        <h2>Come visit. Learning starts here.</h2>
+        <p>{site.enrollYear} admissions are open. Book a tour to see our classrooms, meet our teachers, and feel the difference.</p>
+      </div>
+      <div>
+        <a class="btn btn-white" href="/book-a-tour/">Book a tour</a>
+        <a class="btn btn-green" href={site.whatsapp}>WhatsApp us</a>
+      </div>
+    </div>
+  </section>
+</Base>

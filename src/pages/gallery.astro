@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import gallery from '../data/gallery.json';
+---
+<Base title="Gallery - The Little Graduates" description="Moments from our classrooms — Montessori learning, outdoor play, and celebrations at The Little Graduates, Kochi.">
+  <section class="section">
+    <div class="container">
+      <div class="center"><p class="kicker">A peek inside</p><h1>Moments from our classrooms</h1></div>
+      <div class="grid grid-3" style="margin-top:2.5rem;">
+        {gallery.images.map(img => <img src={img.src} alt={img.alt} loading="lazy" style="border-radius:16px; aspect-ratio:4/3; object-fit:cover; width:100%;" />)}
+      </div>
+    </div>
+  </section>
+</Base>

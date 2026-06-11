@@ -1,0 +1,22 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const posts = (await getCollection('blog')).filter(p => !p.data.draft);
+  return posts.map(p => ({ params: { id: p.id }, props: { post: p } }));
+}
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+<Base title={`${post.data.title} - The Little Graduates`} description={post.data.seoDescription ?? post.data.excerpt ?? post.data.title}>
+  <article class="section">
+    <div class="container prose">
+      <p class="kicker">{post.data.categories[0] ?? 'Blog'}</p>
+      <h1>{post.data.title}</h1>
+      <p class="meta" style="margin:.75rem 0 1.5rem;">{post.data.date.toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}</p>
+      {post.data.image && <img src={post.data.image} alt="" style="border-radius:16px;" />}
+      <Content />
+      <p style="margin-top:2.5rem;"><a class="btn btn-outline" href="/blog/">← All posts</a></p>
+    </div>
+  </article>
+</Base>

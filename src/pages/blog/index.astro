@@ -1,0 +1,21 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('blog')).filter(p => !p.data.draft).sort((a,b) => b.data.date - a.data.date);
+---
+<Base title="Blog - The Little Graduates" description="Parenting tips, Montessori insights, and stories from The Little Graduates, Kaloor, Kochi.">
+  <section class="section">
+    <div class="container">
+      <div class="center"><p class="kicker">Our blog</p><h1>Stories, tips &amp; Montessori insights</h1></div>
+      <div class="grid grid-3" style="margin-top:2.5rem;">
+        {posts.map(p => (
+          <a href={`/blog/${p.id}/`} class="card" style="text-decoration:none;">
+            {p.data.image && <img src={p.data.image} alt="" loading="lazy" style="border-radius:12px; aspect-ratio:16/10; object-fit:cover;" />}
+            <h3 style="margin-top:.75rem;">{p.data.title}</h3>
+            <p class="meta">{p.data.date.toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

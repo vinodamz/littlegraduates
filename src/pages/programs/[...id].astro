@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+export async function getStaticPaths() {
+  const items = await getCollection('programs');
+  return items.map(p => ({ params: { id: p.id }, props: { item: p } }));
+}
+const { item } = Astro.props;
+const { Content } = await render(item);
+---
+<Base title={`${item.data.title} - The Little Graduates`} description={item.data.excerpt ?? item.data.title}>
+  <article class="section">
+    <div class="container prose">
+      <p class="kicker">{item.data.ages}</p>
+      <h1>{item.data.title}</h1>
+      {item.data.image && <img src={item.data.image} alt="" style="border-radius:16px; margin-top:1rem;" />}
+      <Content />
+      <div class="banner" style="margin-top:2.5rem;">
+        <div><h2>See it in person</h2><p>Book a free tour and watch the classroom in action.</p></div>
+        <a class="btn btn-white" href="/book-a-tour/">Book a tour →</a>
+      </div>
+    </div>
+  </article>
+</Base>
