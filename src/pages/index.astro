@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import gallery from '../data/gallery.json';
 import { getCollection } from 'astro:content';
 const programs = (await getCollection('programs')).sort((a,b) => a.data.order - b.data.order).slice(0,4);
 const posts = (await getCollection('blog')).filter(p => !p.data.draft).sort((a,b) => b.data.date - a.data.date).slice(0,3);
@@ -43,6 +44,10 @@ const faqs = [
       <a class="btn btn-pink" href={site.whatsapp}>Chat on WhatsApp</a>
       <a class="btn btn-outline" href={site.phoneHref}>Call {site.phone}</a>
     </div>
+  </section>
+
+  <section class="container" style="margin-bottom:1rem;">
+    <img src="/media/hero/campus.jpg" alt="The Little Graduates campus in Kaloor, Kochi" loading="eager" style="width:100%; max-height:520px; object-fit:cover; border-radius:24px;" />
   </section>
 
   <section class="container">
@@ -105,6 +110,17 @@ const faqs = [
       <p class="kicker">Curriculum &amp; the 6T framework</p>
       <h2>Aligned with NEP. Built for joy.</h2>
       <p style="margin-top:1rem;">Our curriculum, built in partnership with Kreedo, is fully aligned with India's New Education Policy (NEP) and the National Curriculum Framework (NCF). The 6T framework: Toys &amp; Games · Theory · Timetable · Training · Technology · Teamwork.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center"><p class="kicker">A peek inside</p><h2>Moments from our classrooms</h2></div>
+      <div class="grid grid-3" style="margin-top:2rem;">
+        {gallery.images.map(img => (
+          <img src={img.src} alt={img.alt} loading="lazy" style="border-radius:16px; aspect-ratio:4/3; object-fit:cover; width:100%;" />
+        ))}
+      </div>
     </div>
   </section>
 

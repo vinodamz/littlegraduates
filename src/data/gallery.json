@@ -1,1 +1,11 @@
-{ "images": [] }
+{ "images": [
+  { "src": "/media/gallery/play-1.jpg", "alt": "Children at outdoor play at The Little Graduates" },
+  { "src": "/media/gallery/class-1.jpg", "alt": "Montessori classroom activity" },
+  { "src": "/media/gallery/activity-1.webp", "alt": "Hands-on learning session" },
+  { "src": "/media/gallery/room-1.jpg", "alt": "Bright, prepared classroom environment" },
+  { "src": "/media/gallery/class-2.jpg", "alt": "Children learning together" },
+  { "src": "/media/gallery/activity-2.webp", "alt": "Creative play and exploration" },
+  { "src": "/media/gallery/room-2.jpg", "alt": "Montessori materials and shelves" },
+  { "src": "/media/gallery/activity-3.webp", "alt": "Group activity at Little Graduates" },
+  { "src": "/media/gallery/room-3.jpg", "alt": "Indoor play and learning space" }
+] }
