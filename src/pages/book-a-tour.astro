@@ -1,27 +1,55 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
-const WEB3FORMS_KEY = import.meta.env.PUBLIC_WEB3FORMS_KEY ?? '';
 ---
 <Base title="Book a Tour - The Little Graduates" description="Book a free 30-minute campus tour at The Little Graduates, Kaloor, Kochi. 2026 admissions open.">
   <section class="section">
     <div class="container" style="max-width:680px;">
       <div class="center"><p class="kicker">Book a free tour</p><h1>See the school for yourself.</h1>
       <p>Free 30-minute campus tour. Any day, any time that works for you. No sales pitch.</p></div>
-      <form class="card" style="margin-top:2rem;" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value={WEB3FORMS_KEY} />
-        <input type="hidden" name="subject" value="Tour request — thelittlegraduates.in" />
+      <form id="lg-form" class="card" style="margin-top:2rem;">
+        <input type="hidden" name="type" value="tour" />
+        <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
         <label>Parent's name<br/><input required name="name" /></label><br/><br/>
         <label>Phone / WhatsApp<br/><input required name="phone" type="tel" /></label><br/><br/>
         <label>Child's age<br/><input name="child_age" /></label><br/><br/>
         <label>Preferred day &amp; time<br/><input name="preferred_time" /></label><br/><br/>
-        <button class="btn btn-pink" type="submit">Request tour</button>
+        <button class="btn btn-pink" type="submit" id="lg-submit">Request tour</button>
+        <p id="lg-msg" style="margin-top:1rem;display:none;"></p>
       </form>
       <p class="center" style="margin-top:1.5rem;">Prefer chat? <a href={site.whatsapp}>WhatsApp us</a> or call <a href={site.phoneHref}>{site.phone}</a>.</p>
     </div>
   </section>
   <style>
-    input { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
-    label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
+    #lg-form input { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
+    #lg-form label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
   </style>
+  <script is:inline>
+    const f = document.getElementById('lg-form');
+    const msg = document.getElementById('lg-msg');
+    const btn = document.getElementById('lg-submit');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const r = await fetch('/api/inquiry', { method: 'POST', body: new FormData(f) });
+        const d = await r.json();
+        msg.style.display = 'block';
+        if (d.ok) {
+          f.reset();
+          msg.style.color = 'var(--green-dark)';
+          msg.textContent = '✓ Thank you! We’ll reach out shortly to confirm your tour.';
+          btn.textContent = 'Sent';
+        } else {
+          msg.style.color = '#c0392b';
+          msg.textContent = d.error || 'Something went wrong. Please WhatsApp us instead.';
+          btn.disabled = false; btn.textContent = 'Request tour';
+        }
+      } catch {
+        msg.style.display = 'block'; msg.style.color = '#c0392b';
+        msg.textContent = 'Network error. Please WhatsApp us instead.';
+        btn.disabled = false; btn.textContent = 'Request tour';
+      }
+    });
+  </script>
 </Base>

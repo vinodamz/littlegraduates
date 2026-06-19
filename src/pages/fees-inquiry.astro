@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title="Fees & Admission Inquiry - The Little Graduates" description="Request 2026 fee details and admission information for The Little Graduates, Kaloor, Kochi.">
+  <section class="section">
+    <div class="container" style="max-width:680px;">
+      <div class="center"><p class="kicker">Fees &amp; admissions</p><h1>Request fee details</h1>
+      <p>Tell us a little about your child and we’ll share the 2026 fee structure and admission steps.</p></div>
+      <form id="lg-form" class="card" style="margin-top:2rem;">
+        <input type="hidden" name="type" value="fees" />
+        <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+        <label>Parent's name<br/><input required name="name" /></label><br/><br/>
+        <label>Phone / WhatsApp<br/><input required name="phone" type="tel" /></label><br/><br/>
+        <label>Email<br/><input name="email" type="email" /></label><br/><br/>
+        <label>Child's age<br/><input name="child_age" /></label><br/><br/>
+        <label>Anything else?<br/><input name="message" /></label><br/><br/>
+        <button class="btn btn-pink" type="submit" id="lg-submit">Request fee details</button>
+        <p id="lg-msg" style="margin-top:1rem;display:none;"></p>
+      </form>
+      <p class="center" style="margin-top:1.5rem;">Or chat with us on <a href={site.whatsapp}>WhatsApp</a>.</p>
+    </div>
+  </section>
+  <style>
+    #lg-form input { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
+    #lg-form label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
+  </style>
+  <script is:inline>
+    const f = document.getElementById('lg-form'), msg = document.getElementById('lg-msg'), btn = document.getElementById('lg-submit');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault(); btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const r = await fetch('/api/inquiry', { method: 'POST', body: new FormData(f) });
+        const d = await r.json(); msg.style.display = 'block';
+        if (d.ok) { f.reset(); msg.style.color = 'var(--green-dark)'; msg.textContent = '✓ Thank you! We’ll send the details shortly.'; btn.textContent = 'Sent'; }
+        else { msg.style.color = '#c0392b'; msg.textContent = d.error || 'Something went wrong. Please WhatsApp us.'; btn.disabled = false; btn.textContent = 'Request fee details'; }
+      } catch { msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='Network error. Please WhatsApp us.'; btn.disabled=false; btn.textContent='Request fee details'; }
+    });
+  </script>
+</Base>

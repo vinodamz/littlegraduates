@@ -21,6 +21,7 @@ collections:
       - { name: tags, label: Tags, widget: list, required: false }
       - { name: seoDescription, label: SEO description, required: false }
       - { name: draft, label: Draft, widget: boolean, default: false }
+      - { name: video, label: Video URL (YouTube/Vimeo, optional), required: false }
       - { name: body, label: Body, widget: markdown }
 
   - name: programs
