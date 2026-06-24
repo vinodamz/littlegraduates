@@ -13,12 +13,18 @@ Fully automatic pipeline: edit content → push to GitHub → GitHub Action buil
 2. Note its Document Root (e.g. `/home/CPANELUSER/new.thelittlegraduates.in`). Put that exact
    path in `.cpanel.yml` (the `DEPLOYPATH` line).
 
-## C. cPanel — create the database (for form submissions)
-1. cPanel → **MySQL® Databases** → create a database, e.g. `littlegraduates`.
-2. Create a DB user + password, add the user to the database with **All Privileges**.
-3. cPanel → **phpMyAdmin** → select the database → SQL tab → paste `db/schema.sql` → Go.
-4. In the subdomain's `api/` folder, create `config.php` (copy from `api/config.sample.php`)
-   and fill in the DB name/user/password + notify email. **Do not commit config.php.**
+## C. config.php — reuse mtt's database (enquiries land in the mtt CRM)
+The website's enquiry form inserts a **lead** straight into mtt's CRM table
+`inquiry_families` (status `lead`, source `website`), so new enquiries appear in
+mtt → Leads automatically. No new database is needed — reuse mtt's.
+
+1. Open mtt's `includes/config.php` on the server and copy its `db` block
+   (host / name / user / password).
+2. In the website's subdomain, create `/home/ideyyfbn/new.thelittlegraduates.in/api/config.php`
+   from `api/config.sample.php`, pasting mtt's DB credentials into the `db` block.
+   **Do not commit config.php.**
+3. That's it — the handler finds the active "Website form" campaign and inserts the lead.
+   View incoming enquiries in mtt → Leads (or phpMyAdmin → `inquiry_families`, status `lead`).
 
 ## D. cPanel — Git Version Control (same as mtt)
 1. cPanel → **Git™ Version Control** → Create.

@@ -1,4 +1,6 @@
 <?php
+// Inserts website enquiries straight into the mtt CRM (inquiry_families) as a 'lead'.
+// config.php holds mtt's DB credentials (reuse the same DB as mtt).
 header('Content-Type: application/json');
 $cfg = @include __DIR__ . '/config.php';
 if (!is_array($cfg)) $cfg = [];
@@ -10,50 +12,70 @@ $data = stripos($ct,'application/json')!==false
   ? (json_decode(file_get_contents('php://input'), true) ?: [])
   : $_POST;
 
-if (!empty($data['company'])) out(['ok'=>true]);            // honeypot
+if (!empty($data['company'])) out(['ok'=>true]);                 // honeypot
 $name  = trim($data['name'] ?? '');
 $phone = trim($data['phone'] ?? '');
 if ($name===''||$phone==='') out(['ok'=>false,'error'=>'Name and phone are required.'],422);
 
-$rec = [
-  'type'      => substr(trim($data['type'] ?? 'tour'),0,32),
-  'name'      => substr($name,0,120),
-  'phone'     => substr($phone,0,40),
-  'email'     => substr(trim($data['email'] ?? ''),0,160),
-  'child_age' => substr(trim($data['child_age'] ?? ''),0,40),
-  'message'   => substr(trim(($data['message'] ?? '') ?: ($data['preferred_time'] ?? '')),0,2000),
-  'source'    => 'website',
-  'created_at'=> date('Y-m-d H:i:s'),
-];
+$type   = trim($data['type'] ?? 'tour');
+$email  = trim($data['email'] ?? '');
+$age    = trim($data['child_age'] ?? '');
+$msg    = trim(($data['message'] ?? '') ?: ($data['preferred_time'] ?? ''));
+$ip     = $_SERVER['REMOTE_ADDR'] ?? '';
+$ipHash = $ip ? hash('sha256', $ip) : null;
+
+$noteParts = [];
+$noteParts[] = 'Website enquiry ('.$type.')';
+if ($age !== '') $noteParts[] = 'Child age: '.$age;
+if ($msg !== '') $noteParts[] = $msg;
+$notes = implode("\n", $noteParts);
+
+$db = $cfg['db'] ?? $cfg;   // accept either ['db'=>[...]] (mtt style) or flat keys
+$host = $db['host'] ?? 'localhost';
+$dbn  = $db['name'] ?? '';
+$usr  = $db['user'] ?? '';
+$pwd  = $db['password'] ?? ($db['pass'] ?? '');
+
+if ($dbn==='') out(['ok'=>false,'errors'=>['config']],200);
 
 $errors = [];
+try {
+  $m = new mysqli($host,$usr,$pwd,$dbn);
+  $m->set_charset($db['charset'] ?? 'utf8mb4');
 
-// store in MySQL
-if (!empty($cfg['db_host'])) {
-  try {
-    $m = new mysqli($cfg['db_host'],$cfg['db_user'],$cfg['db_pass'],$cfg['db_name']);
-    $m->set_charset('utf8mb4');
-    $s = $m->prepare('INSERT INTO inquiries (type,name,phone,email,child_age,message,source,created_at) VALUES (?,?,?,?,?,?,?,?)');
-    $s->bind_param('ssssssss',$rec['type'],$rec['name'],$rec['phone'],$rec['email'],$rec['child_age'],$rec['message'],$rec['source'],$rec['created_at']);
-    $s->execute(); $s->close(); $m->close();
-  } catch (Throwable $e) { $errors[]='db'; }
+  // optional light rate-limit: skip if same IP submitted in last 30s
+  if ($ipHash) {
+    $rl = $m->prepare("SELECT 1 FROM inquiry_families WHERE ip_hash=? AND created_at > (NOW() - INTERVAL 30 SECOND) LIMIT 1");
+    if ($rl) { $rl->bind_param('s',$ipHash); $rl->execute(); $rl->store_result();
+      if ($rl->num_rows>0){ $rl->close(); $m->close(); out(['ok'=>true,'stored'=>true]); }
+      $rl->close();
+    }
+  }
+
+  // find the active 'website' campaign (the "Website form" starter row)
+  $campId = null;
+  if ($res = $m->query("SELECT id FROM crm_campaigns WHERE channel='website' AND active=1 ORDER BY id LIMIT 1")) {
+    if ($row = $res->fetch_row()) $campId = (int)$row[0];
+    $res->free();
+  }
+
+  $sql = "INSERT INTO inquiry_families
+            (primary_name, primary_phone, primary_email, source, status, priority, campaign_id, notes, ip_hash)
+          VALUES (?, ?, ?, 'website', 'lead', 'normal', ?, ?, ?)";
+  $st = $m->prepare($sql);
+  $emailVal = $email !== '' ? $email : null;
+  $st->bind_param('sssiss', $name, $phone, $emailVal, $campId, $notes, $ipHash);
+  $st->execute();
+  $st->close();
+  $m->close();
+} catch (Throwable $e) {
+  $errors[] = 'db';
 }
 
-// email notification
+// optional email notification
 if (!empty($cfg['notify_email'])) {
-  $body = "New {$rec['type']} inquiry\n\nName: {$rec['name']}\nPhone: {$rec['phone']}\nEmail: {$rec['email']}\nChild age: {$rec['child_age']}\nMessage: {$rec['message']}\nTime: {$rec['created_at']}";
-  @mail($cfg['notify_email'], "New {$rec['type']} inquiry — website", $body, "From: ".($cfg['from_email'] ?? $cfg['notify_email']));
-}
-
-// forward to CRM
-if (!empty($cfg['crm_webhook_url'])) {
-  $ch = curl_init($cfg['crm_webhook_url']);
-  curl_setopt_array($ch,[
-    CURLOPT_POST=>true, CURLOPT_RETURNTRANSFER=>true, CURLOPT_TIMEOUT=>8,
-    CURLOPT_HTTPHEADER=>array_filter(['Content-Type: application/json', !empty($cfg['crm_api_key'])?('Authorization: Bearer '.$cfg['crm_api_key']):null]),
-    CURLOPT_POSTFIELDS=>json_encode($rec),
-  ]);
-  curl_exec($ch); if(curl_errno($ch)) $errors[]='crm'; curl_close($ch);
+  $body = "New website enquiry\n\nType: $type\nName: $name\nPhone: $phone\nEmail: $email\nChild age: $age\nMessage: $msg";
+  @mail($cfg['notify_email'], "New website enquiry — $type", $body, "From: ".($cfg['from_email'] ?? $cfg['notify_email']));
 }
 
 out(['ok'=>count($errors)===0,'stored'=>count($errors)===0,'errors'=>$errors]);
