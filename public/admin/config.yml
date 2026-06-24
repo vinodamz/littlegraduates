@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/littlegraduates   # ← change after creating the GitHub repo
+  repo: vinodamz/littlegraduates
   branch: main
 
 media_folder: public/media
