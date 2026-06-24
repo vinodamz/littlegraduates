@@ -1,10 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+const today = new Date().toISOString().slice(0, 10);
+const slots = ['10:00','10:30','11:00','11:30','12:00','15:30','16:00','16:30','17:00'];
+const programmes = ['Playgroup (1.5+ yrs)','Nursery / Mont 1 (3+ yrs)','LKG / Mont 2 (4+ yrs)','UKG / Mont 3 (5+ yrs)','Daycare','Afterschool'];
+const slotLabel = (s) => { const [h, m] = s.split(':').map(Number); const ap = h < 12 ? 'am' : 'pm'; const hh = ((h + 11) % 12) + 1; return `${hh}:${String(m).padStart(2, '0')} ${ap}`; };
 ---
 <Base title="Book a Tour - The Little Graduates" description="Book a free 30-minute campus tour at The Little Graduates, Kaloor, Kochi. 2026 admissions open.">
   <section class="page-band">
-    <div class="container"><span class="kicker">Book a free tour</span><h1>See the school for yourself.</h1><p class="lead">Free 30-minute campus tour. Any day, any time that works for you. No sales pitch.</p></div>
+    <div class="container"><span class="kicker">Book a free tour</span><h1>See the school for yourself.</h1><p class="lead">Free 30-minute campus tour. Pick a day and time that works for you — no sales pitch.</p></div>
   </section>
   <section class="section">
     <div class="container" style="max-width:680px;">
@@ -12,18 +16,29 @@ import site from '../data/site.json';
         <input type="hidden" name="type" value="tour" />
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
         <label>Parent's name<br/><input required name="name" /></label><br/><br/>
-        <label>Phone / WhatsApp<br/><input required name="phone" type="tel" /></label><br/><br/>
-        <label>Child's age<br/><input name="child_age" /></label><br/><br/>
-        <label>Preferred day &amp; time<br/><input name="preferred_time" /></label><br/><br/>
-        <button class="btn btn-pink" type="submit" id="lg-submit">Request tour</button>
+        <label>Phone / WhatsApp<br/><input required name="phone" type="tel" placeholder="+91 98765 43210" /></label><br/><br/>
+        <label>Child's name <span class="opt">(optional)</span><br/><input name="child_name" /></label><br/><br/>
+        <label>Programme<br/>
+          <select name="programme">
+            <option value="">Not sure yet</option>
+            {programmes.map((p) => <option value={p}>{p}</option>)}
+          </select></label><br/><br/>
+        <label>Preferred date<br/><input required type="date" name="visit_date" min={today} /></label><br/><br/>
+        <label>Preferred time<br/>
+          <select required name="visit_slot">
+            <option value="">Pick a slot…</option>
+            {slots.map((s) => <option value={s}>{slotLabel(s)}</option>)}
+          </select></label><br/><br/>
+        <button class="btn btn-pink" type="submit" id="lg-submit">Book my visit</button>
         <p id="lg-msg" style="margin-top:1rem;display:none;"></p>
       </form>
       <p class="center" style="margin-top:1.5rem;">Prefer chat? <a href={site.whatsapp}>WhatsApp us</a> or call <a href={site.phoneHref}>{site.phone}</a>.</p>
     </div>
   </section>
   <style>
-    #lg-form input { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
+    #lg-form input, #lg-form select { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; background: #fff; }
     #lg-form label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
+    #lg-form .opt { font-family: var(--font-body); font-weight: 400; color: var(--muted); }
   </style>
   <script is:inline>
     const f = document.getElementById('lg-form');
@@ -39,17 +54,17 @@ import site from '../data/site.json';
         if (d.ok) {
           f.reset();
           msg.style.color = 'var(--green-dark)';
-          msg.textContent = '✓ Thank you! We’ll reach out shortly to confirm your tour.';
-          btn.textContent = 'Sent';
+          msg.textContent = '✓ Your visit is booked! We’ll send a WhatsApp confirmation shortly.';
+          btn.textContent = 'Booked';
         } else {
           msg.style.color = '#c0392b';
           msg.textContent = d.error || 'Something went wrong. Please WhatsApp us instead.';
-          btn.disabled = false; btn.textContent = 'Request tour';
+          btn.disabled = false; btn.textContent = 'Book my visit';
         }
       } catch {
         msg.style.display = 'block'; msg.style.color = '#c0392b';
         msg.textContent = 'Network error. Please WhatsApp us instead.';
-        btn.disabled = false; btn.textContent = 'Request tour';
+        btn.disabled = false; btn.textContent = 'Book my visit';
       }
     });
   </script>

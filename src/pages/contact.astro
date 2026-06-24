@@ -13,9 +13,55 @@ import site from '../data/site.json';
         <div class="card"><h3>Phone</h3><p><a href={site.phoneHref}>{site.phone}</a><br/>Mon–Sat, school hours<br/><a href={site.whatsapp}>Chat on WhatsApp</a></p></div>
         <div class="card"><h3>Write to us</h3><p><a href={`mailto:${site.email}`}>{site.email}</a><br/>We reply within one business day.</p></div>
       </div>
+      <div class="card" style="margin-top:2.5rem; max-width:620px;">
+        <h3 style="margin-top:0;">Send us a message</h3>
+        <p style="color:var(--muted); margin-top:-.3rem;">Leave your number and we’ll get back to you within a business day.</p>
+        <form id="lg-form">
+          <input type="hidden" name="type" value="contact" />
+          <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
+          <label>Your name<br/><input required name="name" /></label><br/><br/>
+          <label>Phone / WhatsApp<br/><input required name="phone" type="tel" placeholder="+91 98765 43210" /></label><br/><br/>
+          <label>Message <span class="opt">(optional)</span><br/><textarea name="message" rows="4"></textarea></label><br/><br/>
+          <button class="btn btn-pink" type="submit" id="lg-submit">Send message</button>
+          <p id="lg-msg" style="margin-top:1rem;display:none;"></p>
+        </form>
+      </div>
       <div style="margin-top:2.5rem; border-radius:16px; overflow:hidden;">
         <iframe title="Map" src="https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed" width="100%" height="380" style="border:0;" loading="lazy"></iframe>
       </div>
     </div>
   </section>
+  <style>
+    #lg-form input, #lg-form textarea { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; font-family: var(--font-body); background: #fff; }
+    #lg-form label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
+    #lg-form .opt { font-family: var(--font-body); font-weight: 400; color: var(--muted); }
+  </style>
+  <script is:inline>
+    const f = document.getElementById('lg-form');
+    const msg = document.getElementById('lg-msg');
+    const btn = document.getElementById('lg-submit');
+    f.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const r = await fetch('/api/inquiry.php', { method: 'POST', body: new FormData(f) });
+        const d = await r.json();
+        msg.style.display = 'block';
+        if (d.ok) {
+          f.reset();
+          msg.style.color = 'var(--green-dark)';
+          msg.textContent = '✓ Thanks for reaching out! We’ll get back to you shortly.';
+          btn.textContent = 'Sent';
+        } else {
+          msg.style.color = '#c0392b';
+          msg.textContent = d.error || 'Something went wrong. Please WhatsApp us instead.';
+          btn.disabled = false; btn.textContent = 'Send message';
+        }
+      } catch {
+        msg.style.display = 'block'; msg.style.color = '#c0392b';
+        msg.textContent = 'Network error. Please WhatsApp us instead.';
+        btn.disabled = false; btn.textContent = 'Send message';
+      }
+    });
+  </script>
 </Base>
