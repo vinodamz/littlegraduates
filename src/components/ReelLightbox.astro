@@ -1,0 +1,60 @@
+---
+// One per page. Listens for clicks on any .reel-card and plays its Instagram
+// reel/post in a modal by lazy-loading the official /embed/ iframe on demand —
+// so no Instagram resources load until the visitor actually clicks Play.
+---
+<div id="reel-modal" class="reel-modal" aria-hidden="true">
+  <button class="reel-close" data-reel-close aria-label="Close video">&times;</button>
+  <div class="reel-frame-wrap">
+    <iframe id="reel-frame" title="Instagram video" src="about:blank"
+      allow="autoplay; encrypted-media; clipboard-write; picture-in-picture" allowfullscreen
+      scrolling="no" frameborder="0"></iframe>
+  </div>
+</div>
+
+<style>
+  .reel-modal {
+    position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center;
+    background: rgba(20,16,40,.72); backdrop-filter: blur(4px); padding: 1rem;
+  }
+  .reel-modal.open { display: flex; }
+  .reel-frame-wrap {
+    width: min(400px, 94vw); height: min(80vh, 720px); background: #fff;
+    border-radius: 16px; overflow: hidden; box-shadow: 0 24px 70px rgba(0,0,0,.5);
+  }
+  #reel-frame { width: 100%; height: 100%; border: 0; display: block; }
+  .reel-close {
+    position: absolute; top: 1rem; right: 1.1rem; z-index: 2; width: 42px; height: 42px;
+    border-radius: 50%; border: none; background: rgba(255,255,255,.95); color: #2B2F77;
+    font-size: 1.7rem; line-height: 1; cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,.3);
+  }
+  .reel-close:hover { background: #fff; }
+</style>
+
+<script is:inline>
+  (function () {
+    var modal = document.getElementById('reel-modal');
+    var frame = document.getElementById('reel-frame');
+    if (!modal || !frame) return;
+    function open(code, type) {
+      frame.src = 'https://www.instagram.com/' + (type === 'p' ? 'p' : 'reel') + '/' + code + '/embed/';
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+    function close() {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+      frame.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('click', function (e) {
+      var card = e.target.closest('.reel-card');
+      if (card && card.dataset.code) { e.preventDefault(); open(card.dataset.code, card.dataset.type); return; }
+      if (e.target === modal || e.target.closest('[data-reel-close]')) { close(); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('open')) close();
+    });
+  })();
+</script>

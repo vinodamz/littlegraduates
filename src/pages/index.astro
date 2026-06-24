@@ -2,9 +2,13 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 import gallery from '../data/gallery.json';
+import videos from '../data/videos.json';
+import ReelCards from '../components/ReelCards.astro';
+import ReelLightbox from '../components/ReelLightbox.astro';
 import { getCollection } from 'astro:content';
 const programs = (await getCollection('programs')).sort((a,b) => a.data.order - b.data.order).slice(0,4);
 const posts = (await getCollection('blog')).filter(p => !p.data.draft).sort((a,b) => b.data.date - a.data.date).slice(0,3);
+const featuredReels = videos.featured.map((c) => videos.reels.find((r) => r.code === c)).filter(Boolean);
 const heroImg = "/media/hero/campus.jpg";
 const why = [
   ["🌱","tint-green","Montessori-inspired","Child-led learning, guided by teachers who follow each child's interests."],
@@ -132,6 +136,15 @@ const galleryImgs = gallery.images.slice(0,6);
     </div>
   </section>
 
+  <section class="section soft-pink">
+    <div class="container">
+      <div class="center"><span class="kicker">See us in action</span><h2>Real families, real classrooms</h2></div>
+      <p class="lead center" style="margin:.2rem auto 0;">A few minutes inside Little Graduates — parent stories and unfiltered moments, straight from our Instagram.</p>
+      <div style="margin-top:2.2rem;"><ReelCards reels={featuredReels} row={true} /></div>
+      <p class="center" style="margin-top:1.6rem;"><a class="btn btn-outline" href="/videos/">See all videos</a></p>
+    </div>
+  </section>
+
   <section class="section">
     <div class="container">
       <div class="center"><span class="kicker teal">Experience corners</span><h2>Spaces designed to delight</h2></div>
@@ -224,4 +237,5 @@ const galleryImgs = gallery.images.slice(0,6);
       .gallery-grid .g-big { grid-column: span 2; }
     }
   </style>
+  <ReelLightbox />
 </Base>

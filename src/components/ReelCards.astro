@@ -1,0 +1,76 @@
+---
+// Vertical (9:16) Instagram-reel facade cards. No Instagram script loads here —
+// clicking a card opens <ReelLightbox/>, which lazy-loads the reel's /embed/ iframe.
+const { reels = [], row = false } = Astro.props;
+const tints  = { parents: 'pink', days: 'teal', teach: 'amber' };
+const labels = { parents: 'Parent story', days: 'Our days', teach: 'How we teach' };
+const url = (r) => `https://www.instagram.com/${r.type === 'p' ? 'p' : 'reel'}/${r.code}/`;
+---
+<div class={`reel-cards${row ? ' reel-cards--row' : ''}`}>
+  {reels.map((r) => (
+    <a
+      class={`reel-card tint-${tints[r.theme] ?? 'pink'}`}
+      href={url(r)}
+      target="_blank"
+      rel="noopener"
+      data-code={r.code}
+      data-type={r.type === 'p' ? 'p' : 'reel'}
+      aria-label={`Watch on Instagram: ${r.caption}`}
+    >
+      <span class="reel-ig" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5.5" />
+          <circle cx="12" cy="12" r="4.2" />
+          <circle cx="17.6" cy="6.4" r="1.3" fill="#fff" stroke="none" />
+        </svg>
+      </span>
+      <span class="reel-play" aria-hidden="true"></span>
+      <span class="reel-meta">
+        <span class="reel-eyebrow">{labels[r.theme] ?? 'Watch'}</span>
+        <span class="reel-cap">{r.caption}</span>
+      </span>
+    </a>
+  ))}
+</div>
+
+<style>
+  .reel-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 1rem; }
+  .reel-cards--row {
+    display: flex; overflow-x: auto; gap: 1rem; padding: .25rem .25rem 1rem;
+    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: thin;
+  }
+  .reel-cards--row .reel-card { flex: 0 0 200px; scroll-snap-align: start; }
+
+  .reel-card {
+    position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 18px;
+    overflow: hidden; color: #fff; text-decoration: none; box-shadow: var(--shadow-sm);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .reel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+  .reel-card::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.04) 35%, rgba(0,0,0,.55) 100%);
+  }
+  .tint-pink  { background: linear-gradient(155deg, #E5447D, #8B2FC9); }
+  .tint-teal  { background: linear-gradient(155deg, #2FB9C4, #1FBF6B); }
+  .tint-amber { background: linear-gradient(155deg, #F7A23B, #E5447D); }
+
+  .reel-ig { position: absolute; top: .7rem; right: .7rem; z-index: 2; opacity: .9; }
+  .reel-ig svg { display: block; width: 22px; height: 22px; }
+
+  .reel-play {
+    position: absolute; inset: 0; margin: auto; width: 54px; height: 54px; z-index: 2;
+    border-radius: 50%; background: rgba(255,255,255,.94); box-shadow: 0 6px 18px rgba(0,0,0,.28);
+    transition: transform .2s ease;
+  }
+  .reel-play::after {
+    content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%,-50%);
+    border-style: solid; border-width: 9px 0 9px 15px;
+    border-color: transparent transparent transparent var(--indigo);
+  }
+  .reel-card:hover .reel-play { transform: scale(1.08); }
+
+  .reel-meta { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: .9rem .85rem; display: flex; flex-direction: column; gap: .2rem; }
+  .reel-eyebrow { font-family: var(--font-head); font-size: .64rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .92; }
+  .reel-cap { font-family: var(--font-head); font-weight: 600; font-size: .95rem; line-height: 1.2; }
+</style>

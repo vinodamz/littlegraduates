@@ -1,0 +1,42 @@
+---
+import Base from '../layouts/Base.astro';
+import ReelCards from '../components/ReelCards.astro';
+import ReelLightbox from '../components/ReelLightbox.astro';
+import videos from '../data/videos.json';
+const reelsByTheme = (k) => videos.reels.filter((r) => r.theme === k);
+const kickerClass = (t) => (t === 'amber' ? 'kicker amber' : t === 'teal' ? 'kicker teal' : 'kicker');
+---
+<Base
+  title="Videos - The Little Graduates"
+  description="Watch parent stories and real, unedited classroom moments from The Little Graduates Montessori preschool in Kaloor, Kochi."
+>
+  <section class="page-band">
+    <div class="container">
+      <span class="kicker">Videos</span>
+      <h1>See us in action</h1>
+      <p class="lead">Parent stories and unfiltered moments from our classrooms and playground — straight from our Instagram.</p>
+    </div>
+  </section>
+
+  {videos.groups.map((g) => (
+    <section class="section">
+      <div class="container">
+        <div class="center">
+          <span class={kickerClass(g.tint)}>{g.eyebrow}</span>
+          <h2>{g.title}</h2>
+        </div>
+        <p class="lead center" style="margin:.2rem auto 0;">{g.intro}</p>
+        <div style="margin-top:2rem;"><ReelCards reels={reelsByTheme(g.key)} /></div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section tight center">
+    <div class="container">
+      <p class="lead center">Follow along for more, every week.</p>
+      <a class="btn btn-pink" href="https://www.instagram.com/the_little_graduates.in/" target="_blank" rel="noopener">Follow us on Instagram</a>
+    </div>
+  </section>
+
+  <ReelLightbox />
+</Base>

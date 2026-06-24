@@ -1,0 +1,30 @@
+{
+  "groups": [
+    { "key": "parents", "tint": "pink", "eyebrow": "Parent stories", "title": "What our families say", "intro": "Honest words from Little Graduates parents across Kochi." },
+    { "key": "days", "tint": "teal", "eyebrow": "A peek into our days", "title": "Real, unedited moments", "intro": "Straight from the classroom and the playground — no filters." },
+    { "key": "teach", "tint": "amber", "eyebrow": "How we teach", "title": "Learning, the Montessori way", "intro": "A look at how children learn by doing at Little Graduates." }
+  ],
+  "reels": [
+    { "code": "DGx4cuyy29U", "theme": "parents", "caption": "Why we chose Little Graduates" },
+    { "code": "DGIz-dvS9QI", "theme": "parents", "caption": "A parent’s honest take" },
+    { "code": "DGGJ1F9yuQo", "theme": "parents", "caption": "What changed for our child" },
+    { "code": "DF7_JOTSw5A", "theme": "parents", "caption": "In a parent’s words" },
+    { "code": "DOAhI2QktBH", "theme": "parents", "caption": "A family’s story" },
+    { "code": "DOD0_eiEtzp", "theme": "parents", "caption": "Settling in, happily" },
+    { "code": "DO2WMsmEiI5", "theme": "parents", "caption": "From a Little Graduates parent" },
+    { "code": "DQeD-hUElqA", "theme": "parents", "caption": "Why parents trust us" },
+    { "code": "DRJ5Qv2kgkL", "theme": "parents", "caption": "A mom shares her experience" },
+    { "code": "DSAJ6bxkvPz", "theme": "parents", "caption": "What our parents say" },
+    { "code": "DSXYzeGkspu", "theme": "parents", "caption": "A parent’s review" },
+    { "code": "DJeMJQiz7ur", "theme": "parents", "caption": "Our family’s journey" },
+    { "code": "DGkL3x7xeXq", "theme": "days", "caption": "A peek into our day" },
+    { "code": "DGktFB_Tsso", "theme": "days", "caption": "Inside our classroom" },
+    { "code": "DGqh5plTSN3", "theme": "days", "caption": "Real, unedited moments" },
+    { "code": "DGqo40VzpoP", "theme": "days", "caption": "A morning with us" },
+    { "code": "DG3jP8NTUec", "theme": "days", "caption": "Hands-on, every day" },
+    { "code": "DHGQOKFTfkl", "theme": "days", "caption": "Just another joyful day" },
+    { "code": "DKL9iXZOsnC", "theme": "teach", "caption": "Children working with Montessori materials" },
+    { "code": "DZ9pX_FyOdI", "theme": "teach", "type": "p", "caption": "How we teach maths" }
+  ],
+  "featured": ["DGx4cuyy29U", "DOAhI2QktBH", "DKL9iXZOsnC", "DGkL3x7xeXq", "DQeD-hUElqA", "DZ9pX_FyOdI", "DSXYzeGkspu", "DGqh5plTSN3"]
+}
