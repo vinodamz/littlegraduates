@@ -1,3 +1,5 @@
+@font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url('/media/fonts/baloo2.woff2') format('woff2'); }
+@font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('/media/fonts/nunito.woff2') format('woff2'); }
 :root {
   --cream: #FFFAF0;
   --paper: #FDF6EE;
