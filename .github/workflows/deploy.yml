@@ -34,7 +34,7 @@ jobs:
       CPANEL_HOST:  ${{ secrets.CPANEL_HOST }}
       CPANEL_USER:  ${{ secrets.CPANEL_USER }}
       CPANEL_TOKEN: ${{ secrets.CPANEL_TOKEN }}
-      REPO_ROOT:    /home/${{ secrets.CPANEL_USER }}/repositories/littlegraduates
+      REPO_ROOT:    /home/${{ secrets.CPANEL_USER }}/repositories/lgsite
     steps:
       - name: Normalise CPANEL_HOST
         run: |
