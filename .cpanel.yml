@@ -1,6 +1,8 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/ideyyfbn/new.thelittlegraduates.in/
-    - /bin/mkdir -p "$DEPLOYPATH"
-    - /bin/cp -R ./* "$DEPLOYPATH"
+    - /usr/bin/rsync -av --checksum --no-perms --omit-dir-times --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='.cpanel.yml' --exclude='.nojekyll' --exclude='api/config.php' ./ $HOME/new.thelittlegraduates.in/ > $HOME/last-lg-deploy.log 2>&1
+    - /bin/chmod 755 $HOME/new.thelittlegraduates.in
+    - /usr/bin/find $HOME/new.thelittlegraduates.in -type d -exec /bin/chmod 755 {} +
+    - /usr/bin/find $HOME/new.thelittlegraduates.in -type f -exec /bin/chmod 644 {} +
+    - /bin/cp $HOME/last-lg-deploy.log $HOME/new.thelittlegraduates.in/last-deploy.log
