@@ -64,7 +64,7 @@ jobs:
           set +e
           sleep 8
           STATUS=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 \
-            --retry 5 --retry-delay 6 --retry-all-errors "https://new.thelittlegraduates.in/?_=$(date +%s)")
+            --retry 5 --retry-delay 6 --retry-all-errors "https://thelittlegraduates.in/?_=$(date +%s)")
           echo "GET / → HTTP $STATUS"
           [ "$STATUS" = "200" ] || [ "$STATUS" = "302" ] || { echo "::error::Live URL returned $STATUS"; exit 1; }
           echo "::notice::new.thelittlegraduates.in is live."
