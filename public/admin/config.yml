@@ -2,6 +2,7 @@ backend:
   name: github
   repo: vinodamz/littlegraduates
   branch: main
+  base_url: https://littlegraduates.netlify.app
 
 media_folder: public/media
 public_folder: /media
