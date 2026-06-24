@@ -24,7 +24,7 @@ Hey there, eco-champions! Here’s how our kiddos in the best playschool Little 
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250605_113415-577x1024.jpg)
+![](/media/2025_06_20250605_113415-577x1024.jpg)
 
 
 
@@ -43,7 +43,7 @@ Hey there, eco-champions! Here’s how our kiddos in the best playschool Little 
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250605_112327-768x1024.jpg)
+![](/media/2025_06_20250605_112327-768x1024.jpg)
 
 
 
@@ -62,7 +62,7 @@ Hey there, eco-champions! Here’s how our kiddos in the best playschool Little 
   *Take-home wow:* Even playful messes can make planet-worthy art!
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250605_130007-577x1024.jpg)
+![](/media/2025_06_20250605_130007-577x1024.jpg)
 
 
 
@@ -82,7 +82,7 @@ Hey there, eco-champions! Here’s how our kiddos in the best playschool Little 
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250605_171635-1-1024x768.jpg)
+![](/media/2025_06_20250605_171635-1-1024x768.jpg)
 
 
 

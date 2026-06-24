@@ -24,5 +24,5 @@ Children may come dressed comfortably in any Christmas theme color dress.
 Thank you for your continued support and trust.  
 Let’s make this Christmas a warm and memorable one for our little graduates 💛
 
-Warm regards,![](https://thelittlegraduates.in/wp-content/uploads/2025/12/20251212_115249-225x300.webp)  
+Warm regards,![](/media/2025_12_20251212_115249-225x300.webp)  
 **Team Little Graduates**

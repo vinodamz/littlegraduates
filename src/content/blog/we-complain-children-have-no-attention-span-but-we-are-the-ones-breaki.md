@@ -3,7 +3,7 @@ title: "We complain children have no attention span, but we are the ones breakin
 date: 2025-12-29
 categories: ["Uncategorized"]
 ---
-![](https://thelittlegraduates.in/wp-content/uploads/2025/12/20251205_114019-1-768x1024.webp)
+![](/media/2025_12_20251205_114019-1-768x1024.webp)
 
 
 

@@ -7,7 +7,7 @@ excerpt: "Students build strong academic readiness for primary school while enha
 
 	Enrollment: Mixed-age group
 	Staff Ratio: 1 to 12"
-image: https://thelittlegraduates.in/wp-content/uploads/2025/02/web2.png
+image: /media/2025_02_web2.png
 ---
 By UKG, children are becoming confident thinkers, active problem-solvers, and expressive communicators. Our UKG program is designed to deepen academic foundations while nurturing emotional intelligence and independence.
 This stage strengthens skills in reading, writing, math operations, and scientific inquiry — all while keeping the Montessori roots intact. The hands-on Kreedo lab activities bridge the gap between real-world experience and abstract concepts, ensuring that children truly understand before they memorize.

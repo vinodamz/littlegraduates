@@ -155,4 +155,4 @@ We invite you to visit *Little Graduates Early Learning Centre* and experience t
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/05/20250422_112813-1-1024x768.jpg)
+![](/media/2025_05_20250422_112813-1-1024x768.jpg)

@@ -21,7 +21,7 @@ At **Little Graduates Early Learning Center**, we believe children learn best wh
 That’s why our philosophy beautifully aligns with India’s **National Education Policy (NEP) 2020**, which reimagines how the youngest learners should begin their educational journey.
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-17-at-12.24.22_107bec27-768x1024.webp)
+![](/media/2025_10_WhatsApp-Image-2025-10-17-at-12.24.22_107bec27-768x1024.webp)
 
 
 

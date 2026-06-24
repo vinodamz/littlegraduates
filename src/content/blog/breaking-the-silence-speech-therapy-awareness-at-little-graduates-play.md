@@ -15,7 +15,7 @@ At **Little Graduates Early Learning Centre**, the Montessori in Kochi, we belie
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/08/image.png)
+![](/media/2025_08_image.png)
 
 
 

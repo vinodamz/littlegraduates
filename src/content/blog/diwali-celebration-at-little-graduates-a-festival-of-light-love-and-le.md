@@ -23,7 +23,7 @@ Our children welcomed the *festival of lights* with laughter, music, and activit
 The celebration began in the most exciting way — by making *healthy laddoos*! Our young chefs rolled their sleeves up and mixed nutritious ingredients like dates, coconut, and dry fruits. It was a sensory delight — sticky fingers, big smiles, and the proud feeling of creating something on their own. Through this, children learned not just about festive sweets but also about healthy eating.
 
 
-[](https://thelittlegraduates.in/wp-content/uploads/2025/10/WhatsApp-Video-2025-10-21-at-14.46.55_cc528b43.mp4)
+[](/media/2025_10_WhatsApp-Video-2025-10-21-at-14.46.55_cc528b43.mp4)
 
 
 
@@ -34,7 +34,7 @@ The celebration began in the most exciting way — by making *healthy laddoos*! 
 The classrooms sparkled with creativity as each child made their own **paper lanterns** and **diyas**. Some of our toddlers made *thumbprint diyas* with bright colors, while our older children turned everyday **vegetables** like ladies’ fingers and potatoes into fun, natural diya stamps. The result — walls full of glowing artwork and proud little faces!
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-21-at-11.21.20_b934b21f-768x1024.webp)
+![](/media/2025_10_WhatsApp-Image-2025-10-21-at-11.21.20_b934b21f-768x1024.webp)
 
 
 
@@ -46,7 +46,7 @@ Every age group contributed to decorating our preschool. The toddlers made paper
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/10/WhatsApp-Image-2025-10-21-at-14.40.40_50432b36-768x1024.webp)
+![](/media/2025_10_WhatsApp-Image-2025-10-21-at-14.40.40_50432b36-768x1024.webp)
 
 
 

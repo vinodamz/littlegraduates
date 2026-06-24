@@ -85,4 +85,4 @@ Because a child who’s allowed to wonder becomes an adult who can innovate, que
 
 **Come visit us. Sit on the floor with us. Watch how learning unfolds at The Little Graduates.**
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/04/IMG_0639-1024x683.jpeg)
+![](/media/2025_04_IMG_0639-1024x683.jpeg)

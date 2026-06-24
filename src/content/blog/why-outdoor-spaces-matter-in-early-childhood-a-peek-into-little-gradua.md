@@ -40,4 +40,4 @@ Every corner — from the sensory garden to the messy play zone — is thoughtfu
 **In a world moving too fast, Little Graduates gives children the space to slow down and grow right. Come see the difference. 🌼**
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/05/cover-photo-1024x768.jpg)
+![](/media/2025_05_cover-photo-1024x768.jpg)

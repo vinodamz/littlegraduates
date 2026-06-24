@@ -72,4 +72,4 @@ It’s about who they become. ❤
 
 
 
-[Building\_Children\_for\_Life\_Little\_Graduates\_Formatted](https://thelittlegraduates.in/wp-content/uploads/2025/10/Building_Children_for_Life_Little_Graduates_Formatted.pdf)[Download](https://thelittlegraduates.in/wp-content/uploads/2025/10/Building_Children_for_Life_Little_Graduates_Formatted.pdf)
+[Building\_Children\_for\_Life\_Little\_Graduates\_Formatted](/media/2025_10_Building_Children_for_Life_Little_Graduates_Formatted.pdf)[Download](/media/2025_10_Building_Children_for_Life_Little_Graduates_Formatted.pdf)

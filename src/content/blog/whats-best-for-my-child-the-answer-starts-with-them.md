@@ -34,7 +34,7 @@ That’s where your investment matters.
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/07/20250630_1144396-1-576x1024.jpg)
+![](/media/2025_07_20250630_1144396-1-576x1024.jpg)
 
 
 
@@ -73,7 +73,7 @@ If they’re constantly asking questions about nature, feed that curiosity.
 Skip the worksheets if they’re not ready. Delay the phonics drills if the child isn't showing readiness. Your energy, time, and money are better spent supporting their real interests — not ticking boxes.
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/07/20250610_160315-768x1024.jpg)
+![](/media/2025_07_20250610_160315-768x1024.jpg)
 
 
 
@@ -119,4 +119,4 @@ That’s not just good parenting.
 That’s smart, long-term investment in your child’s emotional and cognitive development.
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/07/20250605_113233-768x1024.jpg)
+![](/media/2025_07_20250605_113233-768x1024.jpg)

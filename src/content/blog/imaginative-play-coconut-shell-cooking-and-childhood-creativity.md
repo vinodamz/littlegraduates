@@ -22,7 +22,7 @@ The children’s joy and laughter filled the garden as they invited friends to j
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/10/image.webp)
+![](/media/2025_10_image.webp)
 
 
 

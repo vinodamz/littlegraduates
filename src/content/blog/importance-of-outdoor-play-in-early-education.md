@@ -11,7 +11,7 @@ Outdoor play is more than a break from the classroom—it is a powerful driver o
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/09/IMG_20250926_121216-771x1024.jpg)
+![](/media/2025_09_IMG_20250926_121216-771x1024.jpg)
 
 
 
@@ -28,7 +28,7 @@ Outdoor play is more than a break from the classroom—it is a powerful driver o
 * **Emotional wellbeing:** Time in nature reduces stress and supports self-regulation. Small, safe risks build resilience and confidence.
 * **Language and creativity:** New textures, sounds, and discoveries expand vocabulary and spark storytelling, role play, and imaginative thinking.
 * **Healthy habits**: Exposure to daylight supports circadian rhythms, and active play builds lifelong habits for fitness and outdoor appreciation.
-* ![](https://thelittlegraduates.in/wp-content/uploads/2025/09/20250918_121928-768x1024.jpg)
+* ![](/media/2025_09_20250918_121928-768x1024.jpg)
 
 
 
@@ -40,7 +40,7 @@ Outdoor play is more than a break from the classroom—it is a powerful driver o
 * **Learning through local context:** Counting coconut leaves, observing monsoon clouds, sorting shells and stones, and exploring traditional games from Kerala.
 * **Purposeful activities:** Treasure hunts, sand and water exploration, scooter and balance paths, gardening, and collaborative building with natural loose parts.
 * I**ntegrated curriculum links**: Early numeracy (measuring sticks, stones and leaves), literacy (nature journals), and science (seed sprouting, mini weather station).
-* ![](https://thelittlegraduates.in/wp-content/uploads/2025/09/IMG_20250926_122114-771x1024.jpg)
+* ![](/media/2025_09_IMG_20250926_122114-771x1024.jpg)
 
 
 
@@ -53,7 +53,7 @@ Outdoor play is more than a break from the classroom—it is a powerful driver o
 * Supervision and inclusion: Close adult oversight and adaptable activities so every child participates confidently.
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/09/20250801_092913-768x1024.webp)
+![](/media/2025_09_20250801_092913-768x1024.webp)
 
 
 

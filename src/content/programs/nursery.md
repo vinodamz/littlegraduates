@@ -7,7 +7,7 @@ excerpt: "Students explore early literacy, numeracy, and environmental awareness
 
 	Enrollment: Mixed-age group
 	Staff Ratio: 1 to 12"
-image: https://thelittlegraduates.in/wp-content/uploads/2019/10/plan_start-1.svg
+image: /media/2019_10_plan_start-1.svg
 ---
 At this stage, children are eager to make sense of the world. Our Nursery program channels this natural curiosity into purposeful activity, supporting independence, confidence, and a growing love for learning.
 In a mixed-age setup, children learn not just from adults, but also from each other. Older children model skills and routines, while younger ones absorb and mimic. The result is a beautiful cycle of collaboration and social growth.

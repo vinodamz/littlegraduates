@@ -24,7 +24,7 @@ A two‑year‑old can place blocks back in a basket; a five‑year‑old can wi
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250612_112006-577x1024.jpg)
+![](/media/2025_06_20250612_112006-577x1024.jpg)
 
 
 
@@ -35,7 +35,7 @@ A two‑year‑old can place blocks back in a basket; a five‑year‑old can wi
 Next time something breaks, sit together and fix it—glue the mug handle or stitch the teddy’s ear. Children learn mistakes are fixable and grow resilience.
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250609_170216-768x1024.jpg)
+![](/media/2025_06_20250609_170216-768x1024.jpg)
 
 
 
@@ -47,7 +47,7 @@ Choose one phone‑free evening stroll. Gaze at the sky and ask, “How do you t
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/ChatGPT-Image-Jun-12-2025-12_42_05-PM.png)
+![](/media/2025_06_ChatGPT-Image-Jun-12-2025-12_42_05-PM.png)
 
 
 
@@ -59,7 +59,7 @@ Offer two clothing choices on a low rail every night. Let your child dress thems
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/ChatGPT-Image-Jun-12-2025-12_46_12-PM.png)
+![](/media/2025_06_ChatGPT-Image-Jun-12-2025-12_46_12-PM.png)
 
 
 
@@ -71,7 +71,7 @@ Swap screens for a balcony blanket. Read together, trace constellations, and day
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250610_121244-768x1024.jpg)
+![](/media/2025_06_20250610_121244-768x1024.jpg)
 
 
 

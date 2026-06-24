@@ -114,7 +114,7 @@ Every day of the week focused on a new sense—and a fresh set of activities:
 * Children expressed likes, dislikes, and tried new things with confidence
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250618_120707-768x1024.jpg)
+![](/media/2025_06_20250618_120707-768x1024.jpg)
 
 
 

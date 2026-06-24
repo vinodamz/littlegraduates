@@ -79,7 +79,7 @@ Before numbers even appear, we build math sense by working with:
 It’s subtle, but this is where children learn: *big vs. small, long vs. short, one vs. many.*
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250612_100829-768x1024.jpg)
+![](/media/2025_06_20250612_100829-768x1024.jpg)
 
 
 
@@ -107,7 +107,7 @@ This is where true number sense starts—not just reciting “one-two-three” b
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/06/20250612_100646-768x1024.jpg)
+![](/media/2025_06_20250612_100646-768x1024.jpg)
 
 
 

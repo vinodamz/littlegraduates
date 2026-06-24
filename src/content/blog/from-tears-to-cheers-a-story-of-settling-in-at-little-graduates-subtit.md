@@ -29,7 +29,7 @@ Today, we want to share the story of one of our "Little Graduates" (let’s call
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/12/20251203_114004-768x1024.webp)
+![](/media/2025_12_20251203_114004-768x1024.webp)
 
 
 

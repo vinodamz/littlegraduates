@@ -26,7 +26,7 @@ Children were provided with colorful paper sheets —
 ⚪ White for onions
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/07/20250718_1152530-768x1024.jpg)
+![](/media/2025_07_20250718_1152530-768x1024.jpg)
 
 
 

@@ -65,4 +65,4 @@ At Little Graduates Kaloor, we aren’t just here to teach your children. We are
 
 *Are you preparing for the first day? Our doors are always open for parents to visit and get comfortable with our environment before the big day. Contact us to schedule a visit.*
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/12/Gemini_Generated_Image_1e38gx1e38gx1e38-1024x559.webp)
+![](/media/2025_12_Gemini_Generated_Image_1e38gx1e38gx1e38-1024x559.webp)

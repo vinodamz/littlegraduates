@@ -16,7 +16,7 @@ To honour our June babies, we turned the spotlight to something close to every f
 
 
 
-![](https://thelittlegraduates.in/wp-content/uploads/2025/07/20250630_1144396-576x1024.jpg)
+![](/media/2025_07_20250630_1144396-576x1024.jpg)
 
 
 
