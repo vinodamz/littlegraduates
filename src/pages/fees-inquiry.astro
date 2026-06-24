@@ -3,10 +3,11 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
 <Base title="Fees & Admission Inquiry - The Little Graduates" description="Request 2026 fee details and admission information for The Little Graduates, Kaloor, Kochi.">
+  <section class="page-band amber">
+    <div class="container"><span class="kicker amber">Fees &amp; admissions</span><h1>Request fee details</h1><p class="lead">Tell us a little about your child and we’ll share the 2026 fee structure and admission steps.</p></div>
+  </section>
   <section class="section">
     <div class="container" style="max-width:680px;">
-      <div class="center"><p class="kicker">Fees &amp; admissions</p><h1>Request fee details</h1>
-      <p>Tell us a little about your child and we’ll share the 2026 fee structure and admission steps.</p></div>
       <form id="lg-form" class="card" style="margin-top:2rem;">
         <input type="hidden" name="type" value="fees" />
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />

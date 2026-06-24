@@ -3,11 +3,12 @@ import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
 <Base title="Contact - The Little Graduates" description="Visit Little Graduates Montessori preschool at Kattayil Road, Near Kaloor, Elamakara, Kochi 682017. Call +91 95624 40111 or chat on WhatsApp.">
+  <section class="page-band teal">
+    <div class="container"><span class="kicker teal">Contact</span><h1>Come visit. We'd love to meet you.</h1><p class="lead">Drop in for a tour, give us a call, or send a quick message. We're in the heart of Kaloor, Kochi.</p></div>
+  </section>
   <section class="section">
     <div class="container">
-      <div class="center"><p class="kicker">Contact</p><h1>Come visit. We'd love to meet you.</h1>
-      <p>Drop in for a tour, give us a call, or send a quick message. We're in the heart of Kaloor, Kochi.</p></div>
-      <div class="grid grid-3" style="margin-top:2.5rem;">
+      <div class="grid grid-3" style="margin-top:0;">
         <div class="card"><h3>Our campus</h3><p>{site.address.map(l => <>{l}<br/></>)}</p></div>
         <div class="card"><h3>Phone</h3><p><a href={site.phoneHref}>{site.phone}</a><br/>Mon–Sat, school hours<br/><a href={site.whatsapp}>Chat on WhatsApp</a></p></div>
         <div class="card"><h3>Write to us</h3><p><a href={`mailto:${site.email}`}>{site.email}</a><br/>We reply within one business day.</p></div>

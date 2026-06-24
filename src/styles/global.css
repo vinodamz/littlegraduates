@@ -104,3 +104,14 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
   .section { padding: 3.2rem 0; }
   .banner { padding: 2rem; }
 }
+
+.page-band { background: linear-gradient(180deg, var(--pink-soft), var(--cream)); padding: 3.2rem 0 2.4rem; text-align: center; position: relative; overflow: hidden; }
+.page-band.amber { background: linear-gradient(180deg, var(--orange-soft), var(--cream)); }
+.page-band.teal { background: linear-gradient(180deg, var(--teal-soft), var(--cream)); }
+.page-band h1 { margin: .3rem 0 .4rem; }
+.page-band .lead { margin-inline: auto; }
+.page-band .blob { width: 200px; height: 200px; opacity: .45; }
+
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; transform: none !important; } }
