@@ -23,13 +23,13 @@ const nav = [
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="brand">
-        <img src={site.logo} alt={site.name} width="64" height="64" />
+        <img src={site.logo} alt={site.name} width="50" height="50" />
         <span>{site.name}</span>
       </a>
       <input type="checkbox" id="nav-toggle" hidden />
@@ -44,25 +44,32 @@ const nav = [
   <main><slot /></main>
 
   <footer class="site-footer">
-    <div class="container grid grid-3">
+    <div class="container footer-grid">
       <div>
-        <h3>{site.name}</h3>
-        <p>{site.tagline} — a joyful Montessori preschool for ages 1.5 to 6 in Kaloor, Kochi.</p>
+        <div class="brand foot-brand">
+          <img src={site.logo} alt={site.name} width="46" height="46" />
+          <span>{site.name}</span>
+        </div>
+        <p>A joyful Montessori preschool for ages 1.5 to 6 in Kaloor, Kochi. Where every child feels at home.</p>
+        <p class="foot-rating"><span class="stars">★★★★★</span> {site.googleReviews}</p>
       </div>
       <div>
-        <h3>Visit us</h3>
+        <h4>Explore</h4>
+        {nav.map(([label, href]) => <a class="foot-link" href={href}>{label}</a>)}
+      </div>
+      <div>
+        <h4>Visit us</h4>
         <p>{site.address.map(l => <>{l}<br/></>)}</p>
       </div>
       <div>
-        <h3>Talk to us</h3>
-        <p>
-          <a href={site.phoneHref}>{site.phone}</a><br/>
-          <a href={`mailto:${site.email}`}>{site.email}</a><br/>
-          <a href={site.whatsapp}>Chat on WhatsApp</a>
-        </p>
+        <h4>Talk to us</h4>
+        <a class="foot-link" href={site.phoneHref}>{site.phone}</a>
+        <a class="foot-link" href={`mailto:${site.email}`}>{site.email}</a>
+        <a class="foot-link" href={site.whatsapp}>Chat on WhatsApp</a>
+        <a class="btn btn-pink" style="margin-top:1rem;" href="/book-a-tour/">Book a free tour</a>
       </div>
     </div>
-    <div class="container center meta" style="padding-top:2rem;">
+    <div class="container foot-bottom">
       © {new Date().getFullYear()} {site.name} · <a href="/privacy-policy/">Privacy Policy</a>
     </div>
   </footer>
@@ -70,23 +77,33 @@ const nav = [
   <a class="whatsapp-float" href={site.whatsapp} aria-label="Chat on WhatsApp">💬 WhatsApp us</a>
 
   <style>
-    .site-header { background: var(--cream); position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(45,50,130,.08); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding-top: .6rem; padding-bottom: .6rem; gap: 1rem; }
-    .brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--indigo); font-family: var(--font-head); font-weight: 700; }
-    nav { display: flex; align-items: center; gap: 1.1rem; flex-wrap: wrap; }
-    nav a { color: var(--indigo); text-decoration: none; font-family: var(--font-head); font-size: .95rem; }
+    .site-header { background: rgba(255,250,240,.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(43,47,119,.07); }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 0; gap: 1rem; }
+    .brand { display: flex; align-items: center; gap: .6rem; color: var(--indigo); font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; }
+    .brand img { border-radius: 12px; }
+    nav { display: flex; align-items: center; gap: 1.3rem; flex-wrap: wrap; }
+    nav a { color: var(--indigo); font-family: var(--font-head); font-weight: 600; font-size: .98rem; transition: color .15s; }
     nav a:hover { color: var(--pink); }
-    .nav-cta { color: #fff; padding: .5rem 1.2rem; }
-    .nav-burger { display: none; font-size: 1.6rem; color: var(--indigo); cursor: pointer; }
-    .site-footer { background: var(--indigo); color: #E8E9F5; padding: 3rem 0 2rem; margin-top: 4rem; }
-    .site-footer h3 { color: #fff; margin-bottom: .5rem; }
-    .site-footer a { color: #FFD9E6; }
+    .nav-cta { color: #fff !important; padding: .55rem 1.3rem; }
+    .nav-burger { display: none; font-size: 1.7rem; color: var(--indigo); cursor: pointer; }
+    .site-footer { background: var(--indigo); color: #cfd1ec; padding: 3.5rem 0 2rem; margin-top: 4rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.3fr; gap: 2rem; }
+    .site-footer h4 { color: #fff; margin-bottom: .9rem; font-size: 1.05rem; }
+    .site-footer p { color: #b9bce0; font-size: .95rem; }
+    .foot-brand { color: #fff; margin-bottom: .8rem; }
+    .foot-link { display: block; color: #cfd1ec; margin-bottom: .5rem; font-size: .95rem; }
+    .foot-link:hover { color: #fff; }
+    .foot-rating { margin-top: .6rem; }
+    .foot-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.5rem; padding-top: 1.5rem; text-align: center; color: #9a9dcb; font-size: .9rem; }
+    .foot-bottom a { color: #ffd9e6; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 860px) {
       .nav-burger { display: block; }
-      nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; padding: 1rem 0; }
+      nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; padding: 1rem 0; gap: .9rem; }
       #nav-toggle:checked ~ nav { display: flex; }
       .header-inner { flex-wrap: wrap; }
     }
+    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
 </body>
 </html>
