@@ -25,7 +25,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: deploy
-          force_orphan: true
 
   deploy:
     name: Trigger cPanel git-pull and deploy
