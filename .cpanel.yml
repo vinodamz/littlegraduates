@@ -1,0 +1,9 @@
+---
+deployment:
+  tasks:
+    - if [ -f $HOME/public_html/.htaccess ] && [ ! -f $HOME/wp-htaccess.bak ]; then /bin/cp $HOME/public_html/.htaccess $HOME/wp-htaccess.bak; fi
+    - /usr/bin/rsync -av --checksum --no-perms --omit-dir-times --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='.cpanel.yml' --exclude='.nojekyll' --exclude='api/config.php' ./ $HOME/public_html/ > $HOME/last-lg-deploy.log 2>&1
+    - /bin/chmod 755 $HOME/public_html
+    - /usr/bin/find $HOME/public_html -type d -exec /bin/chmod 755 {} +
+    - /usr/bin/find $HOME/public_html -type f -exec /bin/chmod 644 {} +
+    - /bin/cp $HOME/last-lg-deploy.log $HOME/public_html/last-deploy.log
