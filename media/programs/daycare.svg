@@ -1,0 +1,11 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Daycare sun and heart">
+  <rect width="400" height="260" rx="26" fill="#DCF5E8"/>
+  <circle cx="150" cy="110" r="46" fill="#FFC84A"/>
+  <g stroke="#F7A23B" stroke-width="7" stroke-linecap="round">
+    <line x1="150" y1="36" x2="150" y2="20"/><line x1="206" y1="54" x2="218" y2="42"/>
+    <line x1="94" y1="54" x2="82" y2="42"/><line x1="224" y1="110" x2="240" y2="110"/>
+  </g>
+  <path d="M270 150c0-18 26-22 30-4 4-18 30-14 30 4 0 18-30 36-30 36s-30-18-30-36z" fill="#E5447D"/>
+  <rect x="92" y="178" width="216" height="46" rx="14" fill="#fff"/>
+  <circle cx="126" cy="201" r="11" fill="#2FB9C4"/><circle cx="164" cy="201" r="11" fill="#8B2FC9"/><circle cx="202" cy="201" r="11" fill="#F7A23B"/>
+</svg>

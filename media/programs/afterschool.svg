@@ -1,0 +1,9 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Afterschool activities">
+  <rect width="400" height="260" rx="26" fill="#FBE5EE"/>
+  <circle cx="312" cy="70" r="26" fill="#FFC84A"/>
+  <circle cx="150" cy="150" r="52" fill="#fff"/>
+  <path d="M150 98a52 52 0 0 1 0 104" fill="#2FB9C4" opacity=".18"/>
+  <g stroke="#2B2F77" stroke-width="5" fill="none"><path d="M150 98v104M98 150h104M116 116l68 68M184 116l-68 68"/></g>
+  <circle cx="150" cy="150" r="14" fill="#E5447D"/>
+  <g transform="rotate(-24 280 180)"><rect x="248" y="150" width="20" height="70" rx="10" fill="#8B2FC9"/><path d="M258 140l12 12-12 12-12-12z" fill="#F7A23B"/></g>
+</svg>

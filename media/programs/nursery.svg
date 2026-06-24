@@ -1,0 +1,12 @@
+<svg viewBox="0 0 400 260" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Open book with letters">
+  <rect width="400" height="260" rx="26" fill="#FBE5EE"/>
+  <circle cx="318" cy="64" r="26" fill="#FFC84A"/>
+  <g>
+    <path d="M70 90c40-22 90-22 130 0 40-22 90-22 130 0v110c-40-22-90-22-130 0-40-22-90-22-130 0z" fill="#fff"/>
+    <path d="M200 90v110" stroke="#E5447D" stroke-width="6" stroke-linecap="round"/>
+    <path d="M70 90c40-22 90-22 130 0v110c-40-22-90-22-130 0z" fill="#2FB9C4" opacity=".18"/>
+    <path d="M330 90c-40-22-90-22-130 0v110c40-22 90-22 130 0z" fill="#8B2FC9" opacity=".14"/>
+    <text x="135" y="150" font-family="Baloo 2, sans-serif" font-size="42" font-weight="800" fill="#E5447D" text-anchor="middle">A</text>
+    <text x="265" y="150" font-family="Baloo 2, sans-serif" font-size="42" font-weight="800" fill="#2B2F77" text-anchor="middle">B</text>
+  </g>
+</svg>
