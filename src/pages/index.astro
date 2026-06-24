@@ -102,10 +102,13 @@ const galleryImgs = gallery.images.slice(0,6);
       <div class="center"><span class="kicker teal">Programs</span><h2>From first steps to first day of school</h2></div>
       <div class="grid grid-4" style="margin-top:2.5rem;">
         {programs.map(p => (
-          <a href={`/programs/${p.id}/`} class="card program-card">
-            <span class="ages">{p.data.ages}</span>
-            <h3>{p.data.title}</h3>
-            <p>{p.data.excerpt?.split('\n')[0]?.slice(0,110)}…</p>
+          <a href={`/programs/${p.id}/`} class="card program-card" style="padding:0;overflow:hidden;">
+            {p.data.image && <img src={p.data.image} alt="" loading="lazy" style="width:100%;display:block;" />}
+            <div style="padding:1.2rem 1.4rem 1.5rem;">
+              <span class="ages">{p.data.ages}</span>
+              <h3>{p.data.title}</h3>
+              <p>{p.data.excerpt?.split('\n')[0]?.slice(0,90)}…</p>
+            </div>
           </a>
         ))}
       </div>
