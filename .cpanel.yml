@@ -1,6 +1,6 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/CPANELUSER/new.thelittlegraduates.in/
+    - export DEPLOYPATH=/home/ideyyfbn/new.thelittlegraduates.in/
     - /bin/mkdir -p "$DEPLOYPATH"
     - /bin/cp -R ./* "$DEPLOYPATH"
