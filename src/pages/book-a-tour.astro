@@ -32,7 +32,7 @@ import site from '../data/site.json';
       e.preventDefault();
       btn.disabled = true; btn.textContent = 'Sending…';
       try {
-        const r = await fetch('/api/inquiry', { method: 'POST', body: new FormData(f) });
+        const r = await fetch('/api/inquiry.php', { method: 'POST', body: new FormData(f) });
         const d = await r.json();
         msg.style.display = 'block';
         if (d.ok) {

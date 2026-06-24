@@ -1,17 +1,13 @@
--- Run this once in Supabase: SQL Editor -> paste -> Run.
-create table if not exists public.inquiries (
-  id          bigserial primary key,
-  type        text not null default 'tour',   -- tour | fees | contact
-  name        text not null,
-  phone       text not null,
-  email       text,
-  child_age   text,
-  message     text,
-  source      text default 'website',
-  created_at  timestamptz not null default now()
-);
-
--- Lock down: only the service key (used by the server function) can write/read.
-alter table public.inquiries enable row level security;
--- No public policies = anon/browser cannot read or write directly. Admins view via the
--- Supabase dashboard (Table editor), which bypasses RLS. That's your secure admin panel.
+-- Run in cPanel → phpMyAdmin (select your database first), or MySQL Databases.
+CREATE TABLE IF NOT EXISTS inquiries (
+  id          INT AUTO_INCREMENT PRIMARY KEY,
+  type        VARCHAR(32)  NOT NULL DEFAULT 'tour',
+  name        VARCHAR(120) NOT NULL,
+  phone       VARCHAR(40)  NOT NULL,
+  email       VARCHAR(160),
+  child_age   VARCHAR(40),
+  message     TEXT,
+  source      VARCHAR(40)  DEFAULT 'website',
+  created_at  DATETIME     NOT NULL,
+  INDEX (created_at), INDEX (type)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

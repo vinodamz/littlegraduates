@@ -30,7 +30,7 @@ import site from '../data/site.json';
     f.addEventListener('submit', async (e) => {
       e.preventDefault(); btn.disabled = true; btn.textContent = 'Sending…';
       try {
-        const r = await fetch('/api/inquiry', { method: 'POST', body: new FormData(f) });
+        const r = await fetch('/api/inquiry.php', { method: 'POST', body: new FormData(f) });
         const d = await r.json(); msg.style.display = 'block';
         if (d.ok) { f.reset(); msg.style.color = 'var(--green-dark)'; msg.textContent = '✓ Thank you! We’ll send the details shortly.'; btn.textContent = 'Sent'; }
         else { msg.style.color = '#c0392b'; msg.textContent = d.error || 'Something went wrong. Please WhatsApp us.'; btn.disabled = false; btn.textContent = 'Request fee details'; }
