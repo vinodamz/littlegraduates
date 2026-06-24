@@ -1,8 +1,8 @@
 <?php
 // Server-to-server proxy: forwards website form submissions into the mtt CRM's
 // real intake endpoints so web leads are deduped, staged and logged exactly like
-// WhatsApp leads. The marketing site holds NO database credentials — only the CRM
-// base URL + the shared secret (config.php).
+// WhatsApp leads. Auth uses mtt's shared secret, taken from config.php OR read
+// from app_settings via the (same-DB) creds already in config.php.
 //
 //   type=tour    -> crm/book_visit.php  (books an appointment + WhatsApp confirm)
 //   type=fees    -> crm/bot_event.php   intent=asked_details  (-> Details shared)
@@ -18,8 +18,28 @@ if (!is_array($cfg)) $cfg = [];
 
 function out($a, $code = 200) { http_response_code($code); echo json_encode($a); exit; }
 
-$crmBase = rtrim((string)($cfg['mtt_crm_url'] ?? ''), '/');
-$secret  = (string)($cfg['wacrm_sso_secret'] ?? '');
+$crmBase = rtrim((string)($cfg['mtt_crm_url'] ?? 'https://mtt.thelittlegraduates.in/crm'), '/');
+
+// Shared secret. Prefer an explicit value in config.php; otherwise read it
+// straight from mtt's app_settings table — we share the same database, so there's
+// no need to duplicate (or hand-paste) the secret here.
+$secret = (string)($cfg['wacrm_sso_secret'] ?? '');
+if ($secret === '' && !empty($cfg['db']) && is_array($cfg['db'])) {
+  $db = $cfg['db'];
+  try {
+    $m = @new mysqli($db['host'] ?? 'localhost', $db['user'] ?? '',
+                     $db['password'] ?? ($db['pass'] ?? ''), $db['name'] ?? '');
+    if (!$m->connect_errno) {
+      $m->set_charset($db['charset'] ?? 'utf8mb4');
+      if ($res = $m->query("SELECT setting_value FROM app_settings WHERE setting_key='wacrm_sso_secret' LIMIT 1")) {
+        if ($row = $res->fetch_row()) $secret = (string)$row[0];
+        $res->free();
+      }
+      $m->close();
+    }
+  } catch (Throwable $e) { /* fall through to not-configured */ }
+}
+
 if ($crmBase === '' || $secret === '') out(['ok' => false, 'error' => 'Server not configured.'], 500);
 
 $ct   = $_SERVER['CONTENT_TYPE'] ?? '';
