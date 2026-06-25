@@ -30,6 +30,16 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.woff2?$">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </FilesMatch>
+  # The deploy-verification marker must NEVER be cached (LiteSpeed/browser),
+  # or CI can read a stale value and falsely report a successful deploy.
+  <FilesMatch "^build-id\.txt$">
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+  </FilesMatch>
+</IfModule>
+# Belt-and-suspenders: tell LiteSpeed's own cache to skip the marker.
+<IfModule mod_rewrite.c>
+  RewriteRule ^build-id\.txt$ - [E=Cache-Control:no-cache]
 </IfModule>
 
 # --- 301 redirects from old WordPress URLs ---

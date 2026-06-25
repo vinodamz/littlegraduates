@@ -66,6 +66,7 @@ jobs:
           }
           live_sha() {
             curl -sS --connect-timeout 10 --max-time 30 --retry 3 --retry-delay 4 --retry-all-errors \
+              -H 'Cache-Control: no-cache' -H 'Pragma: no-cache' \
               "https://thelittlegraduates.in/build-id.txt?_=$(date +%s%N)" 2>/dev/null | tr -d '[:space:]'
           }
 
@@ -78,10 +79,17 @@ jobs:
             echo "expected=${EXPECT}  live=${GOT:-<none>}"
             echo "::endgroup::"
             if [ "${GOT}" = "${EXPECT}" ]; then
-              echo "::notice::Live docroot is serving ${EXPECT} (attempt ${attempt})."
-              exit 0
+              # Confirm with a second no-cache read so a cached/flickering marker can't false-pass.
+              sleep 5
+              GOT2="$(live_sha)"
+              if [ "${GOT2}" = "${EXPECT}" ]; then
+                echo "::notice::Live docroot serving ${EXPECT} on two consecutive reads (attempt ${attempt})."
+                exit 0
+              fi
+              echo "::warning::First read matched but second was '${GOT2:-<none>}' (cache flicker). Retrying…"
+            else
+              echo "::warning::Live build-id != this commit (cPanel pulled a stale ref). Retrying…"
             fi
-            echo "::warning::Live build-id != this commit (cPanel pulled a stale ref). Retrying…"
             sleep 12
           done
           echo "::error::Live site never reached commit ${EXPECT} after 6 attempts."
