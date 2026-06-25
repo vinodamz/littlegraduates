@@ -142,14 +142,14 @@ function fees_guide_html(): string {
 <div class="center" style="margin-bottom:1.6rem;">
   <span class="kicker">Your 2026–27 fee guide</span>
   <h2>One simple fee — flexible care if you need it</h2>
-  <p class="lead center">Rolling Montessori admissions all year. Join any month and pay only from your joining month — nothing wasted.</p>
+  <p class="lead center">All year round — no long breaks. In the Montessori way, children keep playing, exploring and learning every month. Join any time.</p>
 </div>
 
 <div class="card" style="text-align:center;border-top:5px solid var(--green);max-width:540px;margin:0 auto;">
   <span class="ages">Playgroup → UKG · 9:00 am – 12:30 pm</span>
   <h3 style="margin:.5rem 0 .2rem;">One simple school fee</h3>
   <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">₹7,900<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
-  <p class="meta" style="margin:.25rem 0;">Payable quarterly only.</p>
+  <p class="meta" style="margin:.25rem 0;">One simple payment every 3 months.</p>
   <p class="meta" style="margin:.25rem 0;">The same fee across every Montessori level.</p>
   <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — 600+ materials, daily observations &amp; the parent app.</p>
 </div>
