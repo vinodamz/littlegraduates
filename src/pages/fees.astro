@@ -2,40 +2,61 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
-<Base title="Fees & Admission Inquiry - The Little Graduates" description="Request 2026 fee details and admission information for The Little Graduates, Kaloor, Kochi.">
+<Base title="Fees & Admissions - The Little Graduates" description="See the 2026–27 fee guide for The Little Graduates Montessori preschool & daycare in Kaloor, Kochi. Share a few details and the full fee structure opens right here.">
   <section class="page-band amber">
-    <div class="container"><span class="kicker amber">Fees &amp; admissions</span><h1>Request fee details</h1><p class="lead">Tell us a little about your child and we’ll share the 2026 fee structure and admission steps.</p></div>
+    <div class="container"><span class="kicker amber">Fees &amp; admissions</span><h1>See the 2026–27 fee guide</h1><p class="lead">Share a few quick details and the full fee structure — school fee, optional care plans and joining fees — opens right here on this page.</p></div>
   </section>
+
   <section class="section">
-    <div class="container" style="max-width:680px;">
-      <form id="lg-form" class="card" style="margin-top:2rem;">
+    <div class="container" id="fees-form-wrap" style="max-width:680px;">
+      <form id="lg-form" class="card" style="margin-top:1rem;">
         <input type="hidden" name="type" value="fees" />
         <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
         <label>Parent's name<br/><input required name="name" /></label><br/><br/>
-        <label>Phone / WhatsApp<br/><input required name="phone" type="tel" /></label><br/><br/>
-        <label>Email<br/><input name="email" type="email" /></label><br/><br/>
-        <label>Child's age<br/><input name="child_age" /></label><br/><br/>
-        <label>Anything else?<br/><input name="message" /></label><br/><br/>
-        <button class="btn btn-pink" type="submit" id="lg-submit">Request fee details</button>
+        <label>Phone / WhatsApp<br/><input required name="phone" type="tel" placeholder="+91 98765 43210" /></label><br/><br/>
+        <label>Email <span class="opt">(optional)</span><br/><input name="email" type="email" /></label><br/><br/>
+        <label>Child's age <span class="opt">(optional)</span><br/><input name="child_age" /></label><br/><br/>
+        <button class="btn btn-pink btn-lg" type="submit" id="lg-submit">Show me the fee guide</button>
         <p id="lg-msg" style="margin-top:1rem;display:none;"></p>
       </form>
-      <p class="center" style="margin-top:1.5rem;">Or chat with us on <a href={site.whatsapp}>WhatsApp</a>.</p>
+      <p class="center" style="margin-top:1.5rem;">Prefer to chat? Message us on <a href={site.whatsapp}>WhatsApp</a> or call <a href={site.phoneHref}>{site.phone}</a>.</p>
     </div>
+
+    <div class="container" id="fees-reveal" style="display:none;"></div>
   </section>
+
   <style>
     #lg-form input { width: 100%; padding: .7rem .9rem; border: 1px solid #ddd; border-radius: 10px; font-size: 1rem; }
     #lg-form label { font-family: var(--font-head); font-weight: 600; color: var(--indigo); }
+    #lg-form .opt { font-family: var(--font-body); font-weight: 400; color: var(--muted); }
   </style>
+
   <script is:inline>
     const f = document.getElementById('lg-form'), msg = document.getElementById('lg-msg'), btn = document.getElementById('lg-submit');
+    const reveal = document.getElementById('fees-reveal'), formWrap = document.getElementById('fees-form-wrap');
     f.addEventListener('submit', async (e) => {
-      e.preventDefault(); btn.disabled = true; btn.textContent = 'Sending…';
+      e.preventDefault(); btn.disabled = true; btn.textContent = 'Opening…';
       try {
         const r = await fetch('/api/inquiry.php', { method: 'POST', body: new FormData(f) });
-        const d = await r.json(); msg.style.display = 'block';
-        if (d.ok) { f.reset(); msg.style.color = 'var(--green-dark)'; msg.textContent = '✓ Thank you! We’ll send the details shortly.'; btn.textContent = 'Sent'; }
-        else { msg.style.color = '#c0392b'; msg.textContent = d.error || 'Something went wrong. Please WhatsApp us.'; btn.disabled = false; btn.textContent = 'Request fee details'; }
-      } catch { msg.style.display='block'; msg.style.color='#c0392b'; msg.textContent='Network error. Please WhatsApp us.'; btn.disabled=false; btn.textContent='Request fee details'; }
+        const d = await r.json();
+        if (d.ok && d.fees_html) {
+          reveal.innerHTML = d.fees_html;
+          reveal.style.display = 'block';
+          formWrap.style.display = 'none';
+          reveal.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else if (d.ok) {
+          msg.style.display = 'block'; msg.style.color = 'var(--green-dark)';
+          msg.textContent = '✓ Thank you! We’ll share the fee details shortly.'; btn.textContent = 'Sent';
+        } else {
+          msg.style.display = 'block'; msg.style.color = '#c0392b';
+          msg.textContent = d.error || 'Something went wrong. Please WhatsApp us.';
+          btn.disabled = false; btn.textContent = 'Show me the fee guide';
+        }
+      } catch {
+        msg.style.display = 'block'; msg.style.color = '#c0392b';
+        msg.textContent = 'Network error. Please WhatsApp us.';
+        btn.disabled = false; btn.textContent = 'Show me the fee guide';
+      }
     });
   </script>
 </Base>
