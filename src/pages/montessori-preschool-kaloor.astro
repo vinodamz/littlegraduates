@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const heroImg = '/media/hero/campus.jpg';
+const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
+
+// LocalBusiness / Preschool structured data for the Kaloor location.
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': ['Preschool', 'LocalBusiness'],
+  name: 'Little Graduates Early Learning Centre',
+  alternateName: 'The Little Graduates',
+  url: 'https://thelittlegraduates.in/montessori-preschool-kaloor/',
+  image: 'https://thelittlegraduates.in/media/hero/campus.jpg',
+  telephone: '+919562440111',
+  email: 'info@thelittlegraduates.in',
+  priceRange: '₹₹',
+  description:
+    'A joyful Montessori preschool in Kaloor, Kochi for children aged 1.5 to 6 — Montessori-based learning, caring teachers and a vibrant campus.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
+    addressLocality: 'Kochi',
+    addressRegion: 'Kerala',
+    postalCode: '682017',
+    addressCountry: 'IN',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
+  areaServed: ['Kaloor', 'Elamakara', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '09:30',
+    closes: '18:00',
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '74' },
+};
+
+const programmes = [
+  ['🧸', 'Playgroup', '1.5–3 yrs'],
+  ['🎨', 'Nursery', '3–4 yrs'],
+  ['📚', 'LKG', '4–5 yrs'],
+  ['🎓', 'UKG', '5–6 yrs'],
+  ['🌳', 'Daycare', 'till 6 pm'],
+  ['⚽', 'Afterschool', '3–10 yrs'],
+];
+const reasons = [
+  ['Montessori, done right', 'Mixed-age classrooms and a 1:1 curriculum tailored to each child — guided, never rushed.'],
+  ['Right in Kaloor', 'A bright, secure campus near Little Flower Church, Pottakuzhi — easy from Elamakara, Kathrikadavu and Palarivattom.'],
+  ['Small, caring classes', 'A 1:12 ratio means every child is seen, heard and known by name.'],
+  ['Parents stay in the loop', 'A parent app with daily updates and observation records, plus 600+ Montessori materials and a huge playground.'],
+];
+---
+<Base
+  title="Montessori Preschool in Kaloor, Kochi | Little Graduates"
+  description="A joyful Montessori preschool in Kaloor, Kochi for ages 1.5 to 6 — caring teachers, small 1:12 classes and a vibrant campus near Kaloor. Book a free tour today."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+
+  <section class="page-band">
+    <div class="container">
+      <span class="kicker">Kaloor · Kochi</span>
+      <h1>A joyful Montessori preschool in Kaloor, Kochi</h1>
+      <p class="lead">Little Graduates is a warm, play-based Montessori preschool for children aged 1.5 to 6 — right in the heart of Kaloor, Kochi. Caring teachers, small classes, and a campus children love.</p>
+      <div class="hero-btns" style="justify-content:center;display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.2rem;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>
+        <a class="btn btn-outline btn-lg" href={site.whatsapp}>WhatsApp us</a>
+      </div>
+      <div class="pill-row">
+        <span class="pill">★ 5.0 · 74 Google reviews</span>
+        <span class="pill">1:12 ratio</span>
+        <span class="pill">Ages 1.5–6</span>
+        <span class="pill">Open 9:30 am – 6 pm</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid grid-2" style="align-items:center;">
+      <div>
+        <span class="kicker amber">Why Kaloor families choose us</span>
+        <h2>The Montessori preschool Kaloor parents trust</h2>
+        <p>Choosing a preschool near Kaloor is a big decision. At Little Graduates, children learn by doing — pouring, sorting, building, reading and exploring — in calm, prepared classrooms led by teachers who follow each child's pace. It's Montessori the way it's meant to be, minutes from home.</p>
+        <p style="margin-bottom:0;"><a class="btn btn-pink" href="/about/">More about us</a></p>
+      </div>
+      <div>
+        <img src={heroImg} width="1100" height="935" loading="lazy"
+          alt="Children learning at The Little Graduates Montessori preschool in Kaloor, Kochi"
+          style="border-radius:24px;box-shadow:var(--shadow);width:100%;" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="center"><span class="kicker teal">Programmes</span><h2>From first steps to first day of school</h2></div>
+      <div class="grid grid-3" style="margin-top:2rem;">
+        {programmes.map(([ico, name, age]) => (
+          <a href="/programs/" class="card" style="display:flex;align-items:center;gap:1rem;">
+            <span class="ico tint-teal" aria-hidden="true">{ico}</span>
+            <span><strong style="font-family:var(--font-head);color:var(--indigo);">{name}</strong><br/><span class="meta">{age}</span></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center"><span class="kicker">Why parents choose us</span><h2>What makes Little Graduates different</h2></div>
+      <div class="grid grid-2" style="margin-top:2rem;">
+        {reasons.map(([t, d]) => (
+          <div class="card"><h3>{t}</h3><p style="margin:0;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft-pink">
+    <div class="container grid grid-2" style="align-items:start;gap:2.5rem;">
+      <div>
+        <span class="kicker teal">Visit us in Kaloor</span>
+        <h2>Come see a Montessori morning</h2>
+        <p>We're on Kattayil Road, near Little Flower Church, Pottakuzhi, Kaloor — easy to reach from across Kochi.</p>
+        <p class="meta" style="line-height:1.9;">
+          {site.address.map((l) => <>{l}<br/></>)}
+          <br/>
+          <strong>Phone:</strong> <a href={site.phoneHref}>{site.phone}</a><br/>
+          <strong>Hours:</strong> Mon–Sat, 9:30 am – 6:00 pm
+        </p>
+        <p><a class="btn btn-pink" href="/book-a-tour/">Book a free tour</a></p>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);">
+        <iframe title="Little Graduates location in Kaloor, Kochi" src={mapSrc} width="100%" height="360" style="border:0;display:block;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight center">
+    <div class="container">
+      <h2>Now enrolling for 2026</h2>
+      <p class="lead center">Spots in our Kaloor classrooms fill quickly. Book a free visit and feel the difference.</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+</Base>
