@@ -53,6 +53,13 @@ const nav = [
         </div>
         <p>A joyful Montessori preschool for ages 1.5 to 6 in Kaloor, Kochi. Where every child feels at home.</p>
         <p class="foot-rating"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</span> {site.googleReviews}</p>
+        <a class="eca-badge" href="https://eca-aper.org/" target="_blank" rel="noopener" aria-label="Proud institute member of the Early Childhood Association (ECA)">
+          <picture>
+            <source srcset="/media/eca-member.webp" type="image/webp" />
+            <img src="/media/eca-member.png" width="56" height="56" loading="lazy" alt="Proud member of the Early Childhood Association (ECA)" />
+          </picture>
+          <span>Proud member of the<br/>Early Childhood Association</span>
+        </a>
       </div>
       <div>
         <h3>Explore</h3>
@@ -98,6 +105,9 @@ const nav = [
     .foot-link { display: block; color: #cfd1ec; margin-bottom: .5rem; font-size: .95rem; }
     .foot-link:hover { color: #fff; }
     .foot-rating { margin-top: .6rem; }
+    .eca-badge { display: inline-flex; align-items: center; gap: .6rem; margin-top: 1rem; color: #cfd1ec; font-size: .82rem; line-height: 1.3; text-decoration: none; }
+    .eca-badge img { width: 56px; height: 56px; flex: 0 0 auto; display: block; }
+    .eca-badge:hover { color: #fff; }
     .foot-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.5rem; padding-top: 1.5rem; text-align: center; color: #9a9dcb; font-size: .9rem; }
     .foot-bottom a { color: #ffd9e6; text-decoration: underline; }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
