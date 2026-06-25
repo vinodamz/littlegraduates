@@ -127,5 +127,58 @@ if (!empty($cfg['notify_email'])) {
 }
 
 if ($j === null) out(['ok' => false, 'error' => 'Could not reach the CRM. Please WhatsApp us.'], 502);
-if (!empty($j['ok'])) out(['ok' => true]);
+if (!empty($j['ok'])) {
+  // The fee guide is delivered ONLY here, after the lead is saved — so it is
+  // never present in the static page source or visible to search engines.
+  if ($type === 'fees') out(['ok' => true, 'fees_html' => fees_guide_html()]);
+  out(['ok' => true]);
+}
 out(['ok' => false, 'error' => 'Something went wrong saving your enquiry. Please WhatsApp us.'], 502);
+
+/** The Little Graduates 2026–27 fee guide, framed for value (lowest per-month
+ *  first, extras clearly optional, one-time fees grouped). Returned post-submit. */
+function fees_guide_html(): string {
+  return <<<'HTML'
+<div class="center" style="margin-bottom:1.6rem;">
+  <span class="kicker">Your 2026–27 fee guide</span>
+  <h2>One simple fee — flexible care if you need it</h2>
+  <p class="lead center">Rolling Montessori admissions all year. Join any month and pay only from your joining month — nothing wasted.</p>
+</div>
+
+<div class="card" style="text-align:center;border-top:5px solid var(--green);max-width:540px;margin:0 auto;">
+  <span class="ages">Playgroup → UKG · 9:00 am – 12:30 pm</span>
+  <h3 style="margin:.5rem 0 .2rem;">One simple school fee</h3>
+  <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">from ₹7,600<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
+  <p class="meta" style="margin:.25rem 0;">paid quarterly (₹22,800 / quarter) · the same fee across every Montessori level</p>
+  <p class="meta" style="margin:.25rem 0;">Prefer monthly? It's just +₹300 / month.</p>
+  <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — 600+ materials, daily observations &amp; the parent app.</p>
+</div>
+
+<h3 style="text-align:center;margin:2.4rem 0 1rem;">Need a longer day? Add care — only if you want it</h3>
+<div class="grid grid-3">
+  <div class="card"><span class="ages">till 3:00 pm</span><h3 style="margin:.4rem 0 .1rem;">Rest Care</h3><p style="margin:0;color:var(--muted);">+₹2,000 / month</p></div>
+  <div class="card" style="border-top:4px solid var(--pink);"><span class="ages">★ Best value · till 5:00 pm</span><h3 style="margin:.4rem 0 .1rem;">Enrichment Daycare</h3><p style="margin:0;color:var(--muted);">+₹3,800 / month</p></div>
+  <div class="card"><span class="ages">till 6:00 pm</span><h3 style="margin:.4rem 0 .1rem;">Full Day Care</h3><p style="margin:0;color:var(--muted);">+₹4,500 / month</p></div>
+</div>
+<p class="meta center" style="margin-top:.9rem;">Add the care fee to the school fee. Monthly payers add +₹300 / month to the package.</p>
+
+<div class="card" style="margin-top:1.6rem;">
+  <h3 style="margin:0 0 .3rem;">UKG School Readiness <span class="meta" style="font-weight:400;">— optional, for Level 3</span></h3>
+  <p style="margin:0;color:var(--muted);">12:30 – 1:30 pm · ₹1,500 / month — phonics, writing readiness, early numeracy &amp; classroom habits.</p>
+</div>
+
+<h3 style="text-align:center;margin:2.4rem 0 1rem;">One-time, when you join</h3>
+<div class="grid grid-3">
+  <div class="card center"><strong style="font-family:var(--font-head);color:var(--indigo);font-size:1.4rem;">₹7,500</strong><p class="meta" style="margin:.2rem 0 0;">Admission</p></div>
+  <div class="card center"><strong style="font-family:var(--font-head);color:var(--indigo);font-size:1.4rem;">₹6,500</strong><p class="meta" style="margin:.2rem 0 0;">Starter kit — bag, books &amp; materials</p></div>
+  <div class="card center"><strong style="font-family:var(--font-head);color:var(--indigo);font-size:1.4rem;">₹5,000</strong><p class="meta" style="margin:.2rem 0 0;">Annual resource renewal</p></div>
+</div>
+
+<div class="center" style="margin-top:2.2rem;">
+  <p class="meta">All fees in INR · 7-day grace period · quarterly plan saves more.</p>
+  <p style="margin:.5rem 0 1.1rem;">Want help picking what fits your family? We'd love to show you around.</p>
+  <a class="btn btn-pink btn-lg" href="/book-a-tour/" style="margin:.3rem;">Book a free tour</a>
+  <a class="btn btn-outline btn-lg" href="tel:+919562440111" style="margin:.3rem;">Call +91 95624 40111</a>
+</div>
+HTML;
+}
