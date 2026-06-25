@@ -19,6 +19,8 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: cp .cpanel.yml dist/.cpanel.yml
+      - name: Stamp build id (commit SHA) so the deploy job can verify the live docroot
+        run: echo "${{ github.sha }}" > dist/build-id.txt
       - name: Publish dist to deploy branch
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -41,29 +43,46 @@ jobs:
           HOST=$(printf '%s' "${CPANEL_HOST}" | sed -E 's#^https?://##; s#/+$##')
           echo "::add-mask::${HOST}"
           echo "CPANEL_HOST_CLEAN=${HOST}" >> "$GITHUB_ENV"
-      - name: 1/3 — cPanel fetch + reset to deploy branch
+      - name: Pull + deploy + verify live commit (self-heals the cPanel/GitHub ref race)
+        env:
+          EXPECT: ${{ github.sha }}
         run: |
-          set -e
-          curl -sS --fail-with-body -X POST \
-            "https://${CPANEL_HOST_CLEAN}:2083/execute/VersionControl/update" \
-            -H "Authorization: cpanel ${CPANEL_USER}:${CPANEL_TOKEN}" \
-            --data-urlencode "repository_root=${REPO_ROOT}" \
-            --data-urlencode "branch=deploy" | tee /tmp/pull.json
-          jq -e '.status == 1' /tmp/pull.json > /dev/null || (cat /tmp/pull.json; exit 1)
-      - name: 2/3 — cPanel run .cpanel.yml (rsync into docroot)
-        run: |
-          set -e
-          curl -sS --fail-with-body -X POST \
-            "https://${CPANEL_HOST_CLEAN}:2083/execute/VersionControlDeployment/create" \
-            -H "Authorization: cpanel ${CPANEL_USER}:${CPANEL_TOKEN}" \
-            --data-urlencode "repository_root=${REPO_ROOT}" | tee /tmp/deploy.json
-          jq -e '.status == 1' /tmp/deploy.json > /dev/null || (cat /tmp/deploy.json; exit 1)
-      - name: 3/3 — Self-test the live URL
-        run: |
-          set +e
-          sleep 8
-          STATUS=$(curl -sS -o /dev/null -w "%{http_code}" --connect-timeout 10 --max-time 30 \
-            --retry 5 --retry-delay 6 --retry-all-errors "https://thelittlegraduates.in/?_=$(date +%s)")
-          echo "GET / → HTTP $STATUS"
-          [ "$STATUS" = "200" ] || [ "$STATUS" = "302" ] || { echo "::error::Live URL returned $STATUS"; exit 1; }
-          echo "::notice::new.thelittlegraduates.in is live."
+          set -u
+          AUTH="Authorization: cpanel ${CPANEL_USER}:${CPANEL_TOKEN}"
+          BASE="https://${CPANEL_HOST_CLEAN}:2083/execute"
+
+          pull() {
+            curl -sS --fail-with-body --connect-timeout 15 --max-time 90 -X POST \
+              "${BASE}/VersionControl/update" -H "${AUTH}" \
+              --data-urlencode "repository_root=${REPO_ROOT}" \
+              --data-urlencode "branch=deploy" > /tmp/pull.json \
+              && jq -e '.status == 1' /tmp/pull.json > /dev/null
+          }
+          deploy() {
+            curl -sS --fail-with-body --connect-timeout 15 --max-time 120 -X POST \
+              "${BASE}/VersionControlDeployment/create" -H "${AUTH}" \
+              --data-urlencode "repository_root=${REPO_ROOT}" > /tmp/deploy.json \
+              && jq -e '.status == 1' /tmp/deploy.json > /dev/null
+          }
+          live_sha() {
+            curl -sS --connect-timeout 10 --max-time 30 --retry 3 --retry-delay 4 --retry-all-errors \
+              "https://thelittlegraduates.in/build-id.txt?_=$(date +%s%N)" 2>/dev/null | tr -d '[:space:]'
+          }
+
+          for attempt in 1 2 3 4 5 6; do
+            echo "::group::Deploy attempt ${attempt}/6"
+            pull   || { echo "VersionControl/update failed:";        cat /tmp/pull.json   2>/dev/null; }
+            deploy || { echo "VersionControlDeployment/create failed:"; cat /tmp/deploy.json 2>/dev/null; }
+            sleep 10
+            GOT="$(live_sha)"
+            echo "expected=${EXPECT}  live=${GOT:-<none>}"
+            echo "::endgroup::"
+            if [ "${GOT}" = "${EXPECT}" ]; then
+              echo "::notice::Live docroot is serving ${EXPECT} (attempt ${attempt})."
+              exit 0
+            fi
+            echo "::warning::Live build-id != this commit (cPanel pulled a stale ref). Retrying…"
+            sleep 12
+          done
+          echo "::error::Live site never reached commit ${EXPECT} after 6 attempts."
+          exit 1
