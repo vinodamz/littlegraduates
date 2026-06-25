@@ -48,6 +48,7 @@ import site from '../data/site.json';
         const d = await r.json();
         msg.style.display = 'block';
         if (d.ok) {
+          if (window.gtag) gtag('event', 'generate_lead', { form_type: 'contact' });
           f.reset();
           msg.style.color = 'var(--green-dark)';
           msg.textContent = '✓ Thanks for reaching out! We’ll get back to you shortly.';

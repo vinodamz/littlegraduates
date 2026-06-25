@@ -1,0 +1,72 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const steps = [
+  ['📅', 'Book a free tour', 'Pick any day and time that suits you. No forms, no pressure — just come see us.', 'Book a tour', '/book-a-tour/'],
+  ['🏫', 'Visit & meet us', 'Watch a real Montessori morning, meet the teachers, and ask anything. You\'ll feel the difference in minutes.', 'See our programmes', '/programs/'],
+  ['🎒', 'Reserve your spot', 'Love what you see? Complete a simple admission and your child can start any month — fees begin from the joining month.', 'See the fee guide', '/fees/'],
+];
+const why = [
+  ['Open all year', 'Rolling admissions — join any month. In the Montessori way, learning never takes a long break.'],
+  ['Pay from joining month', 'No paying for time you don\'t use. Your fees start the month your child joins.'],
+  ['Every Montessori level', 'Playgroup, Nursery, LKG and UKG (Levels 0–3), plus daycare and afterschool for longer days.'],
+  ['Small, caring classes', 'A 1:12 ratio means every child is seen, heard and gently guided from day one.'],
+];
+---
+<Base
+  title="Admissions 2026 — How to Join | The Little Graduates"
+  description="Admissions are open all year at The Little Graduates, Kaloor, Kochi. Three simple steps: book a free tour, visit us, and reserve your child's spot. Join any month."
+>
+  <section class="page-band">
+    <div class="container">
+      <span class="kicker">Admissions {site.enrollYear} · open all year</span>
+      <h1>How to join Little Graduates</h1>
+      <p class="lead">Joining is simple and stress-free. Admissions are open all year — pick a day to visit, see a Montessori morning for yourself, and reserve your child's spot. You can start any month.</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href={site.whatsapp}>WhatsApp us</a>
+        <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center"><span class="kicker teal">Three simple steps</span><h2>From hello to first day</h2></div>
+      <div class="grid grid-3" style="margin-top:2.2rem;">
+        {steps.map(([ico, t, d, cta, href], i) => (
+          <div class="card">
+            <div class="ico tint-teal" aria-hidden="true">{ico}</div>
+            <span class="ages">Step {i + 1}</span>
+            <h3 style="margin:.2rem 0 .4rem;">{t}</h3>
+            <p style="color:var(--muted);margin:0 0 1rem;">{d}</p>
+            <a class="btn btn-outline" href={href}>{cta}</a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft">
+    <div class="container">
+      <div class="center"><span class="kicker amber">Why families join any time</span><h2>Flexible, year-round Montessori</h2></div>
+      <div class="grid grid-2" style="margin-top:2rem;">
+        {why.map(([t, d]) => (
+          <div class="card"><h3>{t}</h3><p style="margin:0;">{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section tight center">
+    <div class="container">
+      <h2>Ready to start?</h2>
+      <p class="lead center">Book a free visit today — it explains us better than any brochure.</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href="/fees/">See the fee guide</a>
+      </div>
+    </div>
+  </section>
+</Base>

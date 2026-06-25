@@ -12,6 +12,32 @@ const nav = [
   ['Events', '/events/'],
   ['Contact', '/contact/'],
 ];
+
+const ga4Id = site.ga4Id;
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  alternateName: 'Little Graduates Early Learning Centre',
+  url: 'https://thelittlegraduates.in',
+  logo: 'https://thelittlegraduates.in/media/logo.png',
+  image: 'https://thelittlegraduates.in/media/hero/campus.jpg',
+  telephone: '+919562440111',
+  email: site.email,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
+    addressLocality: 'Kochi', addressRegion: 'Kerala', postalCode: '682017', addressCountry: 'IN',
+  },
+  sameAs: [site.instagram],
+  memberOf: { '@type': 'Organization', name: 'Early Childhood Association', url: 'https://eca-aper.org/' },
+};
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: site.name,
+  url: 'https://thelittlegraduates.in',
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -25,6 +51,17 @@ const nav = [
   <link rel="preload" href="/media/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="/media/fonts/baloo2.woff2" as="font" type="font/woff2" crossorigin />
   <slot name="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
+  {ga4Id && <script async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>}
+  {ga4Id && (
+    <script define:vars={{ ga4Id }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', ga4Id);
+    </script>
+  )}
 </head>
 <body>
   <header class="site-header">
@@ -64,6 +101,7 @@ const nav = [
       <div>
         <h3>Explore</h3>
         {nav.map(([label, href]) => <a class="foot-link" href={href}>{label}</a>)}
+        <a class="foot-link" href="/admissions/">Admissions 2026</a>
         <a class="foot-link" href="/montessori-preschool-kaloor/">Montessori preschool in Kaloor</a>
         <a class="foot-link" href="/preschool-elamakara/">Preschool in Elamakara</a>
         <a class="foot-link" href="/daycare-kaloor/">Daycare in Kaloor</a>
@@ -129,6 +167,16 @@ const nav = [
       }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
       els.forEach((e,i)=>{ e.style.transitionDelay = (Math.min(i%6,5)*40)+'ms'; io.observe(e); });
     })();
+  </script>
+  <script is:inline>
+    // GA4 conversion signals on key intents (only fire if GA4 is loaded).
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest('a'); if (!a || !window.gtag) return;
+      var h = a.getAttribute('href') || '';
+      if (h.indexOf('wa.me') > -1 || h.indexOf('whatsapp') > -1) gtag('event', 'whatsapp_click');
+      else if (h.indexOf('tel:') === 0) gtag('event', 'phone_click');
+      else if (h.indexOf('/book-a-tour') > -1) gtag('event', 'book_tour_click');
+    });
   </script>
 </body>
 </html>

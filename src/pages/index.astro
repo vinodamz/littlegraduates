@@ -40,8 +40,14 @@ const faqs = [
   ["Do you have outdoor play areas?", "Yes. Sky, mud, grass and room to roam — a rare gem in Kochi."],
 ];
 const galleryImgs = gallery.images.slice(0,6);
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
+};
 ---
 <Base title="Best Preschool in Kaloor, Kochi - The Little Graduates">
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
   <link slot="head" rel="preload" as="image" href="/media/hero/campus.webp" type="image/webp" fetchpriority="high" />
 
   <section class="hero soft-pink">
@@ -207,7 +213,7 @@ const galleryImgs = gallery.images.slice(0,6);
         <div>
           <span class="kicker">Visit us</span>
           <h2>Come visit. Learning starts here.</h2>
-          <p>2026 admissions are open. Book a tour to see our classrooms, meet our teachers, and feel the difference.</p>
+          <p>2026 admissions are open all year. Book a tour to see our classrooms, meet our teachers, and feel the difference — or see <a href="/admissions/" style="color:#fff;text-decoration:underline;">how to join</a>.</p>
         </div>
         <div class="btn-row">
           <a class="btn btn-white btn-lg" href="/book-a-tour/">Book a tour</a>

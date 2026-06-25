@@ -52,6 +52,7 @@ const slotLabel = (s) => { const [h, m] = s.split(':').map(Number); const ap = h
         const d = await r.json();
         msg.style.display = 'block';
         if (d.ok) {
+          if (window.gtag) gtag('event', 'generate_lead', { form_type: 'tour' });
           f.reset();
           msg.style.color = 'var(--green-dark)';
           msg.textContent = '✓ Your visit is booked! We’ll send a WhatsApp confirmation shortly.';

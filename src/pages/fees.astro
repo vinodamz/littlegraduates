@@ -39,6 +39,7 @@ import site from '../data/site.json';
       try {
         const r = await fetch('/api/inquiry.php', { method: 'POST', body: new FormData(f) });
         const d = await r.json();
+        if (window.gtag && d.ok) gtag('event', 'generate_lead', { form_type: 'fees' });
         if (d.ok && d.fees_html) {
           reveal.innerHTML = d.fees_html;
           reveal.style.display = 'block';
