@@ -149,7 +149,7 @@ function fees_guide_html(): string {
   <span class="ages">Playgroup → UKG · 9:00 am – 12:30 pm</span>
   <h3 style="margin:.5rem 0 .2rem;">One simple school fee</h3>
   <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">₹7,900<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
-  <p class="meta" style="margin:.25rem 0;">Save with the quarterly plan — ₹22,800 / quarter.</p>
+  <p class="meta" style="margin:.25rem 0;">Payable monthly or quarterly.</p>
   <p class="meta" style="margin:.25rem 0;">The same fee across every Montessori level.</p>
   <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — 600+ materials, daily observations &amp; the parent app.</p>
 </div>
