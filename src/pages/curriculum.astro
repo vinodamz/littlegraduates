@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+
+const levels = [
+  {
+    level: 0, name: 'Playgroup', age: '1.5–3 yrs', href: '/programs/playgroup/',
+    areas: [
+      ['Pre-writing & art', 'Colouring, tracing, drawing, and plenty of hands-on art & craft.'],
+      ['Vocabulary', 'Naming the world around them — objects, food, fruits & vegetables, animals & birds, vehicles, plants, professions, festivals, instruments and seasons.'],
+      ['Communication', 'Singing rhymes, listening to stories, talking about pictures, recognising letter sounds, and numbers 0–10.'],
+    ],
+  },
+  {
+    level: 1, name: 'Nursery', age: '3–4 yrs', href: '/programs/nursery/',
+    areas: [
+      ['English & phonics', 'Picture talk, rhymes & stories, tracing curves & lines, and phonics sound sets 1–5 (c-a-p-t-i-n … y-j-x-q), first & ending sounds, and uppercase letters.'],
+      ['Maths', 'More & less, number symbols 0–20, counting 1–20, and ordering & sequencing numbers.'],
+      ['Sensorial', 'Identifying objects, sizes, colours, shapes and simple patterns.'],
+      ['The world around us', 'Body, clothes & home, food, animals & birds, plants & trees, vehicles, professions, seasons, festivals and traffic signs.'],
+    ],
+  },
+  {
+    level: 2, name: 'LKG', age: '4–5 yrs', href: '/programs/lkg/',
+    areas: [
+      ['English', 'Letters & sounds a–z, 3-letter words & sentences, blend & sight words, consonant phonograms, homophones, and long & short vowels.'],
+      ['Maths', 'Numbers 1–100, place value (units → thousands), sequencing, counting backwards, addition with carryover, skip counting and 3-digit numbers.'],
+      ['Sensorial', 'Dimensions, colour shades, 2D & 3D shapes, patterns and directions.'],
+      ['The world around us', 'Body & feelings, living / non-living, plants & animals & lifecycles, professions, transport, seasons, months & days, landforms, and culture & festivals.'],
+    ],
+  },
+  {
+    level: 3, name: 'UKG', age: '5–6 yrs', href: '/programs/ukg/',
+    areas: [
+      ['English', 'Rhymes & stories, all sounds a–z, CVC / blend / sight words & sentences, long-vowel & phonogram words, an introduction to nouns & verbs, and writing simple answers.'],
+      ['Maths', 'Numbers 1–1000, place value, comparing & ordering, addition & subtraction (with carry & borrow), skip counting, telling time, and single-digit multiplication.'],
+      ['Sensorial & reasoning', '2D/3D shapes & their properties, patterns, odd-one-out, mirror images, what-comes-next and dimensions.'],
+      ['The world around us', 'My body, family & feelings, food groups, plants & animals, transport, cultural India, the Earth & landforms, and planets, continents & oceans.'],
+    ],
+  },
+];
+---
+<Base
+  title="Curriculum 2026–27 — What Your Child Learns | The Little Graduates"
+  description="A snapshot of the 2026–27 Montessori-based 6T curriculum at The Little Graduates, Kaloor — learning outcomes for Playgroup, Nursery, LKG and UKG across language, maths, sensorial and the world around us."
+>
+  <section class="page-band teal">
+    <div class="container">
+      <span class="kicker teal">Curriculum · 2026–27</span>
+      <h1>What your child learns</h1>
+      <p class="lead">A clear snapshot of our Montessori-based <strong>6T curriculum</strong>, built with Kreedo and fully aligned with <strong>NEP 2020 &amp; the NCF</strong>. Children learn concrete-to-abstract, at their own pace — here's how it grows from Playgroup to UKG.</p>
+    </div>
+  </section>
+
+  {levels.map((lvl) => (
+    <section class="section" id={`level-${lvl.level}`}>
+      <div class="container">
+        <div style="display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.4rem;">
+          <span class="level-badge">Level {lvl.level}</span>
+          <h2 style="margin:0;">{lvl.name}</h2>
+          <span class="ages" style="margin:0;">{lvl.age}</span>
+          <a href={lvl.href} style="margin-left:auto;font-family:var(--font-head);font-weight:600;">View programme →</a>
+        </div>
+        <div class="grid grid-2" style="margin-top:1.2rem;">
+          {lvl.areas.map(([t, d]) => (
+            <div class="card"><h3 style="margin:0 0 .3rem;">{t}</h3><p style="margin:0;color:var(--muted);">{d}</p></div>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section tight center soft">
+    <div class="container">
+      <p class="lead center">Want to see it in action? A free tour is the best way to understand how your child will learn.</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href="/programs/">See all programmes</a>
+      </div>
+    </div>
+  </section>
+</Base>
