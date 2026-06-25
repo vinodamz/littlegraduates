@@ -1,0 +1,103 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+
+const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': ['ChildCare', 'LocalBusiness'],
+  name: 'Little Graduates Early Learning Centre',
+  alternateName: 'The Little Graduates',
+  url: 'https://thelittlegraduates.in/daycare-kaloor/',
+  image: 'https://thelittlegraduates.in/media/hero/campus.jpg',
+  telephone: '+919562440111',
+  email: 'info@thelittlegraduates.in',
+  priceRange: '₹₹',
+  description:
+    'A safe, loving full-day daycare in Kaloor, Kochi for children up to age 6 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm.',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
+    addressLocality: 'Kochi',
+    addressRegion: 'Kerala',
+    postalCode: '682017',
+    addressCountry: 'IN',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
+  areaServed: ['Kaloor', 'Elamakara', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '09:30',
+    closes: '18:00',
+  },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '74' },
+};
+
+const care = [
+  ['🕘', 'Open till 6 pm', 'Drop off in the morning and pick up after work — full-day care that fits real schedules.'],
+  ['🍲', 'Meals & naps', 'Calm nap times and a gentle daily rhythm, so your child is rested and happy.'],
+  ['🛡️', 'Safe & secure', 'A bright, gated campus with caring, trained staff and a 1:12 ratio.'],
+  ['🧩', 'More than minding', 'Montessori-enriched play and learning — never just screen time and waiting.'],
+];
+---
+<Base
+  title="Daycare in Kaloor, Kochi | The Little Graduates"
+  description="A safe, loving full-day daycare in Kaloor, Kochi for children up to age 6 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm."
+>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
+
+  <section class="page-band teal">
+    <div class="container">
+      <span class="kicker teal">Daycare · Kaloor, Kochi</span>
+      <h1>A safe, loving daycare in Kaloor, Kochi</h1>
+      <p class="lead">Full-day care for little ones up to age 6, right in Kaloor. Caring teachers, a gentle daily rhythm, meals and naps, and a huge playground — open until 6 pm for working parents.</p>
+      <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;">
+        <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
+        <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>
+        <a class="btn btn-outline btn-lg" href={site.whatsapp}>WhatsApp us</a>
+      </div>
+      <div class="pill-row">
+        <span class="pill">★ 5.0 · 74 Google reviews</span>
+        <span class="pill">Open 9:30 am – 6 pm</span>
+        <span class="pill">1:12 ratio</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="center"><span class="kicker">Daycare done warmly</span><h2>Care that feels like home</h2></div>
+      <div class="grid grid-2" style="margin-top:2rem;">
+        {care.map(([ico, t, d]) => (
+          <div class="card" style="display:flex;gap:1rem;align-items:flex-start;">
+            <span class="ico tint-teal" aria-hidden="true">{ico}</span>
+            <span><strong style="font-family:var(--font-head);color:var(--indigo);">{t}</strong><p style="margin:.25rem 0 0;">{d}</p></span>
+          </div>
+        ))}
+      </div>
+      <p class="center" style="margin-top:1.6rem;color:var(--muted);">Children from other schools are welcome for afternoon daycare from 2 pm. Looking for a preschool too? See our <a href="/montessori-preschool-kaloor/">Montessori preschool in Kaloor</a>.</p>
+    </div>
+  </section>
+
+  <section class="section soft-pink">
+    <div class="container grid grid-2" style="align-items:start;gap:2.5rem;">
+      <div>
+        <span class="kicker teal">Find us in Kaloor</span>
+        <h2>Easy from across Kochi</h2>
+        <p>We're on Kattayil Road, near Little Flower Church, Pottakuzhi, Kaloor.</p>
+        <p class="meta" style="line-height:1.9;">
+          {site.address.map((l) => <>{l}<br/></>)}
+          <br/>
+          <strong>Phone:</strong> <a href={site.phoneHref}>{site.phone}</a><br/>
+          <strong>Hours:</strong> Mon–Sat, 9:30 am – 6:00 pm
+        </p>
+        <p><a class="btn btn-pink" href="/book-a-tour/">Book a free tour</a></p>
+      </div>
+      <div style="border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);">
+        <iframe title="Little Graduates daycare location in Kaloor, Kochi" src={mapSrc} width="100%" height="360" style="border:0;display:block;" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+</Base>
