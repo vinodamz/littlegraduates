@@ -1,6 +1,7 @@
 ---
 ages: "5 to 6 years"
 order: 4
+level: 3
 title: "Upper Kindergarten (UKG, Ages 5 – 6 years)"
 date: 2025-04-17
 excerpt: "Students build strong academic readiness for primary school while enhancing self-regulation, collaboration, and leadership — all rooted in active, purposeful learning.

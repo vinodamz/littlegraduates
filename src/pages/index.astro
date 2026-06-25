@@ -113,7 +113,7 @@ const galleryImgs = gallery.images.slice(0,6);
           <a href={`/programs/${p.id}/`} class="card program-card" style="padding:0;overflow:hidden;">
             {p.data.image && <img src={p.data.image} alt="" width="400" height="260" loading="lazy" style="width:100%;display:block;" />}
             <div style="padding:1.2rem 1.4rem 1.5rem;">
-              <span class="ages">{p.data.ages}</span>
+              {p.data.level !== undefined && <span class="level-badge">Level {p.data.level}</span>}<span class="ages">{p.data.ages}</span>
               <h3>{p.data.title}</h3>
               <p>{p.data.excerpt?.split('\n')[0]?.slice(0,90)}…</p>
             </div>

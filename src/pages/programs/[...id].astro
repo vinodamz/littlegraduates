@@ -11,7 +11,7 @@ const { Content } = await render(item);
 <Base title={`${item.data.title} - The Little Graduates`} description={item.data.excerpt ?? item.data.title}>
   <article class="section">
     <div class="container prose">
-      <p class="kicker">{item.data.ages}</p>
+      <p>{item.data.level !== undefined && <span class="level-badge">Level {item.data.level}</span>}<span class="kicker">{item.data.ages}</span></p>
       <h1>{item.data.title}</h1>
       {item.data.image && <img src={item.data.image} alt="" style="border-radius:16px; margin-top:1rem;" />}
       <Content />

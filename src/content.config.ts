@@ -22,6 +22,7 @@ const programs = defineCollection({
     title: z.string(),
     ages: z.string(),
     order: z.number().default(99),
+    level: z.number().optional(),   // Montessori level 0–3 (Playgroup→UKG); omit for Daycare/Afterschool
     excerpt: z.string().optional(),
     image: z.string().optional(),
   }),

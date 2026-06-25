@@ -1,6 +1,7 @@
 ---
 ages: "1.5 to 3 years"
 order: 1
+level: 0
 title: "Playgroup"
 date: 2019-09-26
 excerpt: "Children thrive in a mixed-age Montessori environment where learning happens naturally through observation, hands-on exploration, and social collaboration. The program nurtures independence, empathy, and foundational learning through purposeful play.

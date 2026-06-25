@@ -1,6 +1,7 @@
 ---
 ages: "3 to 4 years"
 order: 2
+level: 1
 title: "Nursery"
 date: 2025-04-17
 excerpt: "Students explore early literacy, numeracy, and environmental awareness through active, hands-on learning. In a mixed-age setup, they thrive emotionally and intellectually while building independence and empathy.

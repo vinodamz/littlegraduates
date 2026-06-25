@@ -1,6 +1,7 @@
 ---
 ages: "4 to 5 years"
 order: 3
+level: 2
 title: "Lower Kindergarten - LKG"
 date: 2025-04-17
 excerpt: "Students begin structured learning in literacy, numeracy, and environment-based themes while developing independence, confidence, and leadership in a collaborative, mixed-age environment.
