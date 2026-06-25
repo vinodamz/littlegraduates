@@ -148,9 +148,9 @@ function fees_guide_html(): string {
 <div class="card" style="text-align:center;border-top:5px solid var(--green);max-width:540px;margin:0 auto;">
   <span class="ages">Playgroup → UKG · 9:00 am – 12:30 pm</span>
   <h3 style="margin:.5rem 0 .2rem;">One simple school fee</h3>
-  <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">from ₹7,600<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
-  <p class="meta" style="margin:.25rem 0;">paid quarterly (₹22,800 / quarter) · the same fee across every Montessori level</p>
-  <p class="meta" style="margin:.25rem 0;">Prefer monthly? It's just +₹300 / month.</p>
+  <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">₹7,900<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
+  <p class="meta" style="margin:.25rem 0;">Save with the quarterly plan — ₹22,800 / quarter (just ₹7,600 / month).</p>
+  <p class="meta" style="margin:.25rem 0;">The same fee across every Montessori level.</p>
   <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — 600+ materials, daily observations &amp; the parent app.</p>
 </div>
 
@@ -160,7 +160,7 @@ function fees_guide_html(): string {
   <div class="card" style="border-top:4px solid var(--pink);"><span class="ages">★ Best value · till 5:00 pm</span><h3 style="margin:.4rem 0 .1rem;">Enrichment Daycare</h3><p style="margin:0;color:var(--muted);">+₹3,800 / month</p></div>
   <div class="card"><span class="ages">till 6:00 pm</span><h3 style="margin:.4rem 0 .1rem;">Full Day Care</h3><p style="margin:0;color:var(--muted);">+₹4,500 / month</p></div>
 </div>
-<p class="meta center" style="margin-top:.9rem;">Add the care fee to the school fee. Monthly payers add +₹300 / month to the package.</p>
+<p class="meta center" style="margin-top:.9rem;">Add your chosen care plan to the school fee — pick it only if you need the longer day.</p>
 
 <div class="card" style="margin-top:1.6rem;">
   <h3 style="margin:0 0 .3rem;">UKG School Readiness <span class="meta" style="font-weight:400;">— optional, for Level 3</span></h3>
