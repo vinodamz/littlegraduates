@@ -151,7 +151,7 @@ function fees_guide_html(): string {
   <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">₹7,900<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
   <p class="meta" style="margin:.25rem 0;">One simple payment every 3 months.</p>
   <p class="meta" style="margin:.25rem 0;">The same fee across every Montessori level.</p>
-  <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — 600+ materials, daily observations &amp; the parent app.</p>
+  <p style="margin:.9rem 0 0;color:var(--green-dark);font-weight:700;font-family:var(--font-head);">Covers the full Montessori morning — authentic, child-sized materials, daily observations &amp; the parent app.</p>
 </div>
 
 <h3 style="text-align:center;margin:2.4rem 0 1rem;">Need a longer day? Add care — only if you want it</h3>
