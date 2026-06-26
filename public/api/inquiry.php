@@ -146,7 +146,7 @@ function fees_guide_html(): string {
 </div>
 
 <div class="card" style="text-align:center;border-top:5px solid var(--green);max-width:540px;margin:0 auto;">
-  <span class="ages">Playgroup → UKG · 9:00 am – 12:30 pm</span>
+  <span class="ages">Playgroup → UKG · 9:30 am – 12:30 pm</span>
   <h3 style="margin:.5rem 0 .2rem;">One simple school fee</h3>
   <p style="font-family:var(--font-head);color:var(--indigo);font-size:2.6rem;line-height:1;margin:.3rem 0;">₹7,900<span style="font-size:1.05rem;color:var(--muted);font-weight:600;"> / month</span></p>
   <p class="meta" style="margin:.25rem 0;">One simple payment every 3 months.</p>
