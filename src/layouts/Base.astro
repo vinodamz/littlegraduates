@@ -29,7 +29,7 @@ const orgSchema = {
     streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
     addressLocality: 'Kochi', addressRegion: 'Kerala', postalCode: '682017', addressCountry: 'IN',
   },
-  sameAs: [site.instagram],
+  sameAs: [site.instagram, site.googleProfile],
   memberOf: { '@type': 'Organization', name: 'Early Childhood Association', url: 'https://eca-aper.org/' },
 };
 const siteSchema = {
@@ -89,7 +89,7 @@ const siteSchema = {
           <span>{site.name}</span>
         </div>
         <p>A joyful Montessori preschool for ages 1.5 to 6 in Kaloor, Kochi. Where every child feels at home.</p>
-        <p class="foot-rating"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</span> {site.googleReviews}</p>
+        <p class="foot-rating"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</span> <a href={site.googleProfile} target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">{site.googleReviews}</a></p>
         <a class="eca-badge" href="https://eca-aper.org/" target="_blank" rel="noopener" aria-label="Proud institute member of the Early Childhood Association (ECA)">
           <picture>
             <source srcset="/media/eca-member.webp" type="image/webp" />
@@ -116,6 +116,8 @@ const siteSchema = {
         <a class="foot-link" href={site.phoneHref}>{site.phone}</a>
         <a class="foot-link" href={`mailto:${site.email}`}>{site.email}</a>
         <a class="foot-link" href={site.whatsapp}>Chat on WhatsApp</a>
+        <a class="foot-link" href={site.instagram} target="_blank" rel="noopener">Follow us on Instagram</a>
+        <a class="foot-link" href={site.googleProfile} target="_blank" rel="noopener">Read our Google reviews</a>
         <a class="btn btn-pink" style="margin-top:1rem;" href="/book-a-tour/">Book a free tour</a>
       </div>
     </div>
