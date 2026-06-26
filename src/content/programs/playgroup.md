@@ -8,7 +8,7 @@ excerpt: "Children thrive in a mixed-age Montessori environment where learning h
 
 	Enrollment: Mixed-age group
 	Staff Ratio: 1 to 12"
-image: /media/programs/playgroup.svg
+image: /media/programs/playgroup.webp
 ---
 Your little one is taking their first steps into a world of independence, exploration, and connection. Our Playgroup program is built to nurture curiosity, confidence, and a sense of routine, all through purposeful play and gentle guidance.
 Children in this age group begin to understand their environment, develop relationships, and express themselves through movement, sound, and interaction. In our thoughtfully prepared environment, they’re free to explore Montessori materials, develop practical life skills, and enjoy sensory-rich experiences.

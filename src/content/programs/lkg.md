@@ -8,7 +8,7 @@ excerpt: "Students begin structured learning in literacy, numeracy, and environm
 
 	Enrollment: Mixed-age group
 	Staff Ratio: 1 to 12"
-image: /media/programs/lkg.svg
+image: /media/programs/lkg.webp
 ---
 Children in LKG are entering a phase of focused learning. They start to seek answers, build patterns, and apply logic. Our LKG program meets this developmental leap with a blend of structure, creativity, and freedom to explore.
 We continue with the concrete-to-abstract approach, where concepts are first introduced through hands-on Montessori materials before being extended to books and worksheets. At this stage, language and number skills grow deeper, and children begin expressing themselves more clearly—verbally, emotionally, and creatively.

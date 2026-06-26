@@ -7,7 +7,7 @@ excerpt: "A relaxed yet purposeful afterschool space for children to explore art
 
 	Enrollment: Open to ages 3 – 8
 	Staff Ratio: 1 to 12"
-image: /media/programs/afterschool.svg
+image: /media/programs/afterschool.webp
 ---
 Learning doesn’t stop when the school day ends — it simply shifts gears. Our Afterschool Program is a space where children wind down, explore interests, and continue growing in a relaxed, supportive environment.
 It’s designed for working parents who want a safe, enriching space for their children in the late afternoons. From creative expression to life skills and quiet reading corners, the program is flexible yet purposeful. Children can engage in guided activities or choose their own rhythm, allowing them to feel both free and grounded.

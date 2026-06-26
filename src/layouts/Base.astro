@@ -1,7 +1,9 @@
 ---
 import site from '../data/site.json';
 import '../styles/global.css';
-const { title = site.name, description = "A joyful Montessori preschool in the heart of Kaloor, Kochi. Ages 1.5 to 6." } = Astro.props;
+const { title = site.name, description = "A joyful Montessori preschool in the heart of Kaloor, Kochi. Ages 1.5 to 6.", image = "/media/og-default.jpg" } = Astro.props;
+const ogImage = new URL(image, Astro.site).href;
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const nav = [
   ['Home', '/'],
   ['About', '/about/'],
@@ -46,6 +48,19 @@ const siteSchema = {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content={site.name} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
   <link rel="icon" href="/media/logo.png" />
   <link rel="sitemap" href="/sitemap-index.xml" />
   <link rel="preload" href="/media/fonts/nunito.woff2" as="font" type="font/woff2" crossorigin />
