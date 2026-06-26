@@ -133,11 +133,11 @@ const siteSchema = {
     .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 0; gap: 1rem; }
     .brand { display: flex; align-items: center; gap: .6rem; color: var(--indigo); font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; }
     .brand img { border-radius: 12px; }
-    nav { display: flex; align-items: center; gap: 1.3rem; flex-wrap: wrap; }
-    nav a { color: var(--indigo); font-family: var(--font-head); font-weight: 600; font-size: .98rem; transition: color .15s; }
+    nav { display: flex; align-items: center; gap: 1rem; flex-wrap: nowrap; }
+    nav a { color: var(--indigo); font-family: var(--font-head); font-weight: 600; font-size: .94rem; white-space: nowrap; transition: color .15s; }
     nav a:hover { color: var(--pink); }
-    .nav-cta { color: #fff !important; padding: .55rem 1.3rem; }
-    .nav-burger { display: none; font-size: 1.7rem; color: var(--indigo); cursor: pointer; }
+    .nav-cta { color: #fff !important; padding: .55rem 1.2rem; }
+    .nav-burger { display: none; font-size: 1.7rem; line-height: 1; color: var(--indigo); cursor: pointer; padding: .15rem .4rem; }
     .site-footer { background: var(--indigo); color: #cfd1ec; padding: 3.5rem 0 2rem; margin-top: 4rem; }
     .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.3fr; gap: 2rem; }
     .site-footer h3 { color: #fff; margin-bottom: .9rem; font-size: 1.05rem; }
@@ -152,11 +152,19 @@ const siteSchema = {
     .foot-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.5rem; padding-top: 1.5rem; text-align: center; color: #9a9dcb; font-size: .9rem; }
     .foot-bottom a { color: #ffd9e6; text-decoration: underline; }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 860px) {
+    /* Below 1024px the 8-item nav can't fit on one line — switch to a clean
+       full-width dropdown so it never wraps or crowds. */
+    @media (max-width: 1024px) {
       .nav-burger { display: block; }
-      nav { display: none; width: 100%; flex-direction: column; align-items: flex-start; padding: 1rem 0; gap: .9rem; }
+      nav {
+        display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 39;
+        flex-direction: column; align-items: stretch; gap: 0;
+        background: var(--cream); border-top: 1px solid rgba(43,47,119,.08);
+        box-shadow: var(--shadow); padding: .4rem 1.5rem 1.1rem;
+      }
       #nav-toggle:checked ~ nav { display: flex; }
-      .header-inner { flex-wrap: wrap; }
+      nav a { padding: .85rem .2rem; font-size: 1.02rem; border-bottom: 1px solid rgba(43,47,119,.06); }
+      .nav-cta { margin-top: .8rem; text-align: center; border-bottom: none; padding: .8rem 1.2rem; }
     }
     @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
