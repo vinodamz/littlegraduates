@@ -23,7 +23,26 @@ const { Content } = await render(post);
         </div>
       )}
       <Content />
+
+      <aside class="post-cta" aria-label="Visit Little Graduates">
+        <h2>Considering Little Graduates for your child?</h2>
+        <p>We're a joyful <a href="/montessori-preschool-kaloor/">Montessori preschool in Kaloor, Kochi</a> for ages 1.5 to 6. The best way to know us is to see a typical day for yourself.</p>
+        <div class="post-cta-links">
+          <a class="btn btn-pink" href="/book-a-tour/">Book a free school tour</a>
+          <a class="btn btn-outline" href="/admissions/">2026 admissions</a>
+        </div>
+        <p class="post-cta-more">Explore our <a href="/programs/">programmes for ages 1.5 to 6</a>, the <a href="/curriculum/">2026–27 curriculum</a>, our <a href="/fees/">fee structure</a>, or <a href="/daycare-kaloor/">daycare in Kaloor</a>.</p>
+      </aside>
+
       <p style="margin-top:2.5rem;"><a class="btn btn-outline" href="/blog/">← All posts</a></p>
     </div>
   </article>
+  <style>
+    .post-cta { margin-top: 3rem; padding: 1.8rem 1.8rem 2rem; border-radius: 18px;
+      background: linear-gradient(135deg, #fff5f8, #fff9f0); border: 1px solid rgba(229,68,125,.16); }
+    .post-cta h2 { margin: 0 0 .5rem; font-size: 1.3rem; color: var(--indigo); }
+    .post-cta > p { margin: 0 0 1.1rem; }
+    .post-cta-links { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .post-cta-more { font-size: .95rem; color: var(--indigo); margin: 0 !important; }
+  </style>
 </Base>
