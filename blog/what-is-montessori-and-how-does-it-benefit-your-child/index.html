@@ -42,5 +42,6 @@
       if (h.indexOf('wa.me') > -1 || h.indexOf('whatsapp') > -1) gtag('event', 'whatsapp_click');
       else if (h.indexOf('tel:') === 0) gtag('event', 'phone_click');
       else if (h.indexOf('/book-a-tour') > -1) gtag('event', 'book_tour_click');
+      else if (/\.pdf($|\?)/i.test(h)) gtag('event', 'file_download', { file_name: h.split('/').pop() });
     });
   </script> </body> </html>
