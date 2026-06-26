@@ -18,6 +18,14 @@ const why = [
   ["🌳","tint-amber","Indoor + outdoor play","Sky, mud, grass, and room to roam — a rare gem in Kochi."],
   ["👫","tint-purple","Small class sizes","1:12 ratio. Every child is seen, heard, and gently guided."],
 ];
+const parentUpdates = [
+  ["📸","tint-pink","Daily photos & moments","Real snapshots from your child's day — play, projects and little wins, as they happen."],
+  ["📖","tint-green","Learning stories","Teachers document milestones and observations, so you follow exactly how your child is growing."],
+  ["📊","tint-teal","Progress & attendance","A simple dashboard tracks attendance and development through the year — no guesswork."],
+  ["🗓️","tint-amber","Daily activity plans","See what your child is exploring each day, from circle time to sensorial work."],
+  ["💬","tint-indigo","Chat with teachers","Message your child's educators directly for quick questions, any time."],
+  ["📣","tint-purple","Announcements & calendar","Holidays, events and class updates land straight on your phone."],
+];
 const corners = [
   ["🎵","Music space","Explore rhythm, sound, and movement."],
   ["🎤","Public speaking corner","Build confidence through storytelling."],
@@ -38,6 +46,7 @@ const faqs = [
   ["What curriculum do you follow?", "A Montessori-based 6T curriculum built with Kreedo, fully aligned with NEP 2020 and the NCF."],
   ["Are admissions open for 2026?", "Yes — 2026 admissions are open. Book a free tour or WhatsApp us to begin."],
   ["Do you have outdoor play areas?", "Yes. Sky, mud, grass and room to roam — a rare gem in Kochi."],
+  ["How will I know how my child is doing each day?", "Every day, our private parent app brings you photos, learning stories, daily activity plans and progress updates — plus direct chat with your child's teachers. You'll always know how their day went."],
 ];
 const galleryImgs = gallery.images.slice(0,6);
 const faqSchema = {
@@ -105,6 +114,21 @@ const faqSchema = {
       <div class="center"><span class="kicker">Why parents choose us</span><h2>What makes Little Graduates different</h2></div>
       <div class="grid grid-3" style="margin-top:2.5rem;">
         {why.map(([ico,tint,t,d]) => (
+          <div class="card"><div class={`ico ${tint}`} aria-hidden="true">{ico}</div><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section soft-pink">
+    <div class="container">
+      <div class="center">
+        <span class="kicker">For parents</span>
+        <h2>Always know how your child's day went</h2>
+        <p class="lead" style="max-width:680px;margin:.6rem auto 0;">You're never out of the loop. A private parent app keeps you close to your child's learning — every photo, milestone and moment, the same day it happens.</p>
+      </div>
+      <div class="grid grid-3" style="margin-top:2.5rem;">
+        {parentUpdates.map(([ico,tint,t,d]) => (
           <div class="card"><div class={`ico ${tint}`} aria-hidden="true">{ico}</div><h3>{t}</h3><p>{d}</p></div>
         ))}
       </div>
