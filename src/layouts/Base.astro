@@ -76,6 +76,7 @@ const siteSchema = {
         {nav.map(([label, href]) => <a href={href}>{label}</a>)}
         <a href="/book-a-tour/" class="btn btn-pink nav-cta">Book a Tour</a>
       </nav>
+      <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
     </div>
   </header>
 
@@ -138,6 +139,7 @@ const siteSchema = {
     nav a:hover { color: var(--pink); }
     .nav-cta { color: #fff !important; padding: .55rem 1.2rem; }
     .nav-burger { display: none; font-size: 1.7rem; line-height: 1; color: var(--indigo); cursor: pointer; padding: .15rem .4rem; }
+    .nav-backdrop { display: none; }
     .site-footer { background: var(--indigo); color: #cfd1ec; padding: 3.5rem 0 2rem; margin-top: 4rem; }
     .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.3fr; gap: 2rem; }
     .site-footer h3 { color: #fff; margin-bottom: .9rem; font-size: 1.05rem; }
@@ -165,6 +167,12 @@ const siteSchema = {
       #nav-toggle:checked ~ nav { display: flex; }
       nav a { padding: .85rem .2rem; font-size: 1.02rem; border-bottom: 1px solid rgba(43,47,119,.06); }
       .nav-cta { margin-top: .8rem; text-align: center; border-bottom: none; padding: .8rem 1.2rem; }
+      /* Tap anywhere outside the open dropdown to close it (checkbox-hack
+         has no outside-click; this full-screen label unchecks the toggle). */
+      #nav-toggle:checked ~ .nav-backdrop {
+        display: block; position: fixed; inset: 0; z-index: 38;
+        background: rgba(43,47,119,.18); cursor: default;
+      }
     }
     @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
