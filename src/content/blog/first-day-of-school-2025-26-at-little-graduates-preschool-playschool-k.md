@@ -128,7 +128,7 @@ If you’re still looking for a **preschool, playschool, daycare, or afterschool
 
 
 👉 **Call:** +91 956244 0111  
-👉 **WhatsApp:** [Chat with us](https://wa.me/919562440111?text=Hello%20Little%20Graduates%2C%20I%27m%20interested%20in%20Admissions%20Open%202025.%20Could%20you%20share%20more%20details%3F)
+👉 **WhatsApp:** [Chat with us](https://wa.me/919562440222?text=Hello%20Little%20Graduates%2C%20I%27m%20interested%20in%20admissions.%20Could%20you%20share%20more%20details%3F)
 
 
 
