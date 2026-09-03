@@ -2,6 +2,7 @@
 title: "Teacher's Day at Little Graduates: Honouring the Adults Who Guide Your Child"
 date: 2026-09-03
 excerpt: "On 5 September, children at Little Graduates take a simple moment to thank the teachers who spend the day with them. Here's what Teacher's Day looks like in a Montessori preschool, and why a small gesture is enough at this age."
+image: "/media/gallery/img_20260629_120035_2.jpg"
 categories: ["Parenting"]
 tags: ["Teacher's Day", "preschool", "Montessori", "Kaloor", "Kochi", "gratitude"]
 seoDescription: "What Teacher's Day looks like at The Little Graduates Montessori preschool in Kaloor, Kochi: children thanking their teachers with handmade cards and a quiet moment, not a stage show."
@@ -14,6 +15,8 @@ to notice the people who greet them each morning, sit on the floor beside a puzz
 stay until the last parent arrives.
 
 At Little Graduates in Kaloor, that is the heart of it. Not a performance. A thank you.
+
+![A teacher sitting on the classroom floor with a child, lining up number cards on a low table](/media/2025_06_20250612_100646-768x1024.jpg)
 
 ## Why we mark the day at all
 
@@ -40,6 +43,8 @@ will spend ten careful minutes colouring. Some will make a mark and be done. Bot
 There is no prize for the prettiest card. Teachers do not prompt a speech. If a child wants
 to hand their work over quietly, that is the whole ceremony. The point is the offering, not
 the audience.
+
+![A child concentrating on coloured wooden blocks on a work mat in the Montessori classroom](/media/gallery/20260625_115025.jpg)
 
 This is a preview of how the day tends to feel here, not a recap of a morning that has not
 happened yet. Every group, and every child, will do it a little differently. That is as it
