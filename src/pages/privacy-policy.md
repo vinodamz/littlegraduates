@@ -10,7 +10,7 @@ The Little Graduates Android app (`in.thelittlegraduates.app`) is operated by **
 
 ### Information and purpose
 
-The app uses staff names, account identifiers, roles and sign-in details to authenticate staff and provide access to school modules. Sign-in tokens are stored securely on the device. The transport module displays school-provided trip schedules, vehicle and route details, child pickup/drop information, stop locations and parent contact details. Staff can record pickup, drop-off and absence status for school transport operations.
+The app uses staff names, account identifiers, roles and sign-in details to authenticate staff and provide access to school modules. Device labels and session identifiers support sign-in and account security. Sign-in tokens are stored securely on the device. The transport module displays school-provided trip schedules, vehicle and route details, child pickup/drop information, stop locations and parent contact details. Staff can record pickup, drop-off and absence status for school transport operations.
 
 During an active driver trip, the app collects **precise location**, timestamps, accuracy, speed and heading. It sends these to the school transport system to display the cab location, estimate arrivals and support pickup/drop operations. Location collection continues **when the app is in the background or the phone screen is off**. Tracking stops when the trip is finished or cancelled, and Android displays an ongoing tracking notification. The app explains this use before requesting permission. Drivers can decline or withdraw location permission; trip tracking then cannot operate.
 

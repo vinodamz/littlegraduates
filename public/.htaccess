@@ -40,6 +40,7 @@ ErrorDocument 404 /404.html
 # Belt-and-suspenders: tell LiteSpeed's own cache to skip the marker.
 <IfModule mod_rewrite.c>
   RewriteRule ^build-id\.txt$ - [E=Cache-Control:no-cache]
+  RewriteRule ^privacy-policy(?:/.*)?$ - [E=Cache-Control:no-cache]
 </IfModule>
 
 # --- 301 redirects from old WordPress URLs ---
