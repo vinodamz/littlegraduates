@@ -2,6 +2,39 @@
 layout: ../layouts/Page.astro
 title: "Privacy Policy"
 ---
+## Little Graduates Android app
+
+Updated: 2 October 2026
+
+The Little Graduates Android app (`in.thelittlegraduates.app`) is operated by **PARENT PETAL LITTLE STEPS LLP** for authorized adult school staff and transport drivers.
+
+### Information and purpose
+
+The app uses staff names, account identifiers, roles and sign-in details to authenticate staff and provide access to school modules. Sign-in tokens are stored securely on the device. The transport module displays school-provided trip schedules, vehicle and route details, child pickup/drop information, stop locations and parent contact details. Staff can record pickup, drop-off and absence status for school transport operations.
+
+During an active driver trip, the app collects **precise location**, timestamps, accuracy, speed and heading. It sends these to the school transport system to display the cab location, estimate arrivals and support pickup/drop operations. Location collection continues **when the app is in the background or the phone screen is off**. Tracking stops when the trip is finished or cancelled, and Android displays an ongoing tracking notification. The app explains this use before requesting permission. Drivers can decline or withdraw location permission; trip tracking then cannot operate.
+
+### Access and sharing
+
+Authorized school staff access information according to their account permissions. Families can follow their child's cab through the school's private trip-tracking link. The school uses its hosting infrastructure to process these records. If a staff member chooses to send a WhatsApp alert, the alert opens in WhatsApp and WhatsApp's privacy practices apply. Other school modules open the school website in an external browser.
+
+The app has no advertisements and does not use the Android advertising ID.
+
+### Retention and deletion requests
+
+Driver location and trip records are retained for **one year**. To request deletion of an app account or associated information, email **info@thelittlegraduates.in**, identifying the account or records concerned. Deletion requests are handled manually by the school and completed promptly after the request is verified. You may use the same address for questions about staff, child or parent records and their retention.
+
+### Security and permissions
+
+The app communicates with the school server over HTTPS. Location permission supports active trip tracking; notification permission supports trip notifications. Device settings allow users to change these permissions.
+
+### Contact
+
+PARENT PETAL LITTLE STEPS LLP / The Little Graduates  
+Email: [info@thelittlegraduates.in](mailto:info@thelittlegraduates.in)
+
+The following sections describe the website's privacy practices.
+
 ## Who we are
 
 
