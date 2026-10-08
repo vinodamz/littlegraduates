@@ -89,7 +89,7 @@ const siteSchema = {
       </a>
       <button type="button" class="nav-burger" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu"><span aria-hidden="true">☰</span></button>
       <nav id="primary-navigation" aria-label="Main navigation">
-        {nav.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname === href ? "page" : undefined}>{label}</a>)}
+        {nav.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname.replace(/\/$/, "") === href.replace(/\/$/, "") ? "page" : undefined}>{label}</a>)}
         <a href="/book-a-tour/" class="btn btn-pink nav-cta">Book a Tour</a>
       </nav>
 
@@ -189,7 +189,8 @@ const siteSchema = {
       .nav-cta { margin-top: .8rem; text-align: center; border-bottom: none; padding: .8rem 1.2rem; }
 
     }
-    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } .header-inner { gap:.5rem; } .site-header .brand { font-size:1rem; min-width:0; } .site-header .brand img { width:42px; height:42px; flex-shrink:0; } .nav-burger { flex-shrink:0; } }
+    @media (max-width: 360px) { .site-header .brand { font-size:.9rem; gap:.4rem; } .header-inner { padding-inline:1rem; } }
   </style>
   <script>
     const button = document.querySelector<HTMLButtonElement>('.nav-burger');
