@@ -2,16 +2,17 @@
 import site from '../data/site.json';
 import '../styles/global.css';
 const { title = site.name, description = "A joyful Montessori preschool in the heart of Kaloor, Kochi. Ages 1.5 to 6.", image = "/media/og-default.jpg" } = Astro.props;
+const { admissionsJourney = false } = Astro.props;
 const ogImage = new URL(image, Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const nav = [
   ['Home', '/'],
+  ['Admissions', '/admissions/'],
+  ['Fees', '/fees/'],
   ['About', '/about/'],
   ['Programs', '/programs/'],
   ['Gallery', '/gallery/'],
-  ['Videos', '/videos/'],
-  ['Blog', '/blog/'],
-  ['Events', '/events/'],
+
   ['Contact', '/contact/'],
 ];
 
@@ -79,23 +80,23 @@ const siteSchema = {
   )}
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header">
     <div class="container header-inner">
       <a href="/" class="brand">
         <img src={site.logo} alt={site.name} width="50" height="50" />
         <span>{site.name}</span>
       </a>
-      <input type="checkbox" id="nav-toggle" hidden />
-      <label for="nav-toggle" class="nav-burger" aria-label="Menu"><span aria-hidden="true">☰</span></label>
-      <nav>
-        {nav.map(([label, href]) => <a href={href}>{label}</a>)}
+      <button type="button" class="nav-burger" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu"><span aria-hidden="true">☰</span></button>
+      <nav id="primary-navigation" aria-label="Main navigation">
+        {nav.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname === href ? "page" : undefined}>{label}</a>)}
         <a href="/book-a-tour/" class="btn btn-pink nav-cta">Book a Tour</a>
       </nav>
-      <label for="nav-toggle" class="nav-backdrop" aria-hidden="true"></label>
+
     </div>
   </header>
 
-  <main><slot /></main>
+  <main id="main-content" tabindex="-1"><slot /></main>
 
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -105,7 +106,7 @@ const siteSchema = {
           <span>{site.name}</span>
         </div>
         <p>A joyful Montessori preschool for ages 1.5 to 6 in Kaloor, Kochi. Where every child feels at home.</p>
-        <p class="foot-rating"><span class="stars" role="img" aria-label="Rated 5 out of 5 stars">★★★★★</span> <a href={site.googleProfile} target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">{site.googleReviews}</a></p>
+        <p class="foot-rating"><a href={site.googleProfile} target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Read parent reviews</a></p>
         <a class="eca-badge" href="https://eca-aper.org/memberships/our-members/" target="_blank" rel="noopener" aria-label="Proud institute member of the Early Childhood Association (ECA)">
           <picture>
             <source srcset="/media/eca-member.webp" type="image/webp" />
@@ -117,6 +118,10 @@ const siteSchema = {
       <div>
         <h3>Explore</h3>
         {nav.map(([label, href]) => <a class="foot-link" href={href}>{label}</a>)}
+        <a class="foot-link" href="/vidyarambham/">Vidyarambham admissions</a>
+        <a class="foot-link" href="/videos/">Videos & parent stories</a>
+        <a class="foot-link" href="/blog/">Blog</a>
+        <a class="foot-link" href="/events/">Events</a>
         <a class="foot-link" href="/admissions/">Admissions 2026</a>
         <a class="foot-link" href="/curriculum/">Curriculum 2026–27</a>
         <a class="foot-link" href="/montessori-preschool-kaloor/">Montessori preschool in Kaloor</a>
@@ -142,18 +147,18 @@ const siteSchema = {
     </div>
   </footer>
 
-  <a class="whatsapp-float" href={site.whatsapp} aria-label="WhatsApp us"><span aria-hidden="true">💬</span> WhatsApp us</a>
+  {!admissionsJourney && <a class="whatsapp-float" href={site.whatsapp} aria-label="WhatsApp us"><span aria-hidden="true">💬</span> WhatsApp us</a>}
 
   <style>
     .site-header { background: rgba(255,250,240,.9); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 40; border-bottom: 1px solid rgba(43,47,119,.07); }
-    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 0; gap: 1rem; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: .7rem 1.5rem; gap: 1rem; }
     .brand { display: flex; align-items: center; gap: .6rem; color: var(--indigo); font-family: var(--font-head); font-weight: 800; font-size: 1.15rem; }
     .brand img { border-radius: 12px; }
     nav { display: flex; align-items: center; gap: 1rem; flex-wrap: nowrap; }
     nav a { color: var(--indigo); font-family: var(--font-head); font-weight: 600; font-size: .94rem; white-space: nowrap; transition: color .15s; }
     nav a:hover { color: var(--pink); }
     .nav-cta { color: #fff !important; padding: .55rem 1.2rem; }
-    .nav-burger { display: none; font-size: 1.7rem; line-height: 1; color: var(--indigo); cursor: pointer; padding: .15rem .4rem; }
+    .nav-burger { display: none; font-size: 1.7rem; line-height: 1; color: var(--indigo); cursor: pointer; padding: .5rem; min-width:44px; min-height:44px; border:0; background:transparent; }
     .nav-backdrop { display: none; }
     .site-footer { background: var(--indigo); color: #cfd1ec; padding: 3.5rem 0 2rem; margin-top: 4rem; }
     .footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1.2fr 1.3fr; gap: 2rem; }
@@ -179,34 +184,48 @@ const siteSchema = {
         background: var(--cream); border-top: 1px solid rgba(43,47,119,.08);
         box-shadow: var(--shadow); padding: .4rem 1.5rem 1.1rem;
       }
-      #nav-toggle:checked ~ nav { display: flex; }
+      nav.is-open { display: flex; }
       nav a { padding: .85rem .2rem; font-size: 1.02rem; border-bottom: 1px solid rgba(43,47,119,.06); }
       .nav-cta { margin-top: .8rem; text-align: center; border-bottom: none; padding: .8rem 1.2rem; }
-      /* Tap anywhere outside the open dropdown to close it (checkbox-hack
-         has no outside-click; this full-screen label unchecks the toggle). */
-      #nav-toggle:checked ~ .nav-backdrop {
-        display: block; position: fixed; inset: 0; z-index: 38;
-        background: rgba(43,47,119,.18); cursor: default;
-      }
+
     }
     @media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
   </style>
-  <script is:inline>
-    (function(){
-      const els = document.querySelectorAll('.card, .banner, .page-band h1, .gallery-grid img');
-      els.forEach(e => e.classList.add('reveal'));
-      if (!('IntersectionObserver' in window)) { els.forEach(e=>e.classList.add('in')); return; }
-      const io = new IntersectionObserver((ent)=>{
-        ent.forEach(x=>{ if(x.isIntersecting){ x.target.classList.add('in'); io.unobserve(x.target); } });
-      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
-      els.forEach((e,i)=>{ e.style.transitionDelay = (Math.min(i%6,5)*40)+'ms'; io.observe(e); });
-    })();
+  <script>
+    const button = document.querySelector<HTMLButtonElement>('.nav-burger');
+    const navigation = document.querySelector<HTMLElement>('#primary-navigation');
+    if (button && navigation) {
+      const close = (restoreFocus = false) => {
+        navigation.classList.remove('is-open');
+        button.setAttribute('aria-expanded', 'false');
+        button.setAttribute('aria-label', 'Open menu');
+        if (restoreFocus) button.focus();
+      };
+      button.addEventListener('click', () => {
+        const open = button.getAttribute('aria-expanded') !== 'true';
+        navigation.classList.toggle('is-open', open);
+        button.setAttribute('aria-expanded', String(open));
+        button.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') close(true);
+      });
+      document.addEventListener('click', event => {
+        if (event.target instanceof Node && !navigation.contains(event.target) && !button.contains(event.target)) close();
+      });
+      navigation.addEventListener('click', event => { if (event.target instanceof Element && event.target.closest('a')) close(); });
+      document.addEventListener('focusin', event => {
+        if (event.target instanceof Node && !navigation.contains(event.target) && !button.contains(event.target)) close();
+      });
+      window.matchMedia('(max-width:1024px)').addEventListener('change', () => close());
+    }
   </script>
   <script is:inline>
     // GA4 conversion signals on key intents (only fire if GA4 is loaded).
     document.addEventListener('click', function (e) {
       var a = e.target.closest('a'); if (!a || !window.gtag) return;
       var h = a.getAttribute('href') || '';
+      if (a.dataset.campaign) gtag('event', 'campaign_enquiry_click', { campaign: a.dataset.campaign, page_path: location.pathname });
       if (h.indexOf('wa.me') > -1 || h.indexOf('whatsapp') > -1) gtag('event', 'whatsapp_click');
       else if (h.indexOf('tel:') === 0) gtag('event', 'phone_click');
       else if (h.indexOf('/book-a-tour') > -1) gtag('event', 'book_tour_click');

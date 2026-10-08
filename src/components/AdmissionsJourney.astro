@@ -1,0 +1,38 @@
+---
+import site from '../data/site.json';
+import { admissionsWhatsApp, testimonials, faqs } from '../data/seasonal';
+import '../styles/admissions.css';
+const { seasonal = false } = Astro.props;
+const programs = [['Playgroup','1.5–3','playgroup'],['Nursery','3–4','nursery'],['LKG','4–5','lkg'],['UKG','5–6','ukg']];
+const photos = [
+  ['img_20260618_103704.jpg', 'Child building the Montessori pink tower', 'Small hands. Big discoveries.', 'Working with materials'],
+  ['img_20260619_101534.jpg', 'Child practising a button dressing frame', '“I can do it myself.”', 'Practical-life independence'],
+  ['img_20260623_114336.jpg', 'Teacher guiding children through a table activity', 'A little guidance, a new possibility.', 'Learning with teachers'],
+];
+---
+<div class="admissions-journey">
+<section class="admissions-hero">
+  <div class="container opening-grid">
+    <div class="opening-copy">
+      <p class="season-label">Vidyarambham season · Kaloor, Kochi</p>
+      <h1>A gentle beginning to a <span>world of learning.</span></h1>
+      <p class="opening-intro">{seasonal ? "This Vidyarambham season, take the first step towards preschool. Meet our teachers, explore our Montessori classrooms, and find a welcoming place for your child's everyday discoveries." : "Choosing your child's first preschool is a big step. Meet our teachers, explore our Montessori classrooms, and discover a place for your little one to grow at their own pace."}</p>
+      <p class="age-note">For little learners aged 1.5–6</p>
+      <div class="opening-actions"><a class="btn btn-pink" data-campaign="vidyarambham" href={admissionsWhatsApp}>Ask about admissions <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="/book-a-tour/">Book a free visit</a></div>
+      <div class="opening-links"><a href="/fees/">See the fee guide</a><span aria-hidden="true">·</span><a href={site.googleProfile} target="_blank" rel="noopener">Read parent reviews ↗</a></div>
+    </div>
+    <figure class="opening-photo"><picture><source srcset="/media/hero/campus.webp" type="image/webp"/><img src="/media/hero/campus.jpg" width="1100" height="935" fetchpriority="high" loading="eager" alt="Montessori learning environment at The Little Graduates in Kaloor"/></picture><figcaption>A place to explore. A space to belong.<span>THE LITTLE GRADUATES · KALOOR</span></figcaption></figure>
+  </div>
+</section>
+<section class="journey-section questions-section"><div class="container"><div class="section-heading"><p class="season-label">A first step, at their pace</p><h2>Little questions.<br/>Big decisions.</h2><p>Getting to know a school starts with the things that matter to your family.</p></div><div class="question-grid">
+  <article><h3>Will my child settle in?</h3><p>Familiar faces, a predictable routine and a gradual start help children feel at home. Our teachers stay close as each child finds their feet.</p><a class="text-link" href="/blog/settling-in-at-preschool-what-to-expect/">Read our settling-in guide →</a></article>
+  <article><h3>Will they get individual attention?</h3><p>With a 1:12 ratio, teachers guide hands-on learning while giving children room to choose, try and discover.</p><a class="text-link" href="/curriculum/">Explore how we learn →</a></article>
+  <article><h3>How will I know about their day?</h3><p>Our parent app shares learning updates, photos and activity plans, with teacher communication to help you stay connected.</p><a class="text-link" href="/about/">Get to know the school →</a></article>
+</div></div></section>
+<section class="journey-section classroom-section"><div class="container"><div class="heading-row"><div><p class="season-label">Everyday discoveries</p><h2>Learning you can see.</h2></div><a class="text-link" href="/gallery/">More classroom moments →</a></div><div class="classroom-grid">{photos.map(([file,alt,title,label]) => <figure><img src={`/media/gallery/${file}`} alt={alt} width="768" height="1024" loading="lazy" decoding="async"/><figcaption><span>{label}</span><h3>{title}</h3></figcaption></figure>)}</div><div class="parent-stories"><div class="stories-heading"><p class="season-label">In parents’ words</p><h2>Finding their<br/>feet, together.</h2><a class="text-link" href="/videos/">Watch parent stories →</a></div>{testimonials.map(t => <figure class="parent-quote"><blockquote>“{t.quote}”</blockquote><figcaption><strong>{t.name}</strong><span>{t.role}</span></figcaption></figure>)}</div></div></section>
+<section class="journey-section programs-section"><div class="container"><div class="section-heading"><p class="season-label">Their next little step</p><h2>Find the right starting point.</h2><p>Every child brings their own rhythm. Our team can help you choose the programme that suits them.</p></div><div class="program-links">{programs.map(([name,age,slug]) => <a href={`/programs/${slug}/`}><span>Ages {age}</span><h3>{name}</h3><span class="program-arrow" aria-hidden="true">↗</span></a>)}</div><p class="daycare-note">Need a longer day? <a href="/daycare-kaloor/">Explore daycare →</a> or <a href="/programs/afterschool/">afterschool care →</a></p></div></section>
+<section class="journey-section"><div class="container visit-panel"><div><p class="season-label">Come as you are</p><h2>Picture your child here.</h2><p>On a free 30-minute campus visit, see our classrooms, meet the team and ask about settling in, timings and fees. Choose from the available visit slots.</p><a class="btn btn-pink" href="/book-a-tour/">Book a free visit →</a></div><div class="visit-details"><h3>Find us in Kaloor</h3><address>{site.address.map(line => <>{line}<br/></>)}</address><a class="text-link" href={site.phoneHref}>{site.phone}</a><div class="visit-links"><a href="/fees/">Fee guide →</a><a href="/admissions/">How admissions work →</a><a href="/contact/">Directions & contact →</a></div></div></div></section>
+<section class="journey-section faq-section"><div class="container faq-layout"><div><p class="season-label">Before you begin</p><h2>A few things<br/>parents ask.</h2><p>Have a question about your child?<br/>We’re happy to talk it through.</p></div><div>{faqs.map(([q,a]) => <details class="faq"><summary>{q}</summary><p>{a}{q === 'Where can I find the fees?' && <><br/><a class="text-link" href="/fees/">Open the fee guide →</a></>}</p></details>)}</div></div></section>
+<section class="final-invitation"><div class="container"><p class="season-label">New beginnings, everyday</p><h2>The first step can be a conversation.</h2><p>Tell us a little about what you’re looking for. Let’s find a gentle beginning for your child.</p><a class="btn btn-pink" data-campaign="vidyarambham" href={admissionsWhatsApp}>Ask about admissions ↗</a><p class="send-note">Opens WhatsApp.</p></div></section>
+<div class="mobile-admissions-actions" aria-label="Admissions actions"><a href={admissionsWhatsApp} data-campaign="vidyarambham">Ask about admissions ↗</a><a href="/book-a-tour/">Free visit →</a></div>
+</div>
