@@ -74,3 +74,9 @@ body:has(.admissions-journey) .site-footer { margin-top:0; }
 .mobile-admissions-actions { display:flex; position:sticky; bottom:0; z-index:30; background:#fff; padding:.65rem 1rem calc(.65rem + env(safe-area-inset-bottom)); gap:.6rem; border-top:1px solid #dcdde9; box-shadow:0 -3px 16px #2b2f770b; }.mobile-admissions-actions a { font-size:.9rem; font-weight:800; display:flex; align-items:center; justify-content:center; min-height:44px; padding:.6rem .7rem; border-radius:10px; }.mobile-admissions-actions a:first-child { flex:1; background:#B81F56; color:#fff; }.mobile-admissions-actions a:last-child { color:var(--indigo); border:1px solid #dcdde9; }
 }
 @media(max-width:480px) { .classroom-grid { grid-template-columns:1fr; gap:1.8rem; }.classroom-grid img { aspect-ratio:1.15; object-position:center 40%; }.classroom-grid h3 { font-size:1.35rem; }.opening-actions { flex-direction:column; }.opening-actions .btn { justify-content:center; min-height:48px; }.opening-links { justify-content:center; font-size:.82rem; }.age-note { margin-bottom:1rem; }.opening-copy h1 { font-size:2.65rem; }.opening-intro { line-height:1.6; }.admissions-hero .container { padding-inline:1.25rem; } }
+@media(max-width:480px) {
+  .program-links a { min-width:0; padding:1.25rem .85rem; }
+  .program-links a:first-child { padding-left:.85rem; }
+  .program-links h3 { font-size:1.4rem; }
+  .program-links .program-arrow { position:static; display:block; margin-top:.5rem; font-size:1.15rem; }
+}
