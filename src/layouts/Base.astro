@@ -182,7 +182,7 @@ const siteSchema = {
         display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 39;
         flex-direction: column; align-items: stretch; gap: 0;
         background: var(--cream); border-top: 1px solid rgba(43,47,119,.08);
-        box-shadow: var(--shadow); padding: .4rem 1.5rem 1.1rem;
+        box-shadow: var(--shadow); padding: .4rem 1.5rem 1.1rem; max-height:calc(100dvh - 74px); overflow-y:auto;
       }
       nav.is-open { display: flex; }
       nav a { padding: .85rem .2rem; font-size: 1.02rem; border-bottom: 1px solid rgba(43,47,119,.06); }

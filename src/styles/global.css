@@ -61,9 +61,9 @@ img { max-width: 100%; height: auto; display: block; }
 .btn-white { background: #fff; color: var(--pink-ink); box-shadow: var(--shadow); }
 .btn-lg { padding: 1.05rem 2.3rem; font-size: 1.1rem; }
 .grid { display: grid; gap: 1.5rem; }
-.grid-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
-.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-.grid-4 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.grid-2 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); }
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
 .card { background: var(--white); border-radius: var(--radius); padding: 1.9rem; box-shadow: var(--shadow-sm); border: 1px solid rgba(43,47,119,.05); transition: transform .2s ease, box-shadow .2s ease; }
 .card:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
 .card .ico { width: 54px; height: 54px; border-radius: 16px; display: grid; place-items: center; font-size: 1.6rem; margin-bottom: 1rem; }
