@@ -1,0 +1,10 @@
+---
+import Base from '../../layouts/Base.astro';
+import AdmissionsJourney from '../../components/AdmissionsJourney.astro';
+import { faqSchema } from '../../data/seasonal';
+---
+<Base title="Vidyarambham Preschool Admissions in Kaloor, Kochi | The Little Graduates" description="Explore new preschool admissions this Vidyarambham season at The Little Graduates in Kaloor, Kochi. Meet our teachers and book a free campus visit." admissionsJourney={true}>
+<script slot="head" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+<link slot="head" rel="preload" as="image" href="/media/hero/campus.webp" type="image/webp" fetchpriority="high" />
+<AdmissionsJourney seasonal={true} />
+</Base>
