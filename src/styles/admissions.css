@@ -80,3 +80,11 @@ body:has(.admissions-journey) .site-footer { margin-top:0; }
   .program-links h3 { font-size:1.4rem; }
   .program-links .program-arrow { position:static; display:block; margin-top:.5rem; font-size:1.15rem; }
 }
+
+.campus-wide img { display:block; width:100%; height:auto; border-radius:20px; }
+.campus-wide figcaption { margin-top:.7rem; color:var(--muted); font-size:.9rem; }
+.outdoor-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1.2rem; margin-top:2rem; }
+.outdoor-grid img { width:100%; aspect-ratio:4/5; object-fit:cover; border-radius:16px; }
+.outdoor-grid figcaption { margin-top:.7rem; font-weight:700; color:var(--indigo); }
+@media(max-width:760px) { .outdoor-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:1rem; } }
+@media(max-width:480px) { .outdoor-grid { grid-template-columns:1fr; } .outdoor-grid img { aspect-ratio:4/3; } }
