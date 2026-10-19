@@ -5,7 +5,7 @@ title: "Afterschool Program"
 date: 2025-04-17
 excerpt: "A relaxed yet purposeful afterschool space for children to explore art, life skills, stories, and play — while feeling safe, supported, and socially connected.
 
-	Enrollment: Open to ages 3 – 8
+	Enrollment: Open to ages 3 – 10
 	Staff Ratio: 1 to 12"
 image: /media/programs/afterschool.webp
 ---

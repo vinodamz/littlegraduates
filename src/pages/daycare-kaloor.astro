@@ -15,7 +15,7 @@ const schema = {
   email: 'info@thelittlegraduates.in',
   priceRange: '₹₹',
   description:
-    'A safe, loving full-day daycare in Kaloor, Kochi for children up to age 6 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm.',
+    'A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
@@ -44,7 +44,7 @@ const care = [
 ---
 <Base
   title="Daycare in Kaloor, Kochi | The Little Graduates"
-  description="A safe, loving full-day daycare in Kaloor, Kochi for children up to age 6 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm."
+  description="A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm."
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
 
@@ -52,7 +52,7 @@ const care = [
     <div class="container">
       <span class="kicker teal">Daycare · Kaloor, Kochi</span>
       <h1>A safe, loving daycare in Kaloor, Kochi</h1>
-      <p class="lead">Full-day care for little ones up to age 6, right in Kaloor. Caring teachers, a gentle daily rhythm, meals and naps, and a huge playground — open until 6 pm for working parents.</p>
+      <p class="lead">Full-day care for children aged 3–10, right in Kaloor. Caring teachers, a gentle daily rhythm, meals and naps, and a huge playground — open until 6 pm for working parents.</p>
       <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;">
         <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
         <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>

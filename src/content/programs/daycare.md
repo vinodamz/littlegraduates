@@ -1,5 +1,5 @@
 ---
-ages: "1.5 to 6 years"
+ages: "3 to 10 years"
 order: 5
 title: "Daycare Program"
 date: 2025-04-17

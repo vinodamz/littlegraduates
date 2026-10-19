@@ -10,7 +10,7 @@ export const faqs = [
   ['What ages can join?', 'We welcome children aged 1.5–6 across Playgroup, Nursery, LKG and UKG. Our team can help you choose a suitable starting point for your child.'],
   ['What if my child takes time to settle in?', 'New children ease in gradually, with familiar teachers nearby and a predictable routine. Every child settles differently; talk with us about what your child needs.'],
   ['Where can I find the fees?', 'Our fee guide explains programme fees. The Fees page asks for a parent name and phone number to open the guide. You can also ask our team about the programme you are considering.'],
-  ['Is daycare available?', 'Yes, we offer daycare and afterschool options. Ask our team about timings and the right arrangement for your family.'],
+  ['Is daycare available?', 'Yes, we offer daycare and afterschool care for children aged 3–10. Ask our team about timings and the right arrangement for your family.'],
   ['Where is the preschool?', 'We are on Kattayil Road, Near Kaloor, Elamakara, Kochi, Kerala 682017. Book a free campus visit to see the classrooms and meet the team.'],
 ];
 export const faqSchema = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map(([q,a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) };
