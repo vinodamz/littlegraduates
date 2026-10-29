@@ -4,14 +4,15 @@ import site from '../data/site.json';
 import { openingHoursSpecification, openingHoursSummary, weekdayHours, saturdayHours } from '../data/opening-hours';
 
 const heroImg = '/media/hero/campus.jpg';
-const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
+const mapSrc = 'https://www.google.com/maps?cid=938176839927461007&output=embed';
 
 const schema = {
   '@context': 'https://schema.org',
+  '@id': 'https://thelittlegraduates.in/#campus',
   '@type': ['Preschool', 'LocalBusiness'],
   name: 'Little Graduates Early Learning Centre',
   alternateName: 'The Little Graduates',
-  url: 'https://thelittlegraduates.in/preschool-elamakara/',
+  url: 'https://thelittlegraduates.in/',
   image: 'https://thelittlegraduates.in/media/hero/campus.jpg',
   telephone: '+919562440111',
   email: 'info@thelittlegraduates.in',
@@ -26,7 +27,8 @@ const schema = {
     postalCode: '682017',
     addressCountry: 'IN',
   },
-  geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
+  geo: { '@type': 'GeoCoordinates', latitude: 10.0041698, longitude: 76.2909543 },
+  hasMap: 'https://www.google.com/maps?cid=938176839927461007',
   areaServed: ['Elamakara', 'Kaloor', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
   openingHoursSpecification,
 };
