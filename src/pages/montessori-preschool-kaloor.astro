@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import { openingHoursSpecification, openingHoursSummary, weekdayHours, saturdayHours } from '../data/opening-hours';
 
 const heroImg = '/media/hero/campus.jpg';
 const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
@@ -28,12 +29,7 @@ const schema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
   areaServed: ['Kaloor', 'Elamakara', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    opens: '09:30',
-    closes: '18:00',
-  },
+  openingHoursSpecification,
 };
 
 const programmes = [
@@ -41,7 +37,7 @@ const programmes = [
   ['🎨', 'Nursery', '3–4 yrs'],
   ['📚', 'LKG', '4–5 yrs'],
   ['🎓', 'UKG', '5–6 yrs'],
-  ['🌳', 'Daycare', 'till 6 pm'],
+  ['🌳', 'Daycare', 'Weekdays till 6:30 pm'],
   ['⚽', 'Afterschool', '3–10 yrs'],
 ];
 const reasons = [
@@ -71,7 +67,8 @@ const reasons = [
         <a class="pill" href={site.googleProfile} target="_blank" rel="noopener">Read Google parent reviews</a>
         <span class="pill">1:12 ratio</span>
         <span class="pill">Ages 1.5–6</span>
-        <span class="pill">Open 9:30 am – 6 pm</span>
+        <span class="pill">{weekdayHours}</span>
+        <span class="pill">{saturdayHours}</span>
       </div>
     </div>
   </section>
@@ -127,7 +124,7 @@ const reasons = [
           {site.address.map((l) => <>{l}<br/></>)}
           <br/>
           <strong>Phone:</strong> <a href={site.phoneHref}>{site.phone}</a><br/>
-          <strong>Hours:</strong> Mon–Sat, 9:30 am – 6:00 pm
+          <strong>Hours:</strong> {openingHoursSummary}
         </p>
         <p><a class="btn btn-pink" href="/book-a-tour/">Book a free tour</a></p>
       </div>

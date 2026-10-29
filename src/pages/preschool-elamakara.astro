@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import { openingHoursSpecification, openingHoursSummary, weekdayHours, saturdayHours } from '../data/opening-hours';
 
 const heroImg = '/media/hero/campus.jpg';
 const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
@@ -27,12 +28,7 @@ const schema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
   areaServed: ['Elamakara', 'Kaloor', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    opens: '09:30',
-    closes: '18:00',
-  },
+  openingHoursSpecification,
 };
 ---
 <Base
@@ -85,7 +81,7 @@ const schema = {
           {site.address.map((l) => <>{l}<br/></>)}
           <br/>
           <strong>Phone:</strong> <a href={site.phoneHref}>{site.phone}</a><br/>
-          <strong>Hours:</strong> Mon–Sat, 9:30 am – 6:00 pm
+          <strong>Hours:</strong> {openingHoursSummary}
         </p>
         <p>Need full-day care? See our <a href="/daycare-kaloor/">daycare in Kaloor</a>.</p>
         <p><a class="btn btn-pink" href="/book-a-tour/">Book a free tour</a></p>

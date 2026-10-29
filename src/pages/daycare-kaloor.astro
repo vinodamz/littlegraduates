@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
+import { openingHoursSpecification, openingHoursSummary, weekdayHours, saturdayHours } from '../data/opening-hours';
 
 const mapSrc = 'https://www.google.com/maps?q=Kattayil+Road,+Elamakara,+Kochi+682017&output=embed';
 
@@ -15,7 +16,7 @@ const schema = {
   email: 'info@thelittlegraduates.in',
   priceRange: '₹₹',
   description:
-    'A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm.',
+    'A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6:30 pm on weekdays and 5 pm on Saturdays.',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Kattayil Road, Near Kaloor, Elamakara',
@@ -26,16 +27,11 @@ const schema = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 9.9981, longitude: 76.2998 },
   areaServed: ['Kaloor', 'Elamakara', 'Kathrikadavu', 'Palarivattom', 'Kochi'],
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    opens: '09:30',
-    closes: '18:00',
-  },
+  openingHoursSpecification,
 };
 
 const care = [
-  ['🕘', 'Open till 6 pm', 'Drop off in the morning and pick up after work — full-day care that fits real schedules.'],
+  ['🕘', 'Hours for working families', 'Open 8:30 am–6:30 pm on weekdays and 9 am–5 pm on Saturdays. Closed on Sundays.'],
   ['🍲', 'Meals & naps', 'Calm nap times and a gentle daily rhythm, so your child is rested and happy.'],
   ['🛡️', 'Safe & secure', 'A bright, gated campus with caring, trained staff and a 1:12 ratio.'],
   ['🧩', 'More than minding', 'Montessori-enriched play and learning — never just screen time and waiting.'],
@@ -43,7 +39,7 @@ const care = [
 ---
 <Base
   title="Daycare in Kaloor, Kochi | The Little Graduates"
-  description="A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6 pm."
+  description="A safe, loving full-day daycare in Kaloor, Kochi for children aged 3–10 — Montessori-enriched care, meals, naps and a huge playground, open until 6:30 pm on weekdays and 5 pm on Saturdays."
 >
   <script type="application/ld+json" set:html={JSON.stringify(schema)} slot="head" />
 
@@ -51,7 +47,7 @@ const care = [
     <div class="container">
       <span class="kicker teal">Daycare · Kaloor, Kochi</span>
       <h1>A safe, loving daycare in Kaloor, Kochi</h1>
-      <p class="lead">Full-day care for children aged 3–10, right in Kaloor. Caring teachers, a gentle daily rhythm, meals and naps, and a huge playground — open until 6 pm for working parents.</p>
+      <p class="lead">Full-day care for children aged 3–10, right in Kaloor. Caring teachers, a gentle daily rhythm, meals and naps, and a huge playground — open until 6:30 pm on weekdays and 5 pm on Saturdays for working parents.</p>
       <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-top:1.2rem;">
         <a class="btn btn-pink btn-lg" href="/book-a-tour/">Book a free tour</a>
         <a class="btn btn-outline btn-lg" href={site.phoneHref}>Call {site.phone}</a>
@@ -59,7 +55,8 @@ const care = [
       </div>
       <div class="pill-row">
         <a class="pill" href={site.googleProfile} target="_blank" rel="noopener">Read Google parent reviews</a>
-        <span class="pill">Open 9:30 am – 6 pm</span>
+        <span class="pill">{weekdayHours}</span>
+        <span class="pill">{saturdayHours}</span>
         <span class="pill">1:12 ratio</span>
       </div>
     </div>
@@ -104,7 +101,7 @@ const care = [
           {site.address.map((l) => <>{l}<br/></>)}
           <br/>
           <strong>Phone:</strong> <a href={site.phoneHref}>{site.phone}</a><br/>
-          <strong>Hours:</strong> Mon–Sat, 9:30 am – 6:00 pm
+          <strong>Hours:</strong> {openingHoursSummary}
         </p>
         <p><a class="btn btn-pink" href="/book-a-tour/">Book a free tour</a></p>
       </div>
