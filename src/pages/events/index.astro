@@ -8,7 +8,8 @@ import { getCollection } from 'astro:content';
 
 const now = new Date();
 const { upcoming, past } = splitEvents(await getCollection('events'), now);
-const schemas = upcoming.map((event) => eventJsonLd(event.data, new URL(`/events/${event.id}/`, Astro.site).href, now));
+const eventHref = (event: (typeof upcoming)[number]) => event.data.landing || `/events/${event.id}/`;
+const schemas = upcoming.map((event) => eventJsonLd(event.data, new URL(eventHref(event), Astro.site).href, now));
 ---
 <Base title="Events - The Little Graduates" description="Upcoming events and earlier celebrations at The Little Graduates, Kaloor, Kochi.">
   {schemas.map((schema) => <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />)}
@@ -41,11 +42,11 @@ const schemas = upcoming.map((event) => eventJsonLd(event.data, new URL(`/events
               <p class="event-date">{formatEventDate(event.data.start)}</p>
               {event.data.public && <p class="ages">Open to the public</p>}
             </div>
-            <h3><a href={`/events/${event.id}/`}>{event.data.title}</a></h3>
+            <h3><a href={eventHref(event)}>{event.data.title}</a></h3>
             {event.data.time && <p>{event.data.time}</p>}
             <p class="meta">{event.data.location}</p>
             {event.data.excerpt && <p class="excerpt">{event.data.excerpt}</p>}
-            {event.data.registrationUrl && <EventRegister href={event.data.registrationUrl} detailsHref={`/events/${event.id}/`} formNote />}
+            {event.data.registrationUrl && <EventRegister href={event.data.registrationUrl} detailsHref={eventHref(event)} formNote />}
           </article>
         ))}
       </div>

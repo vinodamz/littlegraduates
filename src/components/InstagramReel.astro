@@ -1,0 +1,32 @@
+---
+interface Props {
+  permalink: string;
+  title?: string;
+}
+const { permalink, title = 'Instagram reel' } = Astro.props;
+const clean = permalink.split('?')[0].replace(/\/+$/, '') + '/';
+const embedSrc = clean.endsWith('/embed/') ? clean : `${clean}embed/`;
+---
+<figure class="reel-embed">
+  <iframe
+    src={embedSrc}
+    title={title}
+    loading="lazy"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+    allowfullscreen
+  ></iframe>
+  <figcaption>
+    <a href={clean} target="_blank" rel="noopener">Watch on Instagram</a>
+  </figcaption>
+</figure>
+
+<style>
+  .reel-embed { margin: 1.6rem auto 0; max-width: 420px; width: 100%; }
+  .reel-embed iframe {
+    display: block; width: 100%; height: min(78vh, 640px); min-height: 420px;
+    border: 0; border-radius: 18px; background: #fff; box-shadow: var(--shadow);
+  }
+  .reel-embed figcaption { margin-top: .7rem; text-align: center; }
+  .reel-embed a { font-weight: 700; }
+</style>

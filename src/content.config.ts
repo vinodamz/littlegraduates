@@ -43,6 +43,8 @@ const events = defineCollection({
     time: z.string().optional(),
     public: z.boolean().default(false),
     registrationUrl: z.string().url().optional(),
+    landing: z.string().optional(),
+    instagram: z.string().url().optional(),
     excerpt: z.string().optional(),
     seoDescription: z.string().optional(),
   }),
