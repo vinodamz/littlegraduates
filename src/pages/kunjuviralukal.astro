@@ -4,27 +4,44 @@ import EventClock from '../components/EventClock.astro';
 import EventPhoto from '../components/EventPhoto.astro';
 import EventRegister from '../components/EventRegister.astro';
 import InstagramReel from '../components/InstagramReel.astro';
-import { eventEndsAtIso, eventJsonLd, formatEventDate, isPast } from '../data/events';
-import { getCollection, render } from 'astro:content';
+import { eventEndsAtIso, eventJsonLd, isPast } from '../data/events';
+import { getCollection } from 'astro:content';
 
 const event = (await getCollection('events')).find((item) => item.id === 'kunjuviralukal-let-me-be-little');
 if (!event) throw new Error('Missing Kunjuviralukal event content');
-const { Content } = await render(event);
 const past = isPast(event.data);
 const pageUrl = new URL('/kunjuviralukal/', Astro.site).href;
-const schema = eventJsonLd(event.data, pageUrl);
-const description = event.data.seoDescription || event.data.excerpt || `${event.data.title} at ${event.data.location}.`;
-const whenDate = formatEventDate(event.data.start);
+const shareDescription = 'Tiny fingers. Big colours. Endless fun! Arts & Crafts Festival, Saturday 21 November 2026, 3:00 to 6:00 pm at The Little Graduates, Kaloor.';
+const schema = eventJsonLd({ ...event.data, seoDescription: shareDescription }, pageUrl);
 ---
 <Base
   title={`${event.data.title} - The Little Graduates`}
-  description={description}
+  description={shareDescription}
   image={event.data.image || undefined}
   imageWidth={event.data.imageWidth}
   imageHeight={event.data.imageHeight}
 >
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
   <article class="invite-page" data-ends={past ? undefined : eventEndsAtIso(event.data)}>
+    <section class="invite-lead">
+      <div class="container invite-copy">
+        <p class="invite-hook">Tiny fingers. Big colours. Endless fun! 🎨</p>
+        <p class="invite-malayalam">കുഞ്ഞുവിരലുകൾ</p>
+        <h1>Let me be little!!</h1>
+        <ul class="invite-facts">
+          <li>Arts &amp; Crafts Festival</li>
+          <li>Saturday 21 November 2026, 3:00 to 6:00 pm</li>
+          <li>The Little Graduates, Kaloor, Kochi</li>
+          <li>Open to all little ones</li>
+          <li>Art and craft, celebrating creativity and self-expression</li>
+        </ul>
+        {!past && event.data.registrationUrl && (
+          <div class="invite-actions" data-register>
+            <EventRegister href={event.data.registrationUrl} large />
+          </div>
+        )}
+      </div>
+    </section>
     {event.data.image && (
       <figure class="invite-hero">
         <EventPhoto
@@ -34,26 +51,16 @@ const whenDate = formatEventDate(event.data.start);
           width={event.data.imageWidth}
           height={event.data.imageHeight}
           srcset={event.data.imageSrcset}
-          sizes="100vw"
-          eager
+          sizes="(max-width: 760px) calc(100vw - 3rem), 720px"
         />
       </figure>
     )}
-    <section class="page-band teal event-band">
-      <div class="container">
-        <span class="kicker teal">{past ? 'Past event' : 'Open to the public'}</span>
-        <h1>{event.data.title}</h1>
-        <p class="lead event-when"><span class="event-when-date">{whenDate}</span>{event.data.time && <span class="event-when-time">{event.data.time}</span>}</p>
-        <p class="meta">{event.data.location}</p>
-      </div>
-    </section>
-    <section class="section tight">
-      <div class="container prose invite-copy">
-        <Content />
+    <section class="section tight invite-more">
+      <div class="container invite-copy">
         {event.data.instagram && <InstagramReel permalink={event.data.instagram} title={`${event.data.title} on Instagram`} />}
         {!past && event.data.registrationUrl && (
           <div class="invite-actions">
-            <EventRegister href={event.data.registrationUrl} large formNote />
+            <EventRegister href={event.data.registrationUrl} large />
           </div>
         )}
         {past && <p class="past-note">This event has passed.</p>}
