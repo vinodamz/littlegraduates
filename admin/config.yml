@@ -52,6 +52,10 @@ collections:
       - { name: excerpt, label: Short summary, required: false }
       - { name: seoDescription, label: SEO description, required: false }
       - { name: image, label: Image, widget: image, required: false }
+      - { name: imageAlt, label: Image description, required: false }
+      - { name: imageWidth, label: Image width, widget: number, required: false }
+      - { name: imageHeight, label: Image height, widget: number, required: false }
+      - { name: imageSrcset, label: Responsive image srcset, required: false }
       - { name: body, label: Details, widget: markdown, required: false }
 
   - name: data
