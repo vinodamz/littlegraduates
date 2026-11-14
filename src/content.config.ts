@@ -36,6 +36,11 @@ const events = defineCollection({
     end: z.coerce.date().optional(),
     location: z.string().default('The Little Graduates, Kaloor, Kochi'),
     image: z.string().optional(),
+    time: z.string().optional(),
+    public: z.boolean().default(false),
+    registrationUrl: z.string().url().optional(),
+    excerpt: z.string().optional(),
+    seoDescription: z.string().optional(),
   }),
 });
 

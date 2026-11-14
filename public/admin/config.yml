@@ -43,8 +43,14 @@ collections:
     create: true
     fields:
       - { name: title, label: Title }
-      - { name: start, label: Event date, widget: datetime, format: "YYYY-MM-DD" }
+      - { name: start, label: "Start (YYYY-MM-DD or ISO datetime)" }
+      - { name: end, label: End (optional ISO datetime), required: false }
+      - { name: time, label: Time shown on the page, required: false }
       - { name: location, label: Location, default: "The Little Graduates, Kaloor, Kochi" }
+      - { name: public, label: Open to the public, widget: boolean, default: false }
+      - { name: registrationUrl, label: Registration link, required: false }
+      - { name: excerpt, label: Short summary, required: false }
+      - { name: seoDescription, label: SEO description, required: false }
       - { name: image, label: Image, widget: image, required: false }
       - { name: body, label: Details, widget: markdown, required: false }
 
