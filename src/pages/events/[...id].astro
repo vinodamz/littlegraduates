@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import EventClock from '../../components/EventClock.astro';
+import EventPhoto from '../../components/EventPhoto.astro';
 import EventRegister from '../../components/EventRegister.astro';
 import { eventEndsAtIso, eventJsonLd, formatEventDate, isPast } from '../../data/events';
 import { getCollection, render } from 'astro:content';
@@ -19,7 +20,13 @@ const description = event.data.seoDescription || event.data.excerpt || `${event.
 const whenDate = formatEventDate(event.data.start);
 const kicker = past ? 'Past event' : event.data.public ? 'Open to the public' : 'Event';
 ---
-<Base title={`${event.data.title} - The Little Graduates`} description={description}>
+<Base
+  title={`${event.data.title} - The Little Graduates`}
+  description={description}
+  image={event.data.image || undefined}
+  imageWidth={event.data.imageWidth}
+  imageHeight={event.data.imageHeight}
+>
   <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />
   <article class="event-detail" data-ends={past ? undefined : eventEndsAtIso(event.data)}>
     <section class="page-band teal event-band">
@@ -31,8 +38,20 @@ const kicker = past ? 'Past event' : event.data.public ? 'Open to the public' : 
       </div>
     </section>
     <section class="section tight">
-      <div class="container prose">
-        {event.data.image && <img src={event.data.image} alt="" style="border-radius:16px;" />}
+      <div class:list={['container', { 'event-feature': Boolean(event.data.image) }]}>
+        {event.data.image && (
+          <EventPhoto
+            class="event-feature-photo"
+            src={event.data.image}
+            alt={event.data.imageAlt || event.data.title}
+            width={event.data.imageWidth}
+            height={event.data.imageHeight}
+            srcset={event.data.imageSrcset}
+            sizes="(max-width: 760px) calc(100vw - 3rem), 380px"
+            eager
+          />
+        )}
+        <div class="prose">
         <Content />
         {!past && event.data.registrationUrl && (
           <EventRegister href={event.data.registrationUrl} detailsHref="/events/" detailsLabel="All events" large formNote />
@@ -40,6 +59,7 @@ const kicker = past ? 'Past event' : event.data.public ? 'Open to the public' : 
         {past && <p class="past-note">This event has passed.</p>}
         {!past && <p class="past-note" data-past-note hidden>This event has passed.</p>}
         {past && <p class="event-back"><a class="btn btn-outline" href="/events/">All events</a></p>}
+        </div>
       </div>
     </section>
   </article>

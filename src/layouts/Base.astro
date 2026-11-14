@@ -1,7 +1,7 @@
 ---
 import site from '../data/site.json';
 import '../styles/global.css';
-const { title = site.name, description = "A joyful Montessori preschool in the heart of Kaloor, Kochi. Ages 1.5 to 6.", image = "/media/og-default.jpg" } = Astro.props;
+const { title = site.name, description = "A joyful Montessori preschool in the heart of Kaloor, Kochi. Ages 1.5 to 6.", image = "/media/og-default.jpg", imageWidth = 1200, imageHeight = 630 } = Astro.props;
 const { admissionsJourney = false } = Astro.props;
 const ogImage = new URL(image, Astro.site).href;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
@@ -61,8 +61,8 @@ const siteSchema = {
   <meta property="og:description" content={description} />
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogImage} />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+  <meta property="og:image:width" content={imageWidth} />
+  <meta property="og:image:height" content={imageHeight} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />

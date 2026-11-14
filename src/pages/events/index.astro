@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import EventClock from '../../components/EventClock.astro';
+import EventPhoto from '../../components/EventPhoto.astro';
 import EventRegister from '../../components/EventRegister.astro';
 import { eventEndsAtIso, eventJsonLd, formatEventDate, splitEvents } from '../../data/events';
 import { getCollection } from 'astro:content';
@@ -25,6 +26,17 @@ const schemas = upcoming.map((event) => eventJsonLd(event.data, new URL(`/events
       <div id="upcoming-events">
         {upcoming.map((event) => (
           <article class="card event-card upcoming" data-event-card data-ends={eventEndsAtIso(event.data)}>
+            {event.data.image && (
+              <EventPhoto
+                class="event-card-photo"
+                src={event.data.image}
+                alt={event.data.imageAlt || event.data.title}
+                width={event.data.imageWidth}
+                height={event.data.imageHeight}
+                srcset={event.data.imageSrcset}
+                sizes="(max-width: 760px) calc(100vw - 3rem), 720px"
+              />
+            )}
             <div class="event-pills">
               <p class="event-date">{formatEventDate(event.data.start)}</p>
               {event.data.public && <p class="ages">Open to the public</p>}
