@@ -1,0 +1,24 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  srcset?: string;
+  sizes: string;
+  class?: string;
+  eager?: boolean;
+}
+const { src, alt, width, height, srcset, sizes, eager = false } = Astro.props;
+---
+<img
+  class={Astro.props.class}
+  src={src}
+  srcset={srcset}
+  sizes={srcset ? sizes : undefined}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={eager ? 'eager' : 'lazy'}
+  decoding="async"
+/>

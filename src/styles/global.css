@@ -1,5 +1,6 @@
 @font-face { font-family: 'Baloo 2'; font-style: normal; font-weight: 500 800; font-display: swap; src: url('/media/fonts/baloo2.woff2') format('woff2'); }
 @font-face { font-family: 'Nunito'; font-style: normal; font-weight: 400 700; font-display: swap; src: url('/media/fonts/nunito.woff2') format('woff2'); }
+@font-face { font-family: 'Noto Sans Malayalam'; font-style: normal; font-weight: 400; font-display: swap; src: url('/media/fonts/noto-sans-malayalam.woff2') format('woff2'); unicode-range: U+0D00-0D7F; }
 :root {
   --cream: #FFFAF0;
   --paper: #FDF6EE;
@@ -26,8 +27,8 @@
   --shadow-sm: 0 2px 10px rgba(43,47,119,.06);
   --shadow: 0 14px 40px rgba(43,47,119,.10);
   --shadow-pop: 0 18px 50px rgba(229,68,125,.18);
-  --font-head: 'Baloo 2', system-ui, sans-serif;
-  --font-body: 'Nunito', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-head: 'Baloo 2', 'Noto Sans Malayalam', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Noto Sans Malayalam', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --maxw: 1180px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -129,6 +130,7 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
 
 .home-event { background: linear-gradient(180deg, var(--teal-soft), var(--cream)); border-bottom: 1px solid rgba(19,97,105,.14); }
 .home-event-inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; padding-top: 1.15rem; padding-bottom: 1.2rem; }
+.home-event-photo { order: -1; width: 168px; height: 210px; object-fit: cover; object-position: center 42%; border-radius: 18px; flex: 0 0 auto; }
 .home-event-copy { display: flex; flex-direction: column; gap: .3rem; flex: 1; min-width: 0; }
 .home-event .kicker { margin-bottom: .15rem; }
 .home-event h2 { font-size: clamp(1.4rem, 2.5vw, 1.9rem); margin: 0; text-wrap: balance; }
@@ -146,6 +148,7 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
 .event-card h3 a { color: var(--indigo); }
 .event-card h3 a:hover { color: var(--pink); }
 .event-card.upcoming { border-top: 5px solid var(--teal); }
+.event-card-photo { width: calc(100% + 3.8rem); max-width: none; height: 220px; object-fit: cover; object-position: center 42%; border-radius: 16px; margin: -1.9rem -1.9rem .4rem; }
 .event-pills { display: flex; flex-wrap: wrap; gap: .45rem; align-items: center; }
 .event-pills .ages { margin: 0; }
 .event-date { margin: 0; font-family: var(--font-head); font-weight: 700; color: #8a5210; font-size: .95rem; }
@@ -160,6 +163,14 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
 .event-detail .prose { text-align: center; }
 .event-detail .event-actions { justify-content: center; }
 .event-detail .event-form-note { margin-inline: auto; max-width: 34rem; }
+.event-feature { display: grid; grid-template-columns: minmax(220px, 380px) minmax(0, 1fr); gap: 1.5rem 2.5rem; align-items: start; }
+.event-feature-photo { width: 100%; height: auto; border-radius: 20px; box-shadow: var(--shadow); }
+.event-detail .event-feature .prose { max-width: none; margin: 0; text-align: left; }
+.event-detail .event-feature .event-actions { justify-content: flex-start; }
+.event-detail .event-feature .event-form-note { margin-inline: 0; }
+.event-detail .prose ul { list-style: none; margin: 1.1rem 0 1.35rem; padding: .9rem 1.05rem; background: var(--teal-soft); border-radius: 16px; text-align: left; }
+.event-detail .prose li { margin: 0; }
+.event-detail .prose li + li { margin-top: .35rem; }
 .event-detail .section.tight { padding: 1.5rem 0 2.25rem; }
 .event-band { padding: 2.2rem 0 1.3rem; }
 .event-band h1 { font-size: clamp(1.9rem, 4.8vw, 3.15rem); text-wrap: balance; }
@@ -169,9 +180,12 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
 #no-upcoming { color: var(--muted); margin-bottom: 1.5rem; }
 @media (max-width: 760px) {
   .home-event-inner { flex-direction: column; align-items: stretch; padding-top: 1rem; padding-bottom: 1.1rem; }
+  .home-event-photo { width: 100%; height: auto; aspect-ratio: 4 / 3; }
   .event-actions { flex-direction: column; }
   .event-actions .btn { width: 100%; justify-content: center; }
   .event-detail { padding-bottom: 4.5rem; }
+  .event-feature { grid-template-columns: 1fr; }
+  .event-detail .event-feature .event-actions { justify-content: stretch; }
 }
 
 .skip-link { position:fixed; top:.5rem; left:1rem; z-index:100; background:#fff; color:var(--indigo); padding:.7rem 1rem; transform:translateY(-150%); border:2px solid var(--indigo); }
