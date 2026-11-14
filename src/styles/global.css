@@ -168,9 +168,27 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
 .event-detail .event-feature .prose { max-width: none; margin: 0; text-align: left; }
 .event-detail .event-feature .event-actions { justify-content: flex-start; }
 .event-detail .event-feature .event-form-note { margin-inline: 0; }
-.event-detail .prose ul { list-style: none; margin: 1.1rem 0 1.35rem; padding: .9rem 1.05rem; background: var(--teal-soft); border-radius: 16px; text-align: left; }
-.event-detail .prose li { margin: 0; }
-.event-detail .prose li + li { margin-top: .35rem; }
+.event-detail .prose ul,
+.invite-page .prose ul { list-style: none; margin: 1.1rem 0 1.35rem; padding: .9rem 1.05rem; background: var(--teal-soft); border-radius: 16px; text-align: left; }
+.event-detail .prose li,
+.invite-page .prose li { margin: 0; }
+.event-detail .prose li + li,
+.invite-page .prose li + li { margin-top: .35rem; }
+.event-share { margin: .2rem 0 1rem; }
+.event-share a { font-weight: 700; }
+.invite-lead { padding: 1.15rem 0 .25rem; }
+.invite-hook { margin: 0 0 .45rem; font-family: var(--font-head); font-size: clamp(1.45rem, 4.6vw, 2.05rem); line-height: 1.2; color: var(--pink-ink); }
+.invite-malayalam { margin: 0; font-size: 1.35rem; line-height: 1.45; color: var(--indigo); }
+.invite-lead h1 { margin: .1rem 0 .85rem; font-size: clamp(1.7rem, 4.2vw, 2.35rem); }
+.invite-facts { list-style: none; margin: 0 0 1rem; padding: .8rem 1rem; background: var(--teal-soft); border-radius: 16px; }
+.invite-facts li + li { margin-top: .3rem; }
+.invite-hero { margin: 1.15rem auto 0; max-width: 760px; padding: 0 1.5rem; }
+.invite-hero-photo { width: 100%; height: 180px; object-fit: cover; object-position: center 42%; display: block; border-radius: 18px; }
+.invite-copy { max-width: 640px; }
+.invite-more { padding-top: 1.25rem; }
+.invite-actions { margin: 0; }
+.invite-actions .event-actions { justify-content: center; }
+.invite-more .invite-actions { margin-top: 1.1rem; }
 .event-detail .section.tight { padding: 1.5rem 0 2.25rem; }
 .event-band { padding: 2.2rem 0 1.3rem; }
 .event-band h1 { font-size: clamp(1.9rem, 4.8vw, 3.15rem); text-wrap: balance; }
@@ -185,6 +203,8 @@ details.faq p { margin: .75rem 0 0; color: var(--muted); }
   .event-actions .btn { width: 100%; justify-content: center; }
   .event-detail { padding-bottom: 4.5rem; }
   .event-feature { grid-template-columns: 1fr; }
+  .invite-hero-photo { height: 160px; }
+  .invite-actions .event-actions { justify-content: stretch; }
   .event-detail .event-feature .event-actions { justify-content: stretch; }
 }
 

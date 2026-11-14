@@ -53,6 +53,7 @@ const kicker = past ? 'Past event' : event.data.public ? 'Open to the public' : 
         )}
         <div class="prose">
         <Content />
+        {event.data.landing && <p class="event-share"><a href={event.data.landing}>Shareable invitation page</a></p>}
         {!past && event.data.registrationUrl && (
           <EventRegister href={event.data.registrationUrl} detailsHref="/events/" detailsLabel="All events" large formNote />
         )}

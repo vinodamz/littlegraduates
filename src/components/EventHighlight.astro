@@ -9,8 +9,9 @@ const now = new Date();
 const highlight = (await getCollection('events'))
   .filter((event) => event.data.public && !isPast(event.data, now))
   .sort((a, b) => a.data.start.getTime() - b.data.start.getTime())[0];
+const pagePath = highlight?.data.landing || (highlight ? `/events/${highlight.id}/` : '');
 const schema = highlight
-  ? eventJsonLd(highlight.data, new URL(`/events/${highlight.id}/`, Astro.site).href, now)
+  ? eventJsonLd(highlight.data, new URL(pagePath, Astro.site).href, now)
   : null;
 const whenDate = highlight ? formatEventDate(highlight.data.start) : '';
 ---
@@ -40,7 +41,7 @@ const whenDate = highlight ? formatEventDate(highlight.data.start) : '';
           {highlight.data.registrationUrl && <p class="event-form-note">{registrationFormNote}</p>}
         </div>
         {highlight.data.registrationUrl && (
-          <EventRegister href={highlight.data.registrationUrl} detailsHref={`/events/${highlight.id}/`} />
+          <EventRegister href={highlight.data.registrationUrl} detailsHref={pagePath} />
         )}
       </div>
     </aside>
