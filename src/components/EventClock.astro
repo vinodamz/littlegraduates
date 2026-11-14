@@ -1,0 +1,29 @@
+<script>
+  const now = Date.now();
+  document.querySelectorAll<HTMLElement>('[data-ends]').forEach((el) => {
+    const ends = Date.parse(el.dataset.ends ?? '');
+    if (Number.isNaN(ends) || now <= ends) return;
+    el.querySelectorAll('[data-register]').forEach((node) => node.remove());
+    el.querySelectorAll<HTMLElement>('[data-past-note]').forEach((note) => {
+      note.hidden = false;
+    });
+    if (el.hasAttribute('data-event-highlight')) {
+      el.remove();
+      return;
+    }
+    const pastList = document.getElementById('past-events');
+    const upcoming = document.getElementById('upcoming-events');
+    if (pastList && upcoming?.contains(el)) {
+      pastList.hidden = false;
+      const heading = pastList.querySelector('h2');
+      if (heading) heading.after(el);
+      else pastList.append(el);
+    }
+  });
+  const upcoming = document.getElementById('upcoming-events');
+  if (upcoming && !upcoming.querySelector('[data-event-card]')) {
+    document.getElementById('upcoming-heading')?.setAttribute('hidden', '');
+    const empty = document.getElementById('no-upcoming');
+    if (empty) empty.hidden = false;
+  }
+</script>

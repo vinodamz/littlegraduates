@@ -1,0 +1,18 @@
+---
+import { registrationFormNote } from '../data/events';
+interface Props {
+  href: string;
+  detailsHref?: string;
+  detailsLabel?: string;
+  large?: boolean;
+  formNote?: boolean;
+}
+const { href, detailsHref, detailsLabel = 'Event details', large = false, formNote = false } = Astro.props;
+---
+<div class="event-register">
+  {formNote && <p class="event-form-note" data-register>{registrationFormNote}</p>}
+  <div class="event-actions">
+    <a class:list={['btn', 'btn-pink', { 'btn-lg': large }]} data-register href={href}>Register now</a>
+    {detailsHref && <a class:list={['btn', 'btn-outline', { 'btn-lg': large }]} href={detailsHref}>{detailsLabel}</a>}
+  </div>
+</div>

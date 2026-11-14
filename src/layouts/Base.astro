@@ -12,9 +12,14 @@ const nav = [
   ['About', '/about/'],
   ['Programs', '/programs/'],
   ['Gallery', '/gallery/'],
-
+  ['Events', '/events/'],
   ['Contact', '/contact/'],
 ];
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => {
+  const target = href.replace(/\/$/, '') || '/';
+  return currentPath === target || (target !== '/' && currentPath.startsWith(`${target}/`));
+};
 
 const ga4Id = site.ga4Id;
 const orgSchema = {
@@ -89,7 +94,7 @@ const siteSchema = {
       </a>
       <button type="button" class="nav-burger" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open menu"><span aria-hidden="true">☰</span></button>
       <nav id="primary-navigation" aria-label="Main navigation">
-        {nav.map(([label, href]) => <a href={href} aria-current={Astro.url.pathname.replace(/\/$/, "") === href.replace(/\/$/, "") ? "page" : undefined}>{label}</a>)}
+        {nav.map(([label, href]) => <a href={href} aria-current={isCurrent(href) ? 'page' : undefined}>{label}</a>)}
         <a href="/book-a-tour/" class="btn btn-pink nav-cta">Book a Tour</a>
       </nav>
 
@@ -121,7 +126,6 @@ const siteSchema = {
         <a class="foot-link" href="/vidyarambham/">Vidyarambham admissions</a>
         <a class="foot-link" href="/videos/">Videos & parent stories</a>
         <a class="foot-link" href="/blog/">Blog</a>
-        <a class="foot-link" href="/events/">Events</a>
         <a class="foot-link" href="/admissions/">Admissions 2026</a>
         <a class="foot-link" href="/curriculum/">Curriculum 2026–27</a>
         <a class="foot-link" href="/montessori-preschool-kaloor/">Montessori preschool in Kaloor</a>
@@ -174,9 +178,9 @@ const siteSchema = {
     .foot-bottom { border-top: 1px solid rgba(255,255,255,.12); margin-top: 2.5rem; padding-top: 1.5rem; text-align: center; color: #9a9dcb; font-size: .9rem; }
     .foot-bottom a { color: #ffd9e6; text-decoration: underline; }
     @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-    /* Below 1024px the 8-item nav can't fit on one line — switch to a clean
-       full-width dropdown so it never wraps or crowds. */
-    @media (max-width: 1024px) {
+    /* Below 1100px the nav can't fit on one line — switch to a full-width
+       dropdown so it never wraps or crowds. */
+    @media (max-width: 1100px) {
       .nav-burger { display: block; }
       nav {
         display: none; position: absolute; top: 100%; left: 0; right: 0; z-index: 39;
@@ -218,7 +222,7 @@ const siteSchema = {
       document.addEventListener('focusin', event => {
         if (event.target instanceof Node && !navigation.contains(event.target) && !button.contains(event.target)) close();
       });
-      window.matchMedia('(max-width:1024px)').addEventListener('change', () => close());
+      window.matchMedia('(max-width:1100px)').addEventListener('change', () => close());
     }
   </script>
   <script is:inline>

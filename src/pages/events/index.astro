@@ -1,23 +1,53 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getCollection, render } from 'astro:content';
-const events = (await getCollection('events')).sort((a,b) => b.data.start - a.data.start);
+import EventClock from '../../components/EventClock.astro';
+import EventRegister from '../../components/EventRegister.astro';
+import { eventEndsAtIso, eventJsonLd, formatEventDate, splitEvents } from '../../data/events';
+import { getCollection } from 'astro:content';
+
+const now = new Date();
+const { upcoming, past } = splitEvents(await getCollection('events'), now);
+const schemas = upcoming.map((event) => eventJsonLd(event.data, new URL(`/events/${event.id}/`, Astro.site).href, now));
 ---
-<Base title="Events - The Little Graduates" description="Upcoming events, celebrations, and camps at The Little Graduates, Kaloor, Kochi.">
+<Base title="Events - The Little Graduates" description="Upcoming events and earlier celebrations at The Little Graduates, Kaloor, Kochi.">
+  {schemas.map((schema) => <script type="application/ld+json" slot="head" set:html={JSON.stringify(schema)} />)}
   <section class="page-band teal">
-    <div class="container"><span class="kicker teal">Events</span><h1>Celebrations &amp; happenings</h1></div>
+    <div class="container">
+      <span class="kicker teal">Events</span>
+      <h1>Celebrations &amp; happenings</h1>
+      <p class="lead">What’s coming up at the campus, and a look back at earlier days.</p>
+    </div>
   </section>
-  <section class="section">
-    <div class="container" style="max-width:800px;">
-      <div style="margin-top:0;">
-        {events.map(e => (
-          <div class="card" style="margin-bottom:1.25rem;">
-            <p class="ages">{e.data.start.toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })}</p>
-            <h3>{e.data.title}</h3>
-            <p class="meta">{e.data.location}</p>
-          </div>
+  <section class="section tight">
+    <div class="container events-list">
+      <h2 id="upcoming-heading" hidden={upcoming.length === 0}>Coming up</h2>
+      <p id="no-upcoming" hidden={upcoming.length > 0}>No upcoming events just now.</p>
+      <div id="upcoming-events">
+        {upcoming.map((event) => (
+          <article class="card event-card upcoming" data-event-card data-ends={eventEndsAtIso(event.data)}>
+            <div class="event-pills">
+              <p class="event-date">{formatEventDate(event.data.start)}</p>
+              {event.data.public && <p class="ages">Open to the public</p>}
+            </div>
+            <h3><a href={`/events/${event.id}/`}>{event.data.title}</a></h3>
+            {event.data.time && <p>{event.data.time}</p>}
+            <p class="meta">{event.data.location}</p>
+            {event.data.excerpt && <p class="excerpt">{event.data.excerpt}</p>}
+            {event.data.registrationUrl && <EventRegister href={event.data.registrationUrl} detailsHref={`/events/${event.id}/`} formNote />}
+          </article>
+        ))}
+      </div>
+      <div id="past-events" hidden={past.length === 0}>
+        <h2>Earlier events</h2>
+        {past.map((event) => (
+          <article class="card event-card">
+            <p class="event-date">{formatEventDate(event.data.start)}</p>
+            <h3><a href={`/events/${event.id}/`}>{event.data.title}</a></h3>
+            <p class="meta">{event.data.location}</p>
+          </article>
         ))}
       </div>
     </div>
   </section>
+  <EventClock />
 </Base>

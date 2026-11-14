@@ -1,0 +1,36 @@
+---
+import { getCollection } from 'astro:content';
+import EventClock from './EventClock.astro';
+import EventRegister from './EventRegister.astro';
+import { eventEndsAtIso, eventJsonLd, formatEventDate, isPast, registrationFormNote } from '../data/events';
+
+const now = new Date();
+const highlight = (await getCollection('events'))
+  .filter((event) => event.data.public && !isPast(event.data, now))
+  .sort((a, b) => a.data.start.getTime() - b.data.start.getTime())[0];
+const schema = highlight
+  ? eventJsonLd(highlight.data, new URL(`/events/${highlight.id}/`, Astro.site).href, now)
+  : null;
+const whenDate = highlight ? formatEventDate(highlight.data.start) : '';
+---
+{highlight && schema && (
+  <>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <aside class="home-event" id="upcoming-event" data-event-highlight data-ends={eventEndsAtIso(highlight.data)} aria-label="Upcoming event">
+      <div class="container home-event-inner">
+        <div class="home-event-copy">
+          <p class="kicker teal">Open to the public</p>
+          <h2>{highlight.data.title}</h2>
+          <p class="event-when"><span class="event-when-date">{whenDate}</span>{highlight.data.time && <span class="event-when-time">{highlight.data.time}</span>}</p>
+          <p class="meta">{highlight.data.location}</p>
+          {highlight.data.excerpt && <p class="home-event-excerpt">{highlight.data.excerpt}</p>}
+          {highlight.data.registrationUrl && <p class="event-form-note">{registrationFormNote}</p>}
+        </div>
+        {highlight.data.registrationUrl && (
+          <EventRegister href={highlight.data.registrationUrl} detailsHref={`/events/${highlight.id}/`} />
+        )}
+      </div>
+    </aside>
+    <EventClock />
+  </>
+)}
