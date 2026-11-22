@@ -85,3 +85,8 @@ Redirect 301 "/fees-inquiry" "/fees/"
 Redirect 301 "/parent-info/" "/about/"
 Redirect 301 "/testimonials/" "/"
 Redirect 301 "/gallery-full-width/" "/gallery/"
+# Past festival pages (21 Nov 2026). Longer paths first so the prefix match does not append a slash.
+Redirect 301 "/kunjuviralukal/" "/events/"
+Redirect 301 "/kunjuviralukal" "/events/"
+Redirect 301 "/events/kunjuviralukal-let-me-be-little/" "/events/"
+Redirect 301 "/events/kunjuviralukal-let-me-be-little" "/events/"
