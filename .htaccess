@@ -7,6 +7,13 @@ DirectoryIndex index.html
   # Force HTTPS
   RewriteCond %{HTTPS} !=on
   RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Kunjuviralukal (21 Nov 2026) was removed. LiteSpeed gives a real directory
+  # priority over mod_alias Redirect, so these must be rewrites: they still
+  # 301 while the old folders are on disk, and after this deploy deletes them.
+  RewriteRule ^kunjuviralukal/?$ /events/ [R=301,L]
+  RewriteRule ^kunjuviralukal/index\.html$ /events/ [R=301,L]
+  RewriteRule ^events/kunjuviralukal-let-me-be-little/?$ /events/ [R=301,L]
+  RewriteRule ^events/kunjuviralukal-let-me-be-little/index\.html$ /events/ [R=301,L]
 </IfModule>
 
 # Custom 404
@@ -85,8 +92,9 @@ Redirect 301 "/fees-inquiry" "/fees/"
 Redirect 301 "/parent-info/" "/about/"
 Redirect 301 "/testimonials/" "/"
 Redirect 301 "/gallery-full-width/" "/gallery/"
-# Past festival pages (21 Nov 2026). Longer paths first so the prefix match does not append a slash.
-Redirect 301 "/kunjuviralukal/" "/events/"
-Redirect 301 "/kunjuviralukal" "/events/"
-Redirect 301 "/events/kunjuviralukal-let-me-be-little/" "/events/"
-Redirect 301 "/events/kunjuviralukal-let-me-be-little" "/events/"
+# Same festival URLs, for Apache. RedirectMatch still fires on LiteSpeed when
+# the old directory exists; plain Redirect does not.
+RedirectMatch 301 ^/kunjuviralukal/?$ /events/
+RedirectMatch 301 ^/kunjuviralukal/index\.html$ /events/
+RedirectMatch 301 ^/events/kunjuviralukal-let-me-be-little/?$ /events/
+RedirectMatch 301 ^/events/kunjuviralukal-let-me-be-little/index\.html$ /events/
