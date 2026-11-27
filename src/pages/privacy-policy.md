@@ -16,11 +16,15 @@ During an active driver trip, the app collects **precise location**, timestamps,
 
 The materials module lets staff record classroom-material conditions and notes, take photos or videos, and select media to attach. These checks and app-managed media copies are saved on the phone so they can be retried if the connection is unavailable. Pending uploads can continue in the background when a connection is available, with an Android upload notification. Uploaded videos may include sound recorded with the video. The school receives these submissions as part of its materials records.
 
+Plans accepts standalone voice-file attachments, and Materials school pages support voice notes. These recordings are stored as part of the relevant school record. Available upload and recording controls depend on the page, device and app version.
+
 Staff attendance and leave tools process the employment information entered by authorized staff. Other school tools open in an **authenticated in-app browser**, using the staff member's sign-in authorization to establish a school website session. Depending on the modules and permissions available to the account, these tools display and submit student and parent details, attendance and admissions information, fee and payment records, tasks, notes and uploaded documents. These submissions go to the school's systems; school website sessions may use cookies to maintain sign-in. External links may open a separate browser or app.
+
+Depending on account permissions and the records entered, school tools process student and staff health information, including blood group, allergies and medical, incident or medication notes; staff salary components, allowances and deductions; and school fees, invoices, payments and expenses. Family, guardian and CRM contact records include contact details, interaction history, appointment dates and related notes. These records support school care, administration, payroll, billing and admissions communications.
 
 ### Access and sharing
 
-Authorized school staff access information according to their account permissions. Families can follow their child's cab through the school's private trip-tracking link. The school uses its hosting infrastructure to process these records. If a staff member chooses to send a WhatsApp alert, the alert opens in WhatsApp and WhatsApp's privacy practices apply.
+Authorized school staff access information according to their account permissions. Families can follow their child's cab through the school's private trip-tracking link. The school uses its hosting infrastructure to process these records. The school uses its connected services only to deliver school services. If a staff member chooses to send a WhatsApp alert, the alert opens in WhatsApp and WhatsApp's privacy practices apply.
 
 Viewing the live cab map requests map images from OpenStreetMap's tile service. Those requests expose connection information, such as an IP address, and the map area being viewed to that service. OpenStreetMap's privacy practices apply to its handling of these requests.
 
@@ -34,7 +38,7 @@ Cached materials sheets, checks and pending media may remain on the phone across
 
 ### Security and permissions
 
-The app communicates with the school server over HTTPS. Location permission supports active trip tracking, including while the app is in the background. Notification permission supports trip and materials-upload notifications. Camera access is used when a staff member chooses to capture material media; the device's photo/video picker lets staff select files to attach. Sound in a captured video depends on the camera app and its microphone permissions. Selecting an attachment does not give the app unrestricted access to the photo library. Users can review or withdraw permissions in device settings; this may prevent the corresponding feature from working.
+The app communicates with the school server over HTTPS. Location permission supports active trip tracking, including while the app is in the background. Notification permission supports trip and materials-upload notifications. Camera access is used when a staff member chooses to capture material media; the device's photo/video picker lets staff select files to attach. Sound in a captured video depends on the camera app and its microphone permissions. School-page attachments, including existing voice files and documents, use file-selection controls where available. Selecting an existing voice file does not itself activate the microphone. Selecting an attachment does not give the app unrestricted access to the photo library. Users can review or withdraw permissions in device settings; this may prevent the corresponding feature from working.
 
 ### Contact
 
