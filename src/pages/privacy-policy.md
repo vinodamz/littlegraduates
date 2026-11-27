@@ -4,7 +4,7 @@ title: "Privacy Policy"
 ---
 ## Little Graduates Android app
 
-Updated: 2 October 2026
+Updated: 27 November 2026
 
 The Little Graduates Android app (`in.thelittlegraduates.app`) is operated by **PARENT PETAL LITTLE STEPS LLP** for authorized adult school staff and transport drivers.
 
@@ -14,19 +14,27 @@ The app uses staff names, account identifiers, roles and sign-in details to auth
 
 During an active driver trip, the app collects **precise location**, timestamps, accuracy, speed and heading. It sends these to the school transport system to display the cab location, estimate arrivals and support pickup/drop operations. Location collection continues **when the app is in the background or the phone screen is off**. Tracking stops when the trip is finished or cancelled, and Android displays an ongoing tracking notification. The app explains this use before requesting permission. Drivers can decline or withdraw location permission; trip tracking then cannot operate.
 
+The materials module lets staff record classroom-material conditions and notes, take photos or videos, and select media to attach. These checks and app-managed media copies are saved on the phone so they can be retried if the connection is unavailable. Pending uploads can continue in the background when a connection is available, with an Android upload notification. Uploaded videos may include sound recorded with the video. The school receives these submissions as part of its materials records.
+
+Staff attendance and leave tools process the employment information entered by authorized staff. Other school tools open in an **authenticated in-app browser**, using the staff member's sign-in authorization to establish a school website session. Depending on the modules and permissions available to the account, these tools display and submit student and parent details, attendance and admissions information, fee and payment records, tasks, notes and uploaded documents. These submissions go to the school's systems; school website sessions may use cookies to maintain sign-in. External links may open a separate browser or app.
+
 ### Access and sharing
 
-Authorized school staff access information according to their account permissions. Families can follow their child's cab through the school's private trip-tracking link. The school uses its hosting infrastructure to process these records. If a staff member chooses to send a WhatsApp alert, the alert opens in WhatsApp and WhatsApp's privacy practices apply. Other school modules open the school website in an external browser.
+Authorized school staff access information according to their account permissions. Families can follow their child's cab through the school's private trip-tracking link. The school uses its hosting infrastructure to process these records. If a staff member chooses to send a WhatsApp alert, the alert opens in WhatsApp and WhatsApp's privacy practices apply.
+
+Viewing the live cab map requests map images from OpenStreetMap's tile service. Those requests expose connection information, such as an IP address, and the map area being viewed to that service. OpenStreetMap's privacy practices apply to its handling of these requests.
 
 The app has no advertisements and does not use the Android advertising ID.
 
 ### Retention and deletion requests
 
-Driver location and trip records are retained for **one year**. To request deletion of an app account or associated information, email **info@thelittlegraduates.in**, identifying the account or records concerned. Deletion requests are handled manually by the school and completed promptly after the request is verified. You may use the same address for questions about staff, child or parent records and their retention.
+Retention of raw driver-location coordinates depends on the school's configured cleanup settings and can differ from retention of trip records and other school information. Contact the school at **info@thelittlegraduates.in** for the applicable retention periods, including for staff, child and parent records. To request deletion of an app account or associated information, use the same address and identify the account or records concerned. The school handles deletion requests manually after verifying the request.
+
+Cached materials sheets, checks and pending media may remain on the phone across app restarts and sign-out so that unsent work is not lost. Signing out removes the app's secure sign-in token and cached account profile. Once the server confirms a successful media upload, the app deletes its managed outbox copies of that media; it does not delete the original files in the user's camera or gallery. Failed or waiting uploads remain available for retry. Server records are retained separately from these local copies. Uninstalling the app or clearing its data can remove unsent work, so allow pending uploads to finish first.
 
 ### Security and permissions
 
-The app communicates with the school server over HTTPS. Location permission supports active trip tracking; notification permission supports trip notifications. Device settings allow users to change these permissions.
+The app communicates with the school server over HTTPS. Location permission supports active trip tracking, including while the app is in the background. Notification permission supports trip and materials-upload notifications. Camera access is used when a staff member chooses to capture material media; the device's photo/video picker lets staff select files to attach. Sound in a captured video depends on the camera app and its microphone permissions. Selecting an attachment does not give the app unrestricted access to the photo library. Users can review or withdraw permissions in device settings; this may prevent the corresponding feature from working.
 
 ### Contact
 
